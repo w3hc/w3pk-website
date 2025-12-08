@@ -1,7 +1,7 @@
 {
-  "name": "genji-passkey",
+  "name": "w3pk-website",
   "version": "0.1.0",
-  "description": "Next.js Web3 starter with passkey auth",
+  "description": "W3PK Website",
   "main": "index.js",
   "scripts": {
     "dev": "next dev",

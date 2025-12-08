@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     title: 'About w3pk',
     description:
       'Passwordless Web3 authentication SDK with encrypted wallets and privacy features.',
-    siteName: 'Genji',
+    siteName: 'w3pk',
     images: [
       {
         url: '/huangshan.png',
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'About w3pk | Genji',
+    title: 'About w3pk',
     description:
       'Passwordless Web3 authentication SDK with encrypted wallets and privacy features.',
     images: ['/huangshan.png'],
