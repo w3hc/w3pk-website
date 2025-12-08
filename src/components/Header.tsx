@@ -301,6 +301,11 @@ export default function Header() {
                 <Portal>
                   <MenuPositioner>
                     <MenuContent minWidth="auto">
+                      <Link href="/docs" color="white">
+                        <MenuItem value="docs" fontSize="md" px={4} py={3}>
+                          Docs
+                        </MenuItem>
+                      </Link>
                       <Link href="/sig" color="white">
                         <MenuItem value="signatures" fontSize="md" px={4} py={3}>
                           {t.navigation.signatures}
