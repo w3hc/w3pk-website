@@ -20,8 +20,8 @@ type TranslationKeys = {
     greetingSubtitle: string
   }
   navigation: {
-    about: string
     settings: string
+    signatures: string
   }
   settings: {
     title: string
@@ -50,8 +50,8 @@ export const translations: Translations = {
       greetingSubtitle: 'Sit back, relax, and build something cool!',
     },
     navigation: {
-      about: 'About',
       settings: 'Settings',
+      signatures: 'Signatures',
     },
     settings: {
       title: 'Settings',
@@ -74,8 +74,8 @@ export const translations: Translations = {
       greetingSubtitle: '坐下来，放松，创造一些很酷的东西！',
     },
     navigation: {
-      about: '关于',
       settings: '设置',
+      signatures: '签名',
     },
     settings: {
       title: '设置',
@@ -98,8 +98,8 @@ export const translations: Translations = {
       greetingSubtitle: 'आराम से बैठें और कुछ शानदार बनाएं!',
     },
     navigation: {
-      about: 'के बारे में',
       settings: 'सेटिंग्स',
+      signatures: 'हस्ताक्षर',
     },
     settings: {
       title: 'सेटिंग्स',
@@ -122,8 +122,8 @@ export const translations: Translations = {
       greetingSubtitle: '¡Siéntate, relájate y crea algo genial!',
     },
     navigation: {
-      about: 'Acerca de',
       settings: 'Configuración',
+      signatures: 'Firmas',
     },
     settings: {
       title: 'Configuración',
@@ -146,8 +146,8 @@ export const translations: Translations = {
       greetingSubtitle: 'Détendez-vous et créez quelque chose de cool !',
     },
     navigation: {
-      about: 'À propos',
       settings: 'Paramètres',
+      signatures: 'Signatures',
     },
     settings: {
       title: 'Paramètres',
@@ -170,8 +170,8 @@ export const translations: Translations = {
       greetingSubtitle: 'استرخ وابنِ شيئاً رائعاً!',
     },
     navigation: {
-      about: 'حول',
       settings: 'الإعدادات',
+      signatures: 'التوقيعات',
     },
     settings: {
       title: 'الإعدادات',
@@ -194,8 +194,8 @@ export const translations: Translations = {
       greetingSubtitle: 'বসুন, আরাম করুন এবং কিছু দুর্দান্ত তৈরি করুন!',
     },
     navigation: {
-      about: 'সম্পর্কে',
       settings: 'সেটিংস',
+      signatures: 'স্বাক্ষর',
     },
     settings: {
       title: 'সেটিংস',
@@ -218,8 +218,8 @@ export const translations: Translations = {
       greetingSubtitle: 'Расслабьтесь и создайте что-нибудь крутое!',
     },
     navigation: {
-      about: 'О нас',
       settings: 'Настройки',
+      signatures: 'Подписи',
     },
     settings: {
       title: 'Настройки',
@@ -242,8 +242,8 @@ export const translations: Translations = {
       greetingSubtitle: 'Sente-se, relaxe e construa algo legal!',
     },
     navigation: {
-      about: 'Sobre',
       settings: 'Configurações',
+      signatures: 'Assinaturas',
     },
     settings: {
       title: 'Configurações',
@@ -266,8 +266,8 @@ export const translations: Translations = {
       greetingSubtitle: 'آرام سے بیٹھیں اور کچھ شاندار بنائیں!',
     },
     navigation: {
-      about: 'کے بارے میں',
       settings: 'ترتیبات',
+      signatures: 'دستخط',
     },
     settings: {
       title: 'ترتیبات',
