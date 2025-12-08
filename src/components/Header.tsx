@@ -244,7 +244,7 @@ export default function Header() {
               <Flex align="center" gap={3}>
                 <Link href="/">
                   <Heading as="h3" size="md" textAlign="center">
-                    Genji
+                    w3pk
                   </Heading>
                 </Link>
               </Flex>
