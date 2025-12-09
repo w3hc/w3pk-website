@@ -486,7 +486,7 @@ export default function DocsPage() {
           const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
           const parts: (string | React.ReactNode)[] = []
           let lastIndex = 0
-          let match
+          let match: RegExpExecArray | null
 
           while ((match = linkRegex.exec(listText)) !== null) {
             if (match.index > lastIndex) {
@@ -496,13 +496,19 @@ export default function DocsPage() {
               )
             }
 
+            // Capture match values before using in closure
+            const linkText = match[1]
+            const linkHref = match[2]
+            const matchIndex = match.index
+            const matchLength = match[0].length
+
             // Check if it's an internal anchor link
-            const isAnchorLink = match[2].startsWith('#')
+            const isAnchorLink = linkHref.startsWith('#')
 
             parts.push(
               <ChakraLink
-                key={`li-link-${index}-${match.index}`}
-                href={match[2]}
+                key={`li-link-${index}-${matchIndex}`}
+                href={linkHref}
                 color={brandColors.accent}
                 textDecoration="underline"
                 {...(!isAnchorLink && {
@@ -511,14 +517,14 @@ export default function DocsPage() {
                 })}
                 onClick={isAnchorLink ? (e) => {
                   e.preventDefault()
-                  const anchorId = match[2].substring(1)
+                  const anchorId = linkHref.substring(1)
                   window.location.hash = anchorId
                 } : undefined}
               >
-                {match[1]}
+                {linkText}
               </ChakraLink>
             )
-            lastIndex = match.index + match[0].length
+            lastIndex = matchIndex + matchLength
           }
 
           if (lastIndex < listText.length) {
@@ -549,7 +555,7 @@ export default function DocsPage() {
           const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
           const parts: (string | React.ReactNode)[] = []
           let lastIndex = 0
-          let match
+          let match: RegExpExecArray | null
           let tempLine = line
 
           while ((match = linkRegex.exec(tempLine)) !== null) {
@@ -560,13 +566,19 @@ export default function DocsPage() {
               )
             }
 
+            // Capture match values before using in closure
+            const linkText = match[1]
+            const linkHref = match[2]
+            const matchIndex = match.index
+            const matchLength = match[0].length
+
             // Check if it's an internal anchor link
-            const isAnchorLink = match[2].startsWith('#')
+            const isAnchorLink = linkHref.startsWith('#')
 
             parts.push(
               <ChakraLink
-                key={`link-${index}-${match.index}`}
-                href={match[2]}
+                key={`link-${index}-${matchIndex}`}
+                href={linkHref}
                 color={brandColors.accent}
                 textDecoration="underline"
                 {...(!isAnchorLink && {
@@ -575,14 +587,14 @@ export default function DocsPage() {
                 })}
                 onClick={isAnchorLink ? (e) => {
                   e.preventDefault()
-                  const anchorId = match[2].substring(1)
+                  const anchorId = linkHref.substring(1)
                   window.location.hash = anchorId
                 } : undefined}
               >
-                {match[1]}
+                {linkText}
               </ChakraLink>
             )
-            lastIndex = match.index + match[0].length
+            lastIndex = matchIndex + matchLength
           }
 
           if (lastIndex < tempLine.length) {
