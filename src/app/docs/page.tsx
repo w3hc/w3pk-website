@@ -1,6 +1,6 @@
 'use client'
 
-import { Box, Heading, Text, VStack, HStack, Link as ChakraLink } from '@chakra-ui/react'
+import { Box, Heading, Text, VStack, HStack, Link as ChakraLink, Separator } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { brandColors } from '@/theme'
 import { FaChevronRight, FaLink } from 'react-icons/fa'
@@ -254,6 +254,14 @@ export default function DocsPage() {
         return
       }
 
+      // Horizontal separator
+      if (line.trim() === '---') {
+        elements.push(
+          <Separator key={`separator-${index}`} my={6} borderColor="gray.700" />
+        )
+        return
+      }
+
       // Tables
       if (line.trim().startsWith('|') && line.trim().endsWith('|')) {
         const cells = line
@@ -472,11 +480,67 @@ export default function DocsPage() {
       // Lists
       else if (line.startsWith('- ') || line.startsWith('* ')) {
         const listText = line.replace(/^[-*] /, '')
-        elements.push(
-          <Text key={`li-${index}`} pl={4} mb={1} color="gray.300">
-            • {parseInlineMarkdown(listText, `li-${index}`)}
-          </Text>
-        )
+
+        // Check for links in list items
+        if (listText.includes('[') && listText.includes('](')) {
+          const linkRegex = /\[([^\]]+)\]\(([^)]+)\)/g
+          const parts: (string | React.ReactNode)[] = []
+          let lastIndex = 0
+          let match
+
+          while ((match = linkRegex.exec(listText)) !== null) {
+            if (match.index > lastIndex) {
+              const textBefore = listText.substring(lastIndex, match.index)
+              parts.push(
+                ...(parseInlineMarkdown(textBefore, `li-pre-link-${index}-${lastIndex}`) as any)
+              )
+            }
+
+            // Check if it's an internal anchor link
+            const isAnchorLink = match[2].startsWith('#')
+
+            parts.push(
+              <ChakraLink
+                key={`li-link-${index}-${match.index}`}
+                href={match[2]}
+                color={brandColors.accent}
+                textDecoration="underline"
+                {...(!isAnchorLink && {
+                  target: '_blank',
+                  rel: 'noopener noreferrer'
+                })}
+                onClick={isAnchorLink ? (e) => {
+                  e.preventDefault()
+                  const anchorId = match[2].substring(1)
+                  window.location.hash = anchorId
+                } : undefined}
+              >
+                {match[1]}
+              </ChakraLink>
+            )
+            lastIndex = match.index + match[0].length
+          }
+
+          if (lastIndex < listText.length) {
+            const textAfter = listText.substring(lastIndex)
+            parts.push(
+              ...(parseInlineMarkdown(textAfter, `li-post-link-${index}-${lastIndex}`) as any)
+            )
+          }
+
+          elements.push(
+            <Text key={`li-${index}`} pl={4} mb={1} color="gray.300">
+              • {parts}
+            </Text>
+          )
+        } else {
+          // No links, just parse inline markdown
+          elements.push(
+            <Text key={`li-${index}`} pl={4} mb={1} color="gray.300">
+              • {parseInlineMarkdown(listText, `li-${index}`)}
+            </Text>
+          )
+        }
       }
       // Regular text (includes links, bold, inline code)
       else if (line.trim()) {
@@ -491,16 +555,29 @@ export default function DocsPage() {
           while ((match = linkRegex.exec(tempLine)) !== null) {
             if (match.index > lastIndex) {
               const textBefore = tempLine.substring(lastIndex, match.index)
-              parts.push(...(parseInlineMarkdown(textBefore, `pre-link-${index}-${lastIndex}`) as any))
+              parts.push(
+                ...(parseInlineMarkdown(textBefore, `pre-link-${index}-${lastIndex}`) as any)
+              )
             }
+
+            // Check if it's an internal anchor link
+            const isAnchorLink = match[2].startsWith('#')
+
             parts.push(
               <ChakraLink
                 key={`link-${index}-${match.index}`}
                 href={match[2]}
                 color={brandColors.accent}
                 textDecoration="underline"
-                target="_blank"
-                rel="noopener noreferrer"
+                {...(!isAnchorLink && {
+                  target: '_blank',
+                  rel: 'noopener noreferrer'
+                })}
+                onClick={isAnchorLink ? (e) => {
+                  e.preventDefault()
+                  const anchorId = match[2].substring(1)
+                  window.location.hash = anchorId
+                } : undefined}
               >
                 {match[1]}
               </ChakraLink>
@@ -510,7 +587,9 @@ export default function DocsPage() {
 
           if (lastIndex < tempLine.length) {
             const textAfter = tempLine.substring(lastIndex)
-            parts.push(...(parseInlineMarkdown(textAfter, `post-link-${index}-${lastIndex}`) as any))
+            parts.push(
+              ...(parseInlineMarkdown(textAfter, `post-link-${index}-${lastIndex}`) as any)
+            )
           }
 
           elements.push(
@@ -638,7 +717,7 @@ export default function DocsPage() {
         )}
 
         {/* Footer Links */}
-        <Box mt={16} pt={8} borderTopWidth="1px" borderColor="gray.800">
+        {/* <Box mt={16} pt={8} borderTopWidth="1px" borderColor="gray.800">
           <HStack gap={6} justify="center">
             <ChakraLink
               href="https://github.com/w3hc/w3pk"
@@ -671,7 +750,7 @@ export default function DocsPage() {
               Issues
             </ChakraLink>
           </HStack>
-        </Box>
+        </Box> */}
       </Box>
     </Box>
   )

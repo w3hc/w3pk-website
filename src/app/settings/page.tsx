@@ -638,10 +638,10 @@ const SettingsPage = () => {
       <>
         <VStack gap={8} align="stretch" py={20}>
           <Box textAlign="center">
-            <Heading as="h1" size="xl" mb={4}>
+            <Heading as="h1" size="2xl" mb={4}>
               {t.settings.title}
             </Heading>
-            <Text fontSize="lg" color="gray.400">
+            <Text fontSize="xl" color="gray.400" maxW="2xl" mx="auto">
               {t.settings.loginRequired}
             </Text>
           </Box>
@@ -1473,10 +1473,10 @@ const SettingsPage = () => {
     <>
       <VStack gap={8} align="stretch" py={20}>
         <Box textAlign="center">
-          <Heading as="h1" size="xl" mb={4}>
+          <Heading as="h1" size="2xl" mb={4}>
             {t.settings.title}
           </Heading>
-          <Text fontSize="lg" color="gray.400">
+          <Text fontSize="xl" color="gray.400" maxW="2xl" mx="auto">
             Manage your accounts, backups, and recovery options
           </Text>
         </Box>

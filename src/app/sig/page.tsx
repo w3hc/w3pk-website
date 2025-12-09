@@ -577,11 +577,11 @@ export default function Sig() {
     <>
       <style dangerouslySetInnerHTML={{ __html: shimmerStyles }} />
       <VStack gap={8} align="stretch" py={20}>
-        <Box p={6} borderRadius="md" textAlign="center">
-          <Heading as="h1" size="xl" mb={4}>
+        <Box textAlign="center">
+          <Heading as="h1" size="2xl" mb={4}>
             Signatures
           </Heading>
-          <Text mb={6} color="gray.400">
+          <Text fontSize="xl" color="gray.400" maxW="2xl" mx="auto" mb={6}>
             Sign messages with different wallet modes
           </Text>
         </Box>

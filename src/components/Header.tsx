@@ -313,7 +313,22 @@ export default function Header() {
                       </Link>
                       <Link href="/endpoints" color="white">
                         <MenuItem value="endpoints" fontSize="md" px={4} py={3}>
-                          Endpoints
+                          RPC Endpoints
+                        </MenuItem>
+                      </Link>
+                      <Link href="/stealth" color="white">
+                        <MenuItem value="stealth" fontSize="md" px={4} py={3}>
+                          Stealth addresses
+                        </MenuItem>
+                      </Link>
+                      <Link href="/zk" color="white">
+                        <MenuItem value="zk" fontSize="md" px={4} py={3}>
+                          ZK Proofs
+                        </MenuItem>
+                      </Link>
+                      <Link href="/examples" color="white">
+                        <MenuItem value="examples" fontSize="md" px={4} py={3}>
+                          Examples
                         </MenuItem>
                       </Link>
                       <Link href="/settings" color="white">
