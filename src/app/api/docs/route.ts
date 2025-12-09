@@ -1,6 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+
+const GITHUB_DOCS_URL = 'https://raw.githubusercontent.com/w3hc/w3pk/main/docs'
+
+const DOC_FILES = [
+  'QUICK_START.md',
+  'API_REFERENCE.md',
+  'INTEGRATION_GUIDELINES.md',
+  'SECURITY.md',
+  'ARCHITECTURE.md',
+  'RECOVERY.md',
+  'EIP-7951.md',
+  'EIP_7702.md',
+  'ZK.md',
+  'BUILD_VERIFICATION.md',
+  'BROWSER_COMPATIBILITY.md',
+]
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,15 +23,17 @@ export async function GET(request: NextRequest) {
 
     if (!file) {
       // Return list of all docs
-      const docsPath = path.join(process.cwd(), '../w3pk/docs')
-      const files = fs.readdirSync(docsPath).filter(f => f.endsWith('.md'))
-
-      return NextResponse.json({ files })
+      return NextResponse.json({ files: DOC_FILES })
     }
 
-    // Return specific file content
-    const docsPath = path.join(process.cwd(), '../w3pk/docs', file)
-    const content = fs.readFileSync(docsPath, 'utf-8')
+    // Fetch specific file content from GitHub
+    const response = await fetch(`${GITHUB_DOCS_URL}/${file}`)
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch ${file}: ${response.statusText}`)
+    }
+
+    const content = await response.text()
 
     return NextResponse.json({ content, filename: file })
   } catch (error) {

@@ -533,7 +533,7 @@ console.log('Is valid member?', isValid) // true
         </Box>
 
         {/* Call to Action */}
-        <Box
+        {/* <Box
           p={8}
           borderColor={brandColors.accent}
           border="2px solid"
@@ -568,7 +568,7 @@ console.log('Is valid member?', isValid) // true
           <Text fontSize="sm" color="whiteAlpha.700" mt={4}>
             Experience passwordless authentication + anonymous voting
           </Text>
-        </Box>
+        </Box> */}
       </VStack>
     </Container>
   )
