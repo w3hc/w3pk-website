@@ -71,6 +71,12 @@ export default function Sig() {
   const [isLoadingStealth, setIsLoadingStealth] = useState(false)
   const [isGeneratingStealth, setIsGeneratingStealth] = useState(false)
 
+  // Indexed wallet derivation state
+  const [derivedWallets, setDerivedWallets] = useState<
+    Array<{ index: number; address: string; isLoading: boolean }>
+  >([])
+  const [nextIndex, setNextIndex] = useState(0)
+
   useEffect(() => {
     let cancelled = false
 
@@ -332,6 +338,71 @@ export default function Sig() {
     }
   }
 
+  const handleDeriveNextWallet = async () => {
+    const currentIndex = nextIndex
+
+    // Add a placeholder entry
+    setDerivedWallets(prev => [...prev, { index: currentIndex, address: '', isLoading: true }])
+
+    try {
+      // Derive wallet with shared origin convention for cross-app compatibility
+      // Using https://w3pk.w3hc.org as the standard origin
+      const wallet = await deriveWallet('STANDARD', `INDEX_${currentIndex}`, {
+        origin: 'https://w3pk.w3hc.org',
+      })
+
+      // Update the entry with the actual address
+      setDerivedWallets(prev =>
+        prev.map(w =>
+          w.index === currentIndex ? { ...w, address: wallet.address, isLoading: false } : w
+        )
+      )
+
+      setNextIndex(currentIndex + 1)
+
+      // toaster.create({
+      //   title: `Wallet #${currentIndex} Derived`,
+      //   description: `Address: ${wallet.address.substring(0, 10)}...`,
+      //   type: 'success',
+      //   duration: 3000,
+      // })
+    } catch (error) {
+      console.error('Failed to derive wallet:', error)
+      // Remove the failed entry
+      setDerivedWallets(prev => prev.filter(w => w.index !== currentIndex))
+      toaster.create({
+        title: 'Error',
+        description: 'Failed to derive wallet address',
+        type: 'error',
+        duration: 5000,
+      })
+    }
+  }
+
+  const handleSignFromIndexedWallet = async (index: number, address: string) => {
+    const message = `Sign this message from wallet index #${index}: ${address}`
+
+    try {
+      const signature = await signMessage(message)
+      if (signature) {
+        toaster.create({
+          title: `Message Signed from Index #${index}`,
+          description: `Signature: ${signature.substring(0, 20)}...`,
+          type: 'success',
+          duration: 5000,
+        })
+      }
+    } catch (error) {
+      console.error('Failed to sign message:', error)
+      toaster.create({
+        title: 'Signing Failed',
+        description: error instanceof Error ? error.message : 'Failed to sign message',
+        type: 'error',
+        duration: 5000,
+      })
+    }
+  }
+
   const handleSendVerifyP256Tx = async () => {
     try {
       if (!user) {
@@ -577,11 +648,11 @@ export default function Sig() {
     <>
       <style dangerouslySetInnerHTML={{ __html: shimmerStyles }} />
       <VStack gap={8} align="stretch" py={20}>
-        <Box p={6} borderRadius="md" textAlign="center">
-          <Heading as="h1" size="xl" mb={4}>
+        <Box textAlign="center">
+          <Heading as="h1" size="2xl" mb={4}>
             Signatures
           </Heading>
-          <Text mb={6} color="gray.400">
+          <Text fontSize="xl" color="gray.400" maxW="2xl" mx="auto" mb={6}>
             Sign messages with different wallet modes
           </Text>
         </Box>
@@ -1025,6 +1096,106 @@ export default function Sig() {
                     • <strong>ERC-5564 compliant</strong>: Standard implementation using SECP256k1
                   </Text>
                 </VStack>
+              </VStack>
+            </Box>
+
+            {/* Indexed Wallet Derivation Section */}
+            <Box p={6} borderWidth="1px" borderRadius="lg" borderColor="cyan.700" bg="cyan.950">
+              <VStack gap={4} align="stretch">
+                <Heading as="h3" size="md">
+                  Indexed Wallet Derivation
+                </Heading>
+
+                <Box p={3} bg="blue.900" borderRadius="md" borderWidth="1px" borderColor="blue.700">
+                  <Text fontSize="xs" color="blue.200" fontWeight="bold" mb={2}>
+                    💡 Cross-App Wallet Convention
+                  </Text>
+                  <Text fontSize="xs" color="gray.400">
+                    For wallets that work across different apps, there are two approaches:
+                  </Text>
+                  <VStack gap={2} align="stretch" mt={2} fontSize="xs" color="gray.400">
+                    <Text>
+                      <strong>1. PRIMARY mode (Recommended):</strong> Uses your passkey&apos;s P-256
+                      public key directly. The same passkey produces the same address across all
+                      apps. EIP-7951 compatible for native blockchain transactions.
+                    </Text>
+                    <Text>
+                      <strong>2. Shared origin convention (Used here):</strong> Apps agree on a
+                      standard origin like <code>https://w3pk.w3hc.org</code>. This page uses{' '}
+                      <code>
+                        deriveWallet(&apos;STANDARD&apos;, &apos;INDEX_0&apos;, &#123; origin:
+                        &apos;https://w3pk.w3hc.org&apos; &#125;)
+                      </code>{' '}
+                      so your INDEX_0 wallet will have the <strong>same address</strong> across all
+                      participating apps.
+                    </Text>
+                  </VStack>
+                </Box>
+
+                <Text fontSize="sm" color="gray.300">
+                  Derive multiple wallet addresses by index. Each index generates a unique wallet
+                  address that you can use independently. Click the button to progressively derive
+                  wallet #0, #1, #2, and so on.
+                </Text>
+
+                {derivedWallets.length > 0 && (
+                  <VStack gap={3} align="stretch" mt={2}>
+                    {derivedWallets.map(wallet => (
+                      <Box
+                        key={wallet.index}
+                        p={4}
+                        bg="gray.900"
+                        borderRadius="md"
+                        borderWidth="1px"
+                        borderColor="cyan.700"
+                      >
+                        <VStack gap={2} align="stretch">
+                          <Text fontSize="sm" fontWeight="bold" color="cyan.300">
+                            Wallet Index #{wallet.index}
+                          </Text>
+                          {wallet.isLoading ? (
+                            <Text fontSize="xs" color="gray.400">
+                              Deriving address...
+                            </Text>
+                          ) : (
+                            <>
+                              <Text
+                                fontSize="xs"
+                                color="gray.300"
+                                wordBreak="break-all"
+                                fontFamily="mono"
+                              >
+                                {wallet.address}
+                              </Text>
+                              <Button
+                                bg="brand.accent"
+                                color="white"
+                                _hover={{ bg: 'brand.accent', opacity: 0.9 }}
+                                onClick={() =>
+                                  handleSignFromIndexedWallet(wallet.index, wallet.address)
+                                }
+                                size="xs"
+                                width="full"
+                              >
+                                Sign a message from this address
+                              </Button>
+                            </>
+                          )}
+                        </VStack>
+                      </Box>
+                    ))}
+                  </VStack>
+                )}
+
+                <Button
+                  bg="brand.accent"
+                  color="white"
+                  _hover={{ bg: 'brand.accent', opacity: 0.9 }}
+                  onClick={handleDeriveNextWallet}
+                  size="md"
+                >
+                  Derive index #{nextIndex} wallet address
+                </Button>
               </VStack>
             </Box>
           </>
