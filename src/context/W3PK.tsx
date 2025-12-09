@@ -88,8 +88,8 @@ interface W3pkType {
   register: (username: string) => Promise<void>
   logout: () => void
   signMessage: (message: string) => Promise<string | null>
-  deriveWallet: (mode?: string, tag?: string) => Promise<DerivedWallet>
-  getAddress: (mode?: string, tag?: string) => Promise<string>
+  deriveWallet: (mode?: string, tag?: string, options?: { origin?: string }) => Promise<DerivedWallet>
+  getAddress: (mode?: string, tag?: string, options?: { origin?: string }) => Promise<string>
   getBackupStatus: () => Promise<BackupStatus>
   createBackup: (password: string) => Promise<Blob>
   restoreFromBackup: (
@@ -456,14 +456,14 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const deriveWallet = useCallback(
-    async (mode?: string, tag?: string): Promise<DerivedWallet> => {
+    async (mode?: string, tag?: string, options?: { origin?: string }): Promise<DerivedWallet> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
 
       try {
         await ensureAuthentication()
-        const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any)
+        const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options as any)
 
         // Extend session after successful operation
         w3pk.extendSession()
@@ -478,7 +478,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         ) {
           try {
             await w3pk.login()
-            const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any)
+            const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options as any)
 
             // Extend session after successful retry
             w3pk.extendSession()
@@ -517,14 +517,14 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   )
 
   const getAddress = useCallback(
-    async (mode?: string, tag?: string): Promise<string> => {
+    async (mode?: string, tag?: string, options?: { origin?: string }): Promise<string> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
 
       try {
         await ensureAuthentication()
-        const address = await w3pk.getAddress(mode as any, tag as any)
+        const address = await w3pk.getAddress(mode as any, tag as any, options as any)
 
         // Extend session after successful operation
         w3pk.extendSession()
@@ -539,7 +539,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         ) {
           try {
             await w3pk.login()
-            const address = await w3pk.getAddress(mode as any, tag as any)
+            const address = await w3pk.getAddress(mode as any, tag as any, options as any)
 
             // Extend session after successful retry
             w3pk.extendSession()

@@ -345,8 +345,11 @@ export default function Sig() {
     setDerivedWallets(prev => [...prev, { index: currentIndex, address: '', isLoading: true }])
 
     try {
-      // Derive wallet with index as tag
-      const wallet = await deriveWallet('STANDARD', `INDEX_${currentIndex}`)
+      // Derive wallet with shared origin convention for cross-app compatibility
+      // Using https://w3pk.w3hc.org as the standard origin
+      const wallet = await deriveWallet('STANDARD', `INDEX_${currentIndex}`, {
+        origin: 'https://w3pk.w3hc.org',
+      })
 
       // Update the entry with the actual address
       setDerivedWallets(prev =>
@@ -357,12 +360,12 @@ export default function Sig() {
 
       setNextIndex(currentIndex + 1)
 
-      toaster.create({
-        title: `Wallet #${currentIndex} Derived`,
-        description: `Address: ${wallet.address.substring(0, 10)}...`,
-        type: 'success',
-        duration: 3000,
-      })
+      // toaster.create({
+      //   title: `Wallet #${currentIndex} Derived`,
+      //   description: `Address: ${wallet.address.substring(0, 10)}...`,
+      //   type: 'success',
+      //   duration: 3000,
+      // })
     } catch (error) {
       console.error('Failed to derive wallet:', error)
       // Remove the failed entry
@@ -1102,21 +1105,38 @@ export default function Sig() {
                 <Heading as="h3" size="md">
                   Indexed Wallet Derivation
                 </Heading>
+
+                <Box p={3} bg="blue.900" borderRadius="md" borderWidth="1px" borderColor="blue.700">
+                  <Text fontSize="xs" color="blue.200" fontWeight="bold" mb={2}>
+                    💡 Cross-App Wallet Convention
+                  </Text>
+                  <Text fontSize="xs" color="gray.400">
+                    For wallets that work across different apps, there are two approaches:
+                  </Text>
+                  <VStack gap={2} align="stretch" mt={2} fontSize="xs" color="gray.400">
+                    <Text>
+                      <strong>1. PRIMARY mode (Recommended):</strong> Uses your passkey&apos;s P-256
+                      public key directly. The same passkey produces the same address across all
+                      apps. EIP-7951 compatible for native blockchain transactions.
+                    </Text>
+                    <Text>
+                      <strong>2. Shared origin convention (Used here):</strong> Apps agree on a
+                      standard origin like <code>https://w3pk.w3hc.org</code>. This page uses{' '}
+                      <code>
+                        deriveWallet(&apos;STANDARD&apos;, &apos;INDEX_0&apos;, &#123; origin:
+                        &apos;https://w3pk.w3hc.org&apos; &#125;)
+                      </code>{' '}
+                      so your INDEX_0 wallet will have the <strong>same address</strong> across all
+                      participating apps.
+                    </Text>
+                  </VStack>
+                </Box>
+
                 <Text fontSize="sm" color="gray.300">
                   Derive multiple wallet addresses by index. Each index generates a unique wallet
                   address that you can use independently. Click the button to progressively derive
                   wallet #0, #1, #2, and so on.
                 </Text>
-
-                <Button
-                  bg="brand.accent"
-                  color="white"
-                  _hover={{ bg: 'brand.accent', opacity: 0.9 }}
-                  onClick={handleDeriveNextWallet}
-                  size="md"
-                >
-                  Derive index #{nextIndex} wallet address
-                </Button>
 
                 {derivedWallets.length > 0 && (
                   <VStack gap={3} align="stretch" mt={2}>
@@ -1151,7 +1171,9 @@ export default function Sig() {
                                 bg="brand.accent"
                                 color="white"
                                 _hover={{ bg: 'brand.accent', opacity: 0.9 }}
-                                onClick={() => handleSignFromIndexedWallet(wallet.index, wallet.address)}
+                                onClick={() =>
+                                  handleSignFromIndexedWallet(wallet.index, wallet.address)
+                                }
                                 size="xs"
                                 width="full"
                               >
@@ -1165,12 +1187,15 @@ export default function Sig() {
                   </VStack>
                 )}
 
-                <Text fontSize="xs" color="gray.500" fontStyle="italic">
-                  Each indexed wallet is derived using STANDARD mode with a unique tag (INDEX_0,
-                  INDEX_1, etc.). The app can&apos;t access the private keys, and persistent
-                  sessions are allowed. These wallets are origin-specific and derived from the
-                  mnemonic encrypted with your WebAuthn credentials.
-                </Text>
+                <Button
+                  bg="brand.accent"
+                  color="white"
+                  _hover={{ bg: 'brand.accent', opacity: 0.9 }}
+                  onClick={handleDeriveNextWallet}
+                  size="md"
+                >
+                  Derive index #{nextIndex} wallet address
+                </Button>
               </VStack>
             </Box>
           </>
