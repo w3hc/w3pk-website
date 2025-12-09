@@ -311,6 +311,11 @@ export default function Header() {
                           {t.navigation.signatures}
                         </MenuItem>
                       </Link>
+                      <Link href="/endpoints" color="white">
+                        <MenuItem value="endpoints" fontSize="md" px={4} py={3}>
+                          Endpoints
+                        </MenuItem>
+                      </Link>
                       <Link href="/settings" color="white">
                         <MenuItem value="settings" fontSize="md" px={4} py={3}>
                           {t.navigation.settings}
