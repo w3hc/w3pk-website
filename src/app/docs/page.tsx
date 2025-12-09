@@ -1,7 +1,7 @@
 'use client'
 
 import { Box, Heading, Text, VStack, HStack, Link as ChakraLink } from '@chakra-ui/react'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { brandColors } from '@/theme'
 import { FaChevronRight, FaLink } from 'react-icons/fa'
 
@@ -38,7 +38,6 @@ export default function DocsPage() {
   const [content, setContent] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
-  const contentRef = useRef<HTMLDivElement>(null)
 
   // Handle hash navigation on mount and hash change
   useEffect(() => {
@@ -197,7 +196,7 @@ export default function DocsPage() {
   const renderMarkdown = (markdown: string) => {
     // Simple markdown rendering - replace with proper library when react-markdown is installed
     const lines = markdown.split('\n')
-    const elements: JSX.Element[] = []
+    const elements: React.ReactElement[] = []
     let inCodeBlock = false
     let codeBlockContent: string[] = []
     let codeBlockLang = ''
@@ -547,11 +546,12 @@ export default function DocsPage() {
         borderColor="gray.800"
         overflowY="auto"
         position={{ base: 'fixed', md: 'fixed' }}
-        top={{ base: 0, md: '72px' }}
+        top={0}
         left={0}
-        h={{ base: '100vh', md: 'calc(100vh - 72px)' }}
+        h="100vh"
         zIndex={{ base: 20, md: 10 }}
         transition="all 0.3s"
+        pt={{ base: 0, md: '72px' }}
       >
         <VStack align="stretch" gap={0} p={4}>
           <Heading size="md" mb={4} px={2}>
@@ -596,9 +596,10 @@ export default function DocsPage() {
       {/* Main Content */}
       <Box
         ml={{ base: 0, md: '280px' }}
-        p={{ base: 4, md: 8 }}
-        maxW={{ base: '100%', md: 'calc(100% - 280px)' }}
-        w="100%"
+        pr={{ base: 4, md: 6 }}
+        pt={{ base: 4, md: 6 }}
+        pb={{ base: 4, md: 6 }}
+        w={{ base: '100%', md: 'calc(100% - 280px)' }}
       >
         {/* Mobile Menu Toggle */}
         <Box display={{ base: 'block', md: 'none' }} mb={4}>
