@@ -514,7 +514,6 @@ toaster.create({
 ```tsx
 import { Field } from '@/components/ui/field'
 import { Input } from '@/components/ui/input'
-
 ;<Field label="Email" required invalid={hasError}>
   <Input type="email" placeholder="Enter your email" />
   {hasError && <Field.ErrorText>Email is required</Field.ErrorText>}
@@ -561,7 +560,6 @@ function MyModal({ isOpen, onClose }) {
 
 ```tsx
 import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-
 ;<TabsRoot defaultValue="tab1">
   <TabsList>
     <TabsTrigger value="tab1">Tab 1</TabsTrigger>
@@ -577,7 +575,6 @@ import { TabsRoot, TabsList, TabsTrigger, TabsContent } from '@/components/ui/ta
 ```tsx
 import { MenuRoot, MenuTrigger, MenuContent, MenuItem } from '@/components/ui/menu'
 import { Button } from '@/components/ui/button'
-
 ;<MenuRoot>
   <MenuTrigger asChild>
     <Button>Options</Button>
