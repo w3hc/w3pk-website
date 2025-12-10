@@ -38,9 +38,6 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ content, filename: file })
   } catch (error) {
     console.error('Error reading docs:', error)
-    return NextResponse.json(
-      { error: 'Failed to read documentation' },
-      { status: 500 }
-    )
+    return NextResponse.json({ error: 'Failed to read documentation' }, { status: 500 })
   }
 }

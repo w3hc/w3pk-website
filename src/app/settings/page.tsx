@@ -1,4 +1,3 @@
-// app/settings/page.tsx
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
@@ -1061,10 +1060,12 @@ const SettingsPage = () => {
                 <Dialog.Body pt={4}>
                   <VStack gap={4}>
                     <Text fontSize="sm" color="gray.400">
-                      An Ethereum wallet will be created and securely stored on your device, protected
-                      by your biometric or PIN thanks to{' '}
+                      An Ethereum wallet will be created and securely stored on your device,
+                      protected by your biometric or PIN thanks to{' '}
                       <ChakraLink
-                        href={'https://github.com/w3hc/w3pk/blob/main/src/auth/register.ts#L17-L102'}
+                        href={
+                          'https://github.com/w3hc/w3pk/blob/main/src/auth/register.ts#L17-L102'
+                        }
                         color={brandColors.accent}
                         target="_blank"
                         rel="noopener noreferrer"

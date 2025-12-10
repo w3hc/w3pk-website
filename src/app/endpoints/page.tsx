@@ -1,14 +1,6 @@
 'use client'
 
-import {
-  Heading,
-  Text,
-  Box,
-  VStack,
-  HStack,
-  Grid,
-  Code,
-} from '@chakra-ui/react'
+import { Heading, Text, Box, VStack, HStack, Grid, Code } from '@chakra-ui/react'
 import { Button } from '@/components/ui/button'
 import { IconButton } from '@/components/ui/icon-button'
 import { Badge } from '@/components/ui/badge'
@@ -447,7 +439,11 @@ export default function EndpointsPage() {
                           </IconButton>
                         </Tooltip>
                       ) : (
-                        <Tooltip content={testingEndpoint === endpoint ? 'Testing...' : 'Test availability'}>
+                        <Tooltip
+                          content={
+                            testingEndpoint === endpoint ? 'Testing...' : 'Test availability'
+                          }
+                        >
                           <IconButton
                             aria-label="Test availability"
                             size="sm"
@@ -455,11 +451,7 @@ export default function EndpointsPage() {
                             onClick={() => testEndpoint(endpoint)}
                             disabled={testingEndpoint === endpoint}
                           >
-                            {testingEndpoint === endpoint ? (
-                              <Spinner size="sm" />
-                            ) : (
-                              <FiRefreshCw />
-                            )}
+                            {testingEndpoint === endpoint ? <Spinner size="sm" /> : <FiRefreshCw />}
                           </IconButton>
                         </Tooltip>
                       )}
@@ -491,8 +483,8 @@ export default function EndpointsPage() {
         </Text>
         <Text fontSize="sm" color="gray.400" mb={3}>
           While public RPC endpoints are convenient for development and testing, running your own
-          node is crucial for Ethereum&apos;s decentralization and network health. Running your
-          own node gives you full control over your infrastructure, eliminates reliance on third
+          node is crucial for Ethereum&apos;s decentralization and network health. Running your own
+          node gives you full control over your infrastructure, eliminates reliance on third
           parties, and contributes to the security and resilience of the network.{' '}
           <Text
             as="span"
@@ -509,8 +501,7 @@ export default function EndpointsPage() {
           >
             You don&apos;t need any ETH to run a node
           </Text>
-          —only if you want to become a validator and earn staking rewards (which requires 32
-          ETH).
+          —only if you want to become a validator and earn staking rewards (which requires 32 ETH).
         </Text>
         <Text fontSize="sm" color="gray.400" mb={3}>
           <strong>Getting Started:</strong> Tools like{' '}
@@ -542,11 +533,7 @@ export default function EndpointsPage() {
             textDecoration="underline"
             cursor="pointer"
             onClick={() =>
-              window.open(
-                'https://ethereum.org/en/staking/solo/',
-                '_blank',
-                'noopener,noreferrer'
-              )
+              window.open('https://ethereum.org/en/staking/solo/', '_blank', 'noopener,noreferrer')
             }
           >
             ethereum.org/staking/solo

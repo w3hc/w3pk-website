@@ -39,12 +39,7 @@ export default function Error({
             </Text>
           </Box>
         )}
-        <Button
-          bg={brandColors.accent}
-          color="white"
-          _hover={{ bg: '#3691e7' }}
-          onClick={reset}
-        >
+        <Button bg={brandColors.accent} color="white" _hover={{ bg: '#3691e7' }} onClick={reset}>
           Try again
         </Button>
       </VStack>
