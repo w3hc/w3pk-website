@@ -256,9 +256,7 @@ export default function DocsPage() {
 
       // Horizontal separator
       if (line.trim() === '---') {
-        elements.push(
-          <Separator key={`separator-${index}`} my={6} borderColor="gray.700" />
-        )
+        elements.push(<Separator key={`separator-${index}`} my={6} borderColor="gray.700" />)
         return
       }
 
@@ -513,13 +511,17 @@ export default function DocsPage() {
                 textDecoration="underline"
                 {...(!isAnchorLink && {
                   target: '_blank',
-                  rel: 'noopener noreferrer'
+                  rel: 'noopener noreferrer',
                 })}
-                onClick={isAnchorLink ? (e) => {
-                  e.preventDefault()
-                  const anchorId = linkHref.substring(1)
-                  window.location.hash = anchorId
-                } : undefined}
+                onClick={
+                  isAnchorLink
+                    ? e => {
+                        e.preventDefault()
+                        const anchorId = linkHref.substring(1)
+                        window.location.hash = anchorId
+                      }
+                    : undefined
+                }
               >
                 {linkText}
               </ChakraLink>
@@ -583,13 +585,17 @@ export default function DocsPage() {
                 textDecoration="underline"
                 {...(!isAnchorLink && {
                   target: '_blank',
-                  rel: 'noopener noreferrer'
+                  rel: 'noopener noreferrer',
                 })}
-                onClick={isAnchorLink ? (e) => {
-                  e.preventDefault()
-                  const anchorId = linkHref.substring(1)
-                  window.location.hash = anchorId
-                } : undefined}
+                onClick={
+                  isAnchorLink
+                    ? e => {
+                        e.preventDefault()
+                        const anchorId = linkHref.substring(1)
+                        window.location.hash = anchorId
+                      }
+                    : undefined
+                }
               >
                 {linkText}
               </ChakraLink>

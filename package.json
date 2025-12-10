@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "lint:a11y": "eslint . --no-ignore",
+    "lint:a11y": "eslint .",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test:a11y": "echo '⚠️  Run Lighthouse in Chrome DevTools or install pa11y: npx pa11y http://localhost:3000'"

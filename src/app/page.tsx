@@ -291,7 +291,7 @@ export default function Home() {
         <Box p={6} borderRadius="lg" bg="gray.900" borderWidth="1px" borderColor="gray.700">
           <Text fontSize="sm" color="gray.300" mb={4}>
             w3pk is under dev. Receive emails when we ship new features (EIP-1193 support, AI
-            capacities, chain abstraction, and more)
+            capacities, Viem helpers, chain abstraction, and more)
           </Text>
           <HStack gap={3}>
             <Input
@@ -327,162 +327,74 @@ export default function Home() {
             Features
           </Heading>
           <VStack align="stretch" gap={2}>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔐 Passwordless authentication (WebAuthn/FIDO2)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🛡️ Origin-specific key isolation with tag-based access control
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               ⏱️ Session management (in-memory + optional persistence)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔒 Persistent sessions (encrypted with WebAuthn keys, survives page refresh)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🌱 HD wallet generation (BIP39/BIP44)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔢 Multi-address derivation
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🌐 Origin-specific addresses (deterministic derivation per website with tag support)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               ✍️ Multiple signing methods (EIP-191, SIWE/EIP-4361, EIP-712, rawHash)
             </Text>
             <VStack align="stretch" pl={6} gap={1}>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • EIP-191: Standard Ethereum signed messages
               </Text>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • SIWE: Sign-In with Ethereum (Web3 authentication)
               </Text>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • EIP-712: Structured typed data (permits, voting, etc.)
               </Text>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • rawHash: Pre-computed hashes (Safe multisig, custom schemes)
               </Text>
             </VStack>
 
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🥷 ERC-5564 stealth addresses (opt-in, privacy-preserving transactions with view tags)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🧮 ZK primitives (zero-knowledge proof generation and verification)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔗 Chainlist support (2390+ networks, auto-filtered RPC endpoints)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               ⚡ EIP-7702 network detection (329+ supported networks)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔑 EIP-7951 PRIMARY mode (sign with P-256 passkeys directly)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🔍 Build verification (IPFS CIDv1 hashing for package integrity)
             </Text>
-            <Text
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
+            <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
               🛡️ Three-layer backup & recovery system
             </Text>
             <VStack align="stretch" pl={6} gap={1}>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • Passkey auto-sync (iCloud/Google/Microsoft)
               </Text>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • Encrypted backups (QR codes and backup files with password protection)
               </Text>
-              <Text
-                cursor="pointer"
-                transition="color 0.2s"
-                _hover={{ color: brandColors.accent }}
-              >
+              <Text cursor="pointer" transition="color 0.2s" _hover={{ color: brandColors.accent }}>
                 • Social recovery (Shamir Secret Sharing)
               </Text>
             </VStack>
