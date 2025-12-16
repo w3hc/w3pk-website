@@ -1,5 +1,12 @@
 'use client'
 
+/**
+ * W3PK Context Provider
+ *
+ * For integration guidelines and detailed documentation,
+ * please visit: https://w3pk.w3hc.org/docs#integration-guidelines
+ */
+
 import React, {
   createContext,
   useContext,
@@ -88,18 +95,19 @@ interface W3pkType {
   register: (username: string) => Promise<void>
   logout: () => void
   signMessage: (message: string) => Promise<string | null>
-  deriveWallet: (
-    mode?: string,
-    tag?: string,
-    options?: { origin?: string }
-  ) => Promise<DerivedWallet>
-  getAddress: (mode?: string, tag?: string, options?: { origin?: string }) => Promise<string>
+  deriveWallet: (mode?: string, tag?: string, options?: { requireAuth?: boolean; origin?: string }) => Promise<DerivedWallet>
+  getAddress: (mode?: string, tag?: string) => Promise<string>
   getBackupStatus: () => Promise<BackupStatus>
   createBackup: (password: string) => Promise<Blob>
   restoreFromBackup: (
     backupData: string,
     password: string
   ) => Promise<{ mnemonic: string; ethereumAddress: string }>
+  registerWithBackupFile: (
+    backupData: string,
+    password: string,
+    username: string
+  ) => Promise<{ address: string; username: string }>
   setupSocialRecovery: (
     guardians: { name: string; email?: string; phone?: string }[],
     threshold: number,
@@ -133,6 +141,9 @@ const W3PK = createContext<W3pkType>({
   },
   restoreFromBackup: async () => {
     throw new Error('restoreFromBackup not initialized')
+  },
+  registerWithBackupFile: async () => {
+    throw new Error('registerWithBackupFile not initialized')
   },
   setupSocialRecovery: async () => {
     throw new Error('setupSocialRecovery not initialized')
@@ -460,7 +471,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const deriveWallet = useCallback(
-    async (mode?: string, tag?: string, options?: { origin?: string }): Promise<DerivedWallet> => {
+    async (mode?: string, tag?: string, options?: { requireAuth?: boolean; origin?: string }): Promise<DerivedWallet> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
@@ -521,14 +532,14 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   )
 
   const getAddress = useCallback(
-    async (mode?: string, tag?: string, options?: { origin?: string }): Promise<string> => {
+    async (mode?: string, tag?: string): Promise<string> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
 
       try {
         await ensureAuthentication()
-        const address = await w3pk.getAddress(mode as any, tag as any, options as any)
+        const address = await w3pk.getAddress(mode as any, tag as any)
 
         // Extend session after successful operation
         w3pk.extendSession()
@@ -543,7 +554,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         ) {
           try {
             await w3pk.login()
-            const address = await w3pk.getAddress(mode as any, tag as any, options as any)
+            const address = await w3pk.getAddress(mode as any, tag as any)
 
             // Extend session after successful retry
             w3pk.extendSession()
@@ -696,6 +707,49 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
 
       toaster.create({
         title: 'Restore Failed',
+        description: errorMessage,
+        type: 'error',
+        duration: 5000,
+      })
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const registerWithBackupFile = async (
+    backupData: string,
+    password: string,
+    username: string
+  ): Promise<{ address: string; username: string }> => {
+    if (!w3pk || typeof w3pk.registerWithBackupFile !== 'function') {
+      throw new Error('w3pk SDK does not support registerWithBackupFile.')
+    }
+
+    try {
+      setIsLoading(true)
+      console.log('[W3PK] Registration with backup file initiated for username:', username)
+
+      const result = await w3pk.registerWithBackupFile(backupData, password, username)
+
+      console.log('[W3PK] Registration with backup successful')
+
+      toaster.create({
+        title: 'Wallet Restored & Registered! 🎉',
+        description: `Your wallet has been restored and secured with a new passkey: ${result.address.slice(0, 6)}...${result.address.slice(-4)}`,
+        type: 'success',
+        duration: 5000,
+      })
+
+      return result
+    } catch (error) {
+      console.error('[W3PK] Registration with backup failed:', error)
+
+      const errorMessage =
+        error instanceof Error ? error.message : 'Failed to register with backup file'
+
+      toaster.create({
+        title: 'Registration Failed',
         description: errorMessage,
         type: 'error',
         duration: 5000,
@@ -1053,6 +1107,7 @@ Thank you for being a trusted guardian!
         getBackupStatus,
         createBackup,
         restoreFromBackup,
+        registerWithBackupFile,
         setupSocialRecovery,
         getSocialRecoveryConfig,
         generateGuardianInvite,
