@@ -95,7 +95,11 @@ interface W3pkType {
   register: (username: string) => Promise<void>
   logout: () => void
   signMessage: (message: string) => Promise<string | null>
-  deriveWallet: (mode?: string, tag?: string, options?: { requireAuth?: boolean; origin?: string }) => Promise<DerivedWallet>
+  deriveWallet: (
+    mode?: string,
+    tag?: string,
+    options?: { requireAuth?: boolean; origin?: string }
+  ) => Promise<DerivedWallet>
   getAddress: (mode?: string, tag?: string) => Promise<string>
   getBackupStatus: () => Promise<BackupStatus>
   createBackup: (password: string) => Promise<Blob>
@@ -471,7 +475,11 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const deriveWallet = useCallback(
-    async (mode?: string, tag?: string, options?: { requireAuth?: boolean; origin?: string }): Promise<DerivedWallet> => {
+    async (
+      mode?: string,
+      tag?: string,
+      options?: { requireAuth?: boolean; origin?: string }
+    ): Promise<DerivedWallet> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
