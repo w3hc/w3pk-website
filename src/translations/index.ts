@@ -22,6 +22,7 @@ type TranslationKeys = {
   navigation: {
     settings: string
     signatures: string
+    transactions: string
   }
   settings: {
     title: string
@@ -52,6 +53,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'Settings',
       signatures: 'Signatures',
+      transactions: 'Transactions',
     },
     settings: {
       title: 'Settings',
@@ -76,6 +78,7 @@ export const translations: Translations = {
     navigation: {
       settings: '设置',
       signatures: '签名',
+      transactions: '交易',
     },
     settings: {
       title: '设置',
@@ -100,6 +103,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'सेटिंग्स',
       signatures: 'हस्ताक्षर',
+      transactions: 'लेन-देन',
     },
     settings: {
       title: 'सेटिंग्स',
@@ -124,6 +128,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'Configuración',
       signatures: 'Firmas',
+      transactions: 'Transacciones',
     },
     settings: {
       title: 'Configuración',
@@ -148,6 +153,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'Paramètres',
       signatures: 'Signatures',
+      transactions: 'Transactions',
     },
     settings: {
       title: 'Paramètres',
@@ -172,6 +178,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'الإعدادات',
       signatures: 'التوقيعات',
+      transactions: 'المعاملات',
     },
     settings: {
       title: 'الإعدادات',
@@ -196,6 +203,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'সেটিংস',
       signatures: 'স্বাক্ষর',
+      transactions: 'লেনদেন',
     },
     settings: {
       title: 'সেটিংস',
@@ -220,6 +228,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'Настройки',
       signatures: 'Подписи',
+      transactions: 'Транзакции',
     },
     settings: {
       title: 'Настройки',
@@ -244,6 +253,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'Configurações',
       signatures: 'Assinaturas',
+      transactions: 'Transações',
     },
     settings: {
       title: 'Configurações',
@@ -268,6 +278,7 @@ export const translations: Translations = {
     navigation: {
       settings: 'ترتیبات',
       signatures: 'دستخط',
+      transactions: 'لین دین',
     },
     settings: {
       title: 'ترتیبات',

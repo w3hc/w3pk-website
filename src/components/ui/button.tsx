@@ -9,7 +9,7 @@ export const Button = forwardRef<HTMLButtonElement, React.ComponentProps<typeof 
     const paddingX = props.px !== undefined ? Math.max(Number(props.px), minPadding) : minPadding
 
     // Use custom spinner with proper size
-    const spinner = props.spinner || <ChakraSpinner size="sm" />
+    const spinner = props.spinner || <ChakraSpinner size="md" />
 
     return <ChakraButton ref={ref} {...props} px={paddingX} spinner={spinner} />
   }
