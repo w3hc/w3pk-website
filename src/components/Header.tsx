@@ -311,6 +311,11 @@ export default function Header() {
                           {t.navigation.signatures}
                         </MenuItem>
                       </Link>
+                      <Link href="/tx" color="white">
+                        <MenuItem value="transactions" fontSize="md" px={4} py={3}>
+                          {t.navigation.transactions}
+                        </MenuItem>
+                      </Link>
                       <Link href="/endpoints" color="white">
                         <MenuItem value="endpoints" fontSize="md" px={4} py={3}>
                           RPC Endpoints
