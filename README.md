@@ -1,6 +1,6 @@
 # W3PK Website
 
-- [w3pk](https://github.com/w3hc/w3pk) `v0.8.7`
+- [w3pk](https://github.com/w3hc/w3pk) `v0.8.8`
 
 ## Install
 
