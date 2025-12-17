@@ -36,12 +36,12 @@ const shimmerStyles = `
   .flip-card-inner {
     position: relative;
     width: 100%;
-    transition: transform 0.6s;
+    transition: transform 0.4s ease-in-out;
     transform-style: preserve-3d;
   }
 
   .flip-card-inner.flipped {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
   }
 
   .flip-card-front,
