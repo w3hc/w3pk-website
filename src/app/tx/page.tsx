@@ -6,7 +6,6 @@ import { useW3PK } from '@/context/W3PK'
 import { useTranslation } from '@/hooks/useTranslation'
 import { useMint } from '@/hooks/useMint'
 import { useState, useEffect } from 'react'
-import { toaster } from '@/components/ui/toaster'
 import { brandColors } from '@/theme'
 
 const shimmerStyles = `
@@ -27,6 +26,38 @@ const shimmerStyles = `
     -webkit-text-fill-color: transparent;
     animation: colorWave 10s ease-in-out infinite;
   }
+
+  .flip-card {
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 0.5rem;
+  }
+
+  .flip-card-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(180deg);
+  }
 `
 
 export default function TxPage() {
@@ -38,6 +69,7 @@ export default function TxPage() {
   const [mintTxHash, setMintTxHash] = useState<string>('')
   const [ownedTokenId, setOwnedTokenId] = useState<string | null>(null)
   const [isCheckingNFT, setIsCheckingNFT] = useState(false)
+  const [isFlipped, setIsFlipped] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -221,53 +253,110 @@ export default function TxPage() {
                 {/* Show NFT if user already owns one */}
                 {ownedTokenId && (
                   <Box
+                    className="flip-card"
                     mt={8}
-                    p={6}
-                    borderRadius="lg"
-                    borderWidth="1px"
-                    borderColor="blue.700"
-                    bg="blue.950"
                     maxW="500px"
                     mx="auto"
+                    onClick={() => setIsFlipped(!isFlipped)}
                   >
-                    <VStack gap={4}>
-                      <Image
-                        src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
-                        alt="Alpha Tester NFT"
-                        borderRadius="lg"
-                        width="100%"
-                        maxW="300px"
-                      />
-                      <Text
-                        fontSize="lg"
-                        fontWeight="bold"
-                        color="blue.300"
-                      >
-                        Alpha Tester NFT #{ownedTokenId}
-                      </Text>
-                      <Link
-                        href={`https://optimistic.etherscan.io/address/${mainAddress}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        fontSize="0.875rem"
-                        color={brandColors.accent}
-                        textDecoration="underline"
-                      >
-                        View on Etherscan
-                      </Link>
-                      <Text
-                        fontSize="sm"
-                        color="gray.300"
-                        textAlign="left"
-                        lineHeight="1.6"
-                        width="100%"
-                      >
-                        You already own the Alpha Tester NFT on OP Mainnet!
-                        Don&apos;t forget to backup your account so you don&apos;t lose the NFT:
-                        we&apos;ll soon deploy a DAO and you&apos;re already a member of it!
-                        Thanks again for testing!
-                      </Text>
-                    </VStack>
+                    <Box className={`flip-card-inner ${isFlipped ? 'flipped' : ''}`}>
+                      <Box className="flip-card-front">
+                        <Box
+                          p={6}
+                          borderRadius="lg"
+                          borderWidth="1px"
+                          borderColor="blue.700"
+                          bg="blue.950"
+                        >
+                          <VStack gap={4}>
+                            <Image
+                              src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
+                              alt="Alpha Tester NFT"
+                              borderRadius="lg"
+                              width="100%"
+                              maxW="300px"
+                              mx="auto"
+                            />
+                            <Text fontSize="lg" fontWeight="bold" color="blue.300">
+                              Alpha Tester NFT #{ownedTokenId}
+                            </Text>
+                            <Text fontSize="xs" color="gray.500">
+                              Tap to flip
+                            </Text>
+                            <Link
+                              href={`https://optimistic.etherscan.io/address/${mainAddress}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              fontSize="0.875rem"
+                              color={brandColors.accent}
+                              textDecoration="underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View on Etherscan
+                            </Link>
+                            <Text
+                              fontSize="sm"
+                              color="gray.300"
+                              textAlign="left"
+                              lineHeight="1.6"
+                              width="100%"
+                            >
+                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget to
+                              backup your account so you don&apos;t lose the NFT: we&apos;ll soon deploy a
+                              DAO and you&apos;re already a member of it! Thanks again for testing!
+                            </Text>
+                          </VStack>
+                        </Box>
+                      </Box>
+                      <Box className="flip-card-back">
+                        <Box
+                          p={6}
+                          borderRadius="lg"
+                          borderWidth="1px"
+                          borderColor="blue.700"
+                          bg="blue.950"
+                        >
+                          <VStack gap={4}>
+                            <Image
+                              src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
+                              alt="Alpha Tester NFT"
+                              borderRadius="lg"
+                              width="100%"
+                              maxW="300px"
+                              mx="auto"
+                            />
+                            <Text fontSize="lg" fontWeight="bold" color="blue.300">
+                              Alpha Tester NFT #{ownedTokenId}
+                            </Text>
+                            <Text fontSize="xs" color="gray.500">
+                              Tap to flip
+                            </Text>
+                            <Link
+                              href={`https://optimistic.etherscan.io/address/${mainAddress}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              fontSize="0.875rem"
+                              color={brandColors.accent}
+                              textDecoration="underline"
+                              onClick={(e) => e.stopPropagation()}
+                            >
+                              View on Etherscan
+                            </Link>
+                            <Text
+                              fontSize="sm"
+                              color="gray.300"
+                              textAlign="left"
+                              lineHeight="1.6"
+                              width="100%"
+                            >
+                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget to
+                              backup your account so you don&apos;t lose the NFT: we&apos;ll soon deploy a
+                              DAO and you&apos;re already a member of it! Thanks again for testing!
+                            </Text>
+                          </VStack>
+                        </Box>
+                      </Box>
+                    </Box>
                   </Box>
                 )}
 
