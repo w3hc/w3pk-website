@@ -69,11 +69,7 @@ export async function POST(request: NextRequest) {
     const provider = new ethers.JsonRpcProvider(OP_MAINNET_RPC)
 
     // Connect to the contract
-    const contract = new ethers.Contract(
-      ALPHATESTER_CONTRACT_ADDRESS,
-      ALPHATESTER_ABI,
-      provider
-    )
+    const contract = new ethers.Contract(ALPHATESTER_CONTRACT_ADDRESS, ALPHATESTER_ABI, provider)
 
     // Check if user owns any NFTs
     const balance = await contract.balanceOf(userAddress)

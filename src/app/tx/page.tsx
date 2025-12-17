@@ -290,7 +290,7 @@ export default function TxPage() {
                               fontSize="0.875rem"
                               color={brandColors.accent}
                               textDecoration="underline"
-                              onClick={(e) => e.stopPropagation()}
+                              onClick={e => e.stopPropagation()}
                             >
                               View on Etherscan
                             </Link>
@@ -301,9 +301,10 @@ export default function TxPage() {
                               lineHeight="1.6"
                               width="100%"
                             >
-                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget to
-                              backup your account so you don&apos;t lose the NFT: we&apos;ll soon deploy a
-                              DAO and you&apos;re already a member of it! Thanks again for testing!
+                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget
+                              to backup your account so you don&apos;t lose the NFT: we&apos;ll soon
+                              deploy a DAO and you&apos;re already a member of it! Thanks again for
+                              testing!
                             </Text>
                           </VStack>
                         </Box>
@@ -338,7 +339,7 @@ export default function TxPage() {
                               fontSize="0.875rem"
                               color={brandColors.accent}
                               textDecoration="underline"
-                              onClick={(e) => e.stopPropagation()}
+                              onClick={e => e.stopPropagation()}
                             >
                               View on Etherscan
                             </Link>
@@ -349,9 +350,10 @@ export default function TxPage() {
                               lineHeight="1.6"
                               width="100%"
                             >
-                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget to
-                              backup your account so you don&apos;t lose the NFT: we&apos;ll soon deploy a
-                              DAO and you&apos;re already a member of it! Thanks again for testing!
+                              You already own the Alpha Tester NFT on OP Mainnet! Don&apos;t forget
+                              to backup your account so you don&apos;t lose the NFT: we&apos;ll soon
+                              deploy a DAO and you&apos;re already a member of it! Thanks again for
+                              testing!
                             </Text>
                           </VStack>
                         </Box>
