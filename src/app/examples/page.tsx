@@ -30,15 +30,15 @@ const examples: Example[] = [
     url: 'https://shebam.w3hc.org/',
     color: brandColors.primary,
   },
-  // {
-  //   id: 'affix',
-  //   title: 'Affix',
-  //   description:
-  //     'Authenticate your documents onchain while keeping your existing workflows intact. Anyone can then instantly verify that documents are genuine and unaltered.',
-  //   icon: FiFileText,
-  //   url: 'https://affix-ui.vercel.app/',
-  //   color: '#f59e0b',
-  // },
+  {
+    id: 'affix',
+    title: 'Affix',
+    description:
+      'Authenticate your documents onchain while keeping your existing workflows intact. Anyone can then instantly verify that documents are genuine and unaltered.',
+    icon: FiFileText,
+    url: 'http://affix.w3hc.org/',
+    color: '#f59e0b',
+  },
   // {
   //   id: 'stealth-gov',
   //   title: 'Stealth Gov',
