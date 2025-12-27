@@ -1,6 +1,15 @@
 'use client'
 
-import { Box, Heading, Text, VStack, HStack, Flex, Link as ChakraLink, Separator } from '@chakra-ui/react'
+import {
+  Box,
+  Heading,
+  Text,
+  VStack,
+  HStack,
+  Flex,
+  Link as ChakraLink,
+  Separator,
+} from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { brandColors } from '@/theme'
 import { FaChevronRight, FaLink } from 'react-icons/fa'
