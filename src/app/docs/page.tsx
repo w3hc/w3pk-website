@@ -1,9 +1,10 @@
 'use client'
 
-import { Box, Heading, Text, VStack, HStack, Link as ChakraLink, Separator } from '@chakra-ui/react'
+import { Box, Heading, Text, VStack, HStack, Flex, Link as ChakraLink, Separator } from '@chakra-ui/react'
 import { useState, useEffect } from 'react'
 import { brandColors } from '@/theme'
 import { FaChevronRight, FaLink } from 'react-icons/fa'
+import Spinner from '@/components/Spinner'
 
 interface DocFile {
   id: string
@@ -11,33 +12,75 @@ interface DocFile {
   filename: string
 }
 
-const docFiles: DocFile[] = [
-  { id: 'quick-start', title: 'Quick Start', filename: 'QUICK_START.md' },
-  { id: 'api-reference', title: 'API Reference', filename: 'API_REFERENCE.md' },
-  { id: 'integration', title: 'Integration Guidelines', filename: 'INTEGRATION_GUIDELINES.md' },
-  { id: 'security', title: 'Security', filename: 'SECURITY.md' },
-  { id: 'architecture', title: 'Architecture', filename: 'ARCHITECTURE.md' },
-  { id: 'recovery', title: 'Recovery', filename: 'RECOVERY.md' },
-  { id: 'eip-7951', title: 'EIP-7951', filename: 'EIP-7951.md' },
-  { id: 'eip-7702', title: 'EIP-7702', filename: 'EIP_7702.md' },
-  { id: 'zk', title: 'Zero-Knowledge', filename: 'ZK.md' },
-  {
-    id: 'build-verification',
-    title: 'Build Verification',
-    filename: 'BUILD_VERIFICATION.md',
-  },
-  {
-    id: 'browser-compatibility',
-    title: 'Browser Compatibility',
-    filename: 'BROWSER_COMPATIBILITY.md',
-  },
-]
+// Convert filename to readable title
+const filenameToTitle = (filename: string): string => {
+  const normalized = filename.toUpperCase()
+
+  // Special cases
+  if (normalized === 'ZK.MD') {
+    return 'ZK Proofs'
+  }
+
+  if (normalized === 'ZERO-KNOWLEDGE.MD' || normalized === 'ZERO_KNOWLEDGE.MD') {
+    return 'ZK Proofs'
+  }
+
+  return filename
+    .replace('.md', '')
+    .replace(/_/g, '-')
+    .split('-')
+    .map(word => {
+      // Keep EIP numbers and ZK as-is
+      if (word.match(/^(eip|zk|[0-9]+)$/i)) {
+        return word.toUpperCase()
+      }
+      // Capitalize first letter of other words
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+    })
+    .join(' ')
+}
+
+// Convert filename to URL-friendly ID
+const filenameToId = (filename: string): string => {
+  return filename.replace('.md', '').toLowerCase().replace(/_/g, '-')
+}
+
+// Build docFiles from filenames
+const buildDocFiles = (filenames: string[]): DocFile[] => {
+  return filenames.map(filename => ({
+    id: filenameToId(filename),
+    title: filenameToTitle(filename),
+    filename: filename,
+  }))
+}
 
 export default function DocsPage() {
+  const [docFiles, setDocFiles] = useState<DocFile[]>([])
   const [selectedDoc, setSelectedDoc] = useState<string>('quick-start')
   const [content, setContent] = useState<string>('')
   const [loading, setLoading] = useState(false)
   const [sidebarOpen, setSidebarOpen] = useState(true)
+
+  // Fetch list of documentation files on mount
+  useEffect(() => {
+    const fetchDocFiles = async () => {
+      try {
+        const response = await fetch('/api/docs')
+        const data = await response.json()
+        if (data.files) {
+          const docs = buildDocFiles(data.files)
+          setDocFiles(docs)
+          // Set first doc as selected if available
+          if (docs.length > 0 && !selectedDoc) {
+            setSelectedDoc(docs[0].id)
+          }
+        }
+      } catch (error) {
+        console.error('Error fetching doc files:', error)
+      }
+    }
+    fetchDocFiles()
+  }, [])
 
   // Handle hash navigation on mount and hash change
   useEffect(() => {
@@ -725,9 +768,9 @@ export default function DocsPage() {
         </Box>
 
         {loading ? (
-          <Box textAlign="center" py={20}>
-            <Text color="gray.500">Loading...</Text>
-          </Box>
+          <Flex align="center" justify="center" minH="60vh">
+            <Spinner size={200} />
+          </Flex>
         ) : (
           <VStack align="stretch" gap={0}>
             {renderMarkdown(content)}
