@@ -2,7 +2,7 @@
 
 import { Box, Heading, Text, VStack, SimpleGrid, Link as ChakraLink, Icon } from '@chakra-ui/react'
 import { brandColors } from '@/theme'
-import { FiExternalLink, FiPackage, FiCreditCard, FiFileText, FiCheckSquare } from 'react-icons/fi'
+import { FiExternalLink, FiPackage, FiCreditCard, FiFileText, FiCheckSquare, FiImage } from 'react-icons/fi'
 
 interface Example {
   id: string
@@ -38,6 +38,14 @@ const examples: Example[] = [
     icon: FiFileText,
     url: 'http://affix.w3hc.org/',
     color: '#f59e0b',
+  },
+  {
+    id: 'pixel',
+    title: '像素众创',
+    description: 'Xiangsu Zhongchuang (XSZC) is a Collective pixel artwork.',
+    icon: FiImage,
+    url: 'https://pixel.w3hc.org/',
+    color: '#ec4899',
   },
   // {
   //   id: 'stealth-gov',
