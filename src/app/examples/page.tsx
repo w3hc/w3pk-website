@@ -2,7 +2,14 @@
 
 import { Box, Heading, Text, VStack, SimpleGrid, Link as ChakraLink, Icon } from '@chakra-ui/react'
 import { brandColors } from '@/theme'
-import { FiExternalLink, FiPackage, FiCreditCard, FiFileText, FiCheckSquare, FiImage } from 'react-icons/fi'
+import {
+  FiExternalLink,
+  FiPackage,
+  FiCreditCard,
+  FiFileText,
+  FiCheckSquare,
+  FiImage,
+} from 'react-icons/fi'
 
 interface Example {
   id: string
