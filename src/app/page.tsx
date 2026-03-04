@@ -383,6 +383,20 @@ export default function Home() {
               transition="color 0.2s"
               _hover={{ color: brandColors.accent }}
             >
+              On-chain transaction sending with automatic RPC resolution (`sendTransaction`)
+            </List.Item>
+            <List.Item
+              cursor="pointer"
+              transition="color 0.2s"
+              _hover={{ color: brandColors.accent }}
+            >
+              EIP-1193 provider for ethers, viem, wagmi, RainbowKit (`getEIP1193Provider`)
+            </List.Item>
+            <List.Item
+              cursor="pointer"
+              transition="color 0.2s"
+              _hover={{ color: brandColors.accent }}
+            >
               ERC-5564 stealth addresses (opt-in)
             </List.Item>
             <List.Item
@@ -411,6 +425,13 @@ export default function Home() {
               transition="color 0.2s"
               _hover={{ color: brandColors.accent }}
             >
+              External wallet integration (delegate MetaMask/Ledger to w3pk via EIP-7702)
+            </List.Item>
+            <List.Item
+              cursor="pointer"
+              transition="color 0.2s"
+              _hover={{ color: brandColors.accent }}
+            >
               EIP-7951 PRIMARY mode (P-256 passkey signing)
             </List.Item>
             <List.Item
@@ -418,7 +439,7 @@ export default function Home() {
               transition="color 0.2s"
               _hover={{ color: brandColors.accent }}
             >
-              Build verification (IPFS CIDv1 hashing)
+              Build verification (IPFS CID hashing + DAO-maintained onchain registry)
             </List.Item>
             <List.Item
               cursor="pointer"
@@ -426,6 +447,13 @@ export default function Home() {
               _hover={{ color: brandColors.accent }}
             >
               Three-layer backup & recovery (passkey sync, encrypted backups, social recovery)
+            </List.Item>
+            <List.Item
+              cursor="pointer"
+              transition="color 0.2s"
+              _hover={{ color: brandColors.accent }}
+            >
+              AI-powered host app inspection
             </List.Item>
           </List.Root>
         </Box>
