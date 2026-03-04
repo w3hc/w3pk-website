@@ -270,7 +270,7 @@ export default function TxPage() {
                         >
                           <VStack gap={4}>
                             <Image
-                              src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
+                              src="/pa30.jpeg"
                               alt="Alpha Tester NFT"
                               borderRadius="lg"
                               width="100%"
@@ -319,7 +319,7 @@ export default function TxPage() {
                         >
                           <VStack gap={4}>
                             <Image
-                              src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
+                              src="/pa30.jpeg"
                               alt="Alpha Tester NFT"
                               borderRadius="lg"
                               width="100%"
@@ -376,7 +376,7 @@ export default function TxPage() {
                   >
                     <VStack gap={4}>
                       <Image
-                        src="https://bafybeif54pvansk6tlywsxajimb3qwtp5mm7efsp6loiaoioocpgebirwu.ipfs.dweb.link/pa30.png"
+                        src="/pa30.jpeg"
                         alt="Alpha Tester NFT"
                         borderRadius="lg"
                         width="100%"
