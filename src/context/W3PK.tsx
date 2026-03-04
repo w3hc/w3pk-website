@@ -126,7 +126,11 @@ interface W3pkType {
   logout: () => Promise<void>
   signMessage: (message: string) => Promise<string | null>
   sendTransaction: (tx: Transaction, options?: TxOptions) => Promise<TxResponse>
-  deriveWallet: (mode?: string, tag?: string) => Promise<DerivedWallet>
+  deriveWallet: (
+    mode?: string,
+    tag?: string,
+    options?: { requireAuth?: boolean; origin?: string }
+  ) => Promise<DerivedWallet>
   getAddress: (mode?: string, tag?: string) => Promise<string>
   getBackupStatus: () => Promise<BackupStatus>
   createBackup: (password: string) => Promise<Blob>
@@ -558,14 +562,18 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const deriveWallet = useCallback(
-    async (mode?: string, tag?: string): Promise<DerivedWallet> => {
+    async (
+      mode?: string,
+      tag?: string,
+      options?: { requireAuth?: boolean; origin?: string }
+    ): Promise<DerivedWallet> => {
       if (!user) {
         throw new Error('Not authenticated. Please log in first.')
       }
 
       try {
         await ensureAuthentication()
-        const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any)
+        const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options)
 
         // Extend session after successful operation
         w3pk.extendSession()
@@ -580,7 +588,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         ) {
           try {
             await w3pk.login()
-            const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any)
+            const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options)
 
             // Extend session after successful retry
             w3pk.extendSession()
