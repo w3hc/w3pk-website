@@ -32,7 +32,8 @@ const examples: Example[] = [
   {
     id: 'shebam',
     title: 'Shebam',
-    description: 'A simple payment app using w3pk',
+    description:
+      "A basic payment app that's using w3pk. As a matter of fact, it's faster and cheaper than ANY existing payment system.",
     icon: FiCreditCard,
     url: 'https://shebam.w3hc.org/',
     color: brandColors.primary,
@@ -41,7 +42,7 @@ const examples: Example[] = [
     id: 'affix',
     title: 'Affix',
     description:
-      'Authenticate your documents onchain while keeping your existing workflows intact. Anyone can then instantly verify that documents are genuine and unaltered.',
+      'Affix your onchain seal on your documents. Anyone can then verify that they are genuine and unaltered.',
     icon: FiFileText,
     url: 'http://affix.w3hc.org/',
     color: '#f59e0b',
@@ -49,7 +50,7 @@ const examples: Example[] = [
   {
     id: 'pixel',
     title: '像素众创',
-    description: 'Xiangsu Zhongchuang (XSZC) is a Collective pixel artwork.',
+    description: 'Xiangsu Zhongchuang (XSZC) is a collective artwork. Give it a try!',
     icon: FiImage,
     url: 'https://pixel.w3hc.org/',
     color: '#ec4899',
