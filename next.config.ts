@@ -7,8 +7,10 @@ import type { NextConfig } from 'next'
 // zero-knowledge tooling bundled with w3pk (snarkjs/circomlibjs).
 // connect-src is limited to the origins the app can actually contact:
 // same-origin (including the /api routes), the public Optimism RPC used by
-// the opt-in build verification, the endpoints referenced by the w3pk
-// library, and the public Ethereum mainnet RPC used by the signature page.
+// the opt-in build verification, unpkg.com (where that same verification
+// fetches the published w3pk build to hash), the endpoints referenced by
+// the w3pk library, and the public Ethereum mainnet RPC used by the
+// signature page.
 // 'unsafe-eval' is added in development only: React's development build
 // uses eval() for debugging features (it never does in production).
 const isDev = process.env.NODE_ENV === 'development'
@@ -19,7 +21,7 @@ const contentSecurityPolicy = [
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
-  "connect-src 'self' https://mainnet.optimism.io https://chainid.network https://rukh.w3hc.org https://ethereum-rpc.publicnode.com",
+  "connect-src 'self' https://mainnet.optimism.io https://chainid.network https://rukh.w3hc.org https://ethereum-rpc.publicnode.com https://unpkg.com",
   "worker-src 'self' blob:",
   "object-src 'none'",
   "base-uri 'self'",
