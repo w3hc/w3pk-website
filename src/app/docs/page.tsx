@@ -121,8 +121,10 @@ export default function DocsPage() {
   }, [])
 
   useEffect(() => {
-    loadDoc(selectedDoc)
-  }, [selectedDoc])
+    if (docFiles.length > 0) {
+      loadDoc(selectedDoc)
+    }
+  }, [selectedDoc, docFiles])
 
   // Scroll to hash after content loads
   useEffect(() => {
