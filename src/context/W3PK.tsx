@@ -16,7 +16,15 @@ import React, {
   useCallback,
   useEffect,
 } from 'react'
-import { createWeb3Passkey, getCurrentBuildHash, verifyBuildHash, inspect, inspectNow } from 'w3pk'
+import {
+  createWeb3Passkey,
+  getCurrentBuildHash,
+  verifyBuildHash,
+  // AI Inspection feature (disabled)
+  // inspect,
+  // inspectNow,
+  SocialRecoveryManager,
+} from 'w3pk'
 import { toaster } from '@/components/ui/toaster'
 
 type SecurityMode = 'PRIMARY' | 'STRICT' | 'STANDARD' | 'YOLO'
@@ -100,6 +108,17 @@ type Transaction = {
   nonce?: number
 }
 
+type SignMessageOptions = {
+  mode?: SecurityMode
+  tag?: string
+  requireAuth?: boolean
+  origin?: string
+  signingMethod?: 'EIP191' | 'SIWE' | 'EIP712' | 'rawHash'
+  eip712Domain?: object
+  eip712Types?: object
+  eip712PrimaryType?: string
+}
+
 type TxOptions = {
   mode?: SecurityMode
   tag?: string
@@ -124,7 +143,7 @@ interface W3pkType {
   login: () => Promise<void>
   register: (username: string) => Promise<void>
   logout: () => Promise<void>
-  signMessage: (message: string) => Promise<string | null>
+  signMessage: (message: string, options?: SignMessageOptions) => Promise<string | null>
   sendTransaction: (tx: Transaction, options?: TxOptions) => Promise<TxResponse>
   deriveWallet: (
     mode?: string,
@@ -156,53 +175,32 @@ interface W3pkType {
   clearSocialRecoveryConfig: () => void
   getStealthKeys: () => Promise<any>
   generateStealthAddressFor: (recipientMetaAddress: string) => Promise<StealthAddressResult>
+  /** Update the "Remember Me" window; applies at the next real (prompted) login */
+  setPersistentSessionDuration: (days: number) => void
+  /**
+   * Whether a persistent session blob exists in IndexedDB. When the user is
+   * authenticated but this is false, the authenticator lacks WebAuthn PRF
+   * support and w3pk keeps sessions in memory only (no "Remember Me").
+   */
+  hasPersistentSession: () => Promise<boolean>
+  /**
+   * Whether at least one passkey was registered on this device. Check this
+   * before calling login(): with no local credential, the WebAuthn prompt
+   * falls back to the browser's cross-device (QR code) dialog instead of
+   * failing, so the caller should offer registration directly.
+   */
+  hasLocalCredentials: () => Promise<boolean>
 }
 
-const W3PK = createContext<W3pkType>({
-  isAuthenticated: false,
-  user: null,
-  isLoading: false,
-  login: async () => {},
-  register: async () => {},
-  logout: async () => {},
-  signMessage: async () => null,
-  sendTransaction: async () => {
-    throw new Error('sendTransaction not initialized')
-  },
-  deriveWallet: async () => ({ address: '', privateKey: '' }),
-  getAddress: async () => '',
-  getBackupStatus: async () => {
-    throw new Error('getBackupStatus not initialized')
-  },
-  createBackup: async () => {
-    throw new Error('createBackup not initialized')
-  },
-  restoreFromBackup: async () => {
-    throw new Error('restoreFromBackup not initialized')
-  },
-  registerWithBackupFile: async () => {
-    throw new Error('registerWithBackupFile not initialized')
-  },
-  setupSocialRecovery: async () => {
-    throw new Error('setupSocialRecovery not initialized')
-  },
-  getSocialRecoveryConfig: () => null,
-  generateGuardianInvite: async () => {
-    throw new Error('generateGuardianInvite not initialized')
-  },
-  recoverFromGuardians: async () => {
-    throw new Error('recoverFromGuardians not initialized')
-  },
-  clearSocialRecoveryConfig: () => {},
-  getStealthKeys: async () => {
-    throw new Error('getStealthKeys not initialized')
-  },
-  generateStealthAddressFor: async () => {
-    throw new Error('generateStealthAddressFor not initialized')
-  },
-})
+const W3PK = createContext<W3pkType | null>(null)
 
-export const useW3PK = () => useContext(W3PK)
+export const useW3PK = (): W3pkType => {
+  const context = useContext(W3PK)
+  if (!context) {
+    throw new Error('useW3PK must be used within a W3pkProvider')
+  }
+  return context
+}
 
 interface W3pkProviderProps {
   children: ReactNode
@@ -210,55 +208,98 @@ interface W3pkProviderProps {
 
 const REGISTRATION_TIMEOUT_MS = 45000 // 45 seconds
 
+const SESSIONS_DB_NAME = 'Web3PasskeyPersistentSessions'
+const SESSIONS_STORE_NAME = 'sessions'
+
+export function isUserCancelledError(error: unknown): boolean {
+  if (error && typeof error === 'object' && 'name' in error && 'message' in error) {
+    const err = error as { name: string; message: string }
+    return (
+      err.name === 'NotAllowedError' ||
+      err.message.includes('NotAllowedError') ||
+      err.message.includes('timed out') ||
+      err.message.includes('not allowed')
+    )
+  }
+  return false
+}
+
+export function isRequestPendingError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : ''
+  return message.includes('request is already pending')
+}
+
+export function isNoPasskeyError(error: unknown): boolean {
+  const message = error instanceof Error ? error.message : ''
+  return (
+    message.includes('not available') ||
+    message.includes('restore your wallet from a backup') ||
+    message.includes('No credentials available') ||
+    message.includes('No passkey found')
+  )
+}
+
+/**
+ * SDK errors indicating the session expired and the operation
+ * should be retried after a fresh login()
+ */
+function isAuthRequiredError(error: unknown, extraMatches: string[] = []): boolean {
+  if (!(error instanceof Error)) {
+    return false
+  }
+  return ['Not authenticated', 'Must be authenticated', 'login', ...extraMatches].some(match =>
+    error.message.includes(match)
+  )
+}
+
+/**
+ * Open the w3pk persistent sessions database, or resolve null if it
+ * doesn't exist yet (or IndexedDB is unavailable).
+ */
+async function openSessionsDB(): Promise<IDBDatabase | null> {
+  if (typeof window === 'undefined' || !window.indexedDB) {
+    return null
+  }
+
+  return new Promise(resolve => {
+    const request = indexedDB.open(SESSIONS_DB_NAME)
+    request.onerror = () => resolve(null)
+    request.onsuccess = event => {
+      const db = (event.target as IDBOpenDBRequest).result
+      if (!db.objectStoreNames.contains(SESSIONS_STORE_NAME)) {
+        db.close()
+        resolve(null)
+        return
+      }
+      resolve(db)
+    }
+  })
+}
+
 /**
  * Check if any persistent session exists in IndexedDB
  * This allows us to avoid triggering WebAuthn prompt when no session exists
  */
 async function checkIndexedDBForPersistentSession(): Promise<boolean> {
   try {
-    if (typeof window === 'undefined' || !window.indexedDB) {
+    const db = await openSessionsDB()
+    if (!db) {
       return false
     }
 
-    const dbName = 'Web3PasskeyPersistentSessions'
-    const storeName = 'sessions'
+    try {
+      const countRequest = db
+        .transaction([SESSIONS_STORE_NAME], 'readonly')
+        .objectStore(SESSIONS_STORE_NAME)
+        .count()
 
-    return new Promise(resolve => {
-      const request = indexedDB.open(dbName)
-
-      request.onerror = () => {
-        resolve(false)
-      }
-
-      request.onsuccess = event => {
-        const db = (event.target as IDBOpenDBRequest).result
-
-        if (!db.objectStoreNames.contains(storeName)) {
-          db.close()
-          resolve(false)
-          return
-        }
-
-        try {
-          const transaction = db.transaction([storeName], 'readonly')
-          const objectStore = transaction.objectStore(storeName)
-          const countRequest = objectStore.count()
-
-          countRequest.onsuccess = () => {
-            db.close()
-            resolve(countRequest.result > 0)
-          }
-
-          countRequest.onerror = () => {
-            db.close()
-            resolve(false)
-          }
-        } catch {
-          db.close()
-          resolve(false)
-        }
-      }
-    })
+      return await new Promise<boolean>(resolve => {
+        countRequest.onsuccess = () => resolve(countRequest.result > 0)
+        countRequest.onerror = () => resolve(false)
+      })
+    } finally {
+      db.close()
+    }
   } catch {
     return false
   }
@@ -270,20 +311,8 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false)
   const [isMounted, setIsMounted] = useState(false)
 
-  const isUserCancelledError = useCallback((error: unknown): boolean => {
-    if (error && typeof error === 'object' && 'name' in error && 'message' in error) {
-      const err = error as { name: string; message: string }
-      return (
-        err.name === 'NotAllowedError' ||
-        err.message.includes('NotAllowedError') ||
-        err.message.includes('timed out') ||
-        err.message.includes('not allowed')
-      )
-    }
-    return false
-  }, [])
-
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsMounted(true)
   }, [])
 
@@ -323,6 +352,10 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
           enabled: true,
           duration: getPersistentSessionDuration() * 24, // Convert days to hours
           requireReauth: false, // Silent session restore (no biometric prompt on page refresh)
+          // The session blob is encrypted under a WebAuthn-PRF-derived key,
+          // re-keyed at every real (prompted) login — the duration above is
+          // the renewal interval. Authenticators without PRF support get
+          // in-memory sessions only (w3pk stores no persistent session).
         },
       }),
     [handleAuthStateChanged]
@@ -335,8 +368,9 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         ...w3pk,
         getCurrentBuildHash,
         verifyBuildHash,
-        inspect,
-        inspectNow,
+        // AI Inspection feature (disabled)
+        // inspect,
+        // inspectNow,
       }
     }
   }, [w3pk])
@@ -455,24 +489,20 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     } catch (error) {
       console.error('[W3PK] Login failed:', error)
 
-      if (!isUserCancelledError(error)) {
-        const errorMessage =
-          error instanceof Error ? error.message : 'Failed to authenticate with w3pk'
-
-        // Silence passkey not available errors
-        const isPasskeyNotAvailable =
-          errorMessage.includes('not available on this device') ||
-          errorMessage.includes('not available') ||
-          errorMessage.includes('restore your wallet from a backup')
-
-        if (!isPasskeyNotAvailable) {
-          toaster.create({
-            title: 'Authentication Failed',
-            description: errorMessage,
-            type: 'error',
-            duration: 5000,
-          })
-        }
+      // Silence cancellations, "no passkey on this device" (the Header handles
+      // it by offering registration), and duplicate concurrent login attempts —
+      // the already-pending request will surface its own outcome
+      if (
+        !isUserCancelledError(error) &&
+        !isNoPasskeyError(error) &&
+        !isRequestPendingError(error)
+      ) {
+        toaster.create({
+          title: 'Authentication Failed',
+          description: error instanceof Error ? error.message : 'Failed to authenticate with w3pk',
+          type: 'error',
+          duration: 5000,
+        })
       }
       throw error
     } finally {
@@ -491,7 +521,93 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     await w3pk.login()
   }, [w3pk])
 
-  const signMessage = async (message: string): Promise<string | null> => {
+  /**
+   * Run an SDK operation, retrying once after a fresh login()
+   * if it failed because the session expired
+   */
+  const runWithAuthRetry = useCallback(
+    async <T,>(operation: () => Promise<T>, retryOn?: string[]): Promise<T> => {
+      try {
+        return await operation()
+      } catch (error) {
+        if (!isAuthRequiredError(error, retryOn)) {
+          throw error
+        }
+        await w3pk.login()
+        return await operation()
+      }
+    },
+    [w3pk]
+  )
+
+  /**
+   * Full wrapper for wallet operations: requires a logged-in user,
+   * ensures an active session, retries once on auth expiry, extends
+   * the session on success, and toasts on failure
+   */
+  const callWithAuthRetry = useCallback(
+    async <T,>(
+      operation: () => Promise<T>,
+      {
+        retryOn,
+        authPrompt,
+        errorTitle,
+        fallbackMessage,
+      }: { retryOn: string; authPrompt: string; errorTitle: string; fallbackMessage: string }
+    ): Promise<T> => {
+      if (!user) {
+        throw new Error('Not authenticated. Please log in first.')
+      }
+
+      try {
+        await ensureAuthentication()
+        const result = await operation()
+
+        // Extend session after successful operation
+        w3pk.extendSession()
+
+        return result
+      } catch (error) {
+        if (isAuthRequiredError(error, [retryOn])) {
+          try {
+            await w3pk.login()
+            const result = await operation()
+
+            // Extend session after successful retry
+            w3pk.extendSession()
+
+            return result
+          } catch (retryError) {
+            if (!isUserCancelledError(retryError)) {
+              toaster.create({
+                title: 'Authentication Required',
+                description: authPrompt,
+                type: 'error',
+                duration: 5000,
+              })
+            }
+            throw retryError
+          }
+        }
+
+        if (!isUserCancelledError(error)) {
+          toaster.create({
+            title: errorTitle,
+            description: error instanceof Error ? error.message : fallbackMessage,
+            type: 'error',
+            duration: 5000,
+          })
+        }
+        throw error
+      }
+    },
+    [user, w3pk, ensureAuthentication]
+  )
+
+  const signMessage = async (
+    message: string,
+    options?: SignMessageOptions
+  ): Promise<string | null> => {
     if (!user) {
       toaster.create({
         title: 'Not Authenticated',
@@ -504,7 +620,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
 
     try {
       await ensureAuthentication()
-      const result = await w3pk.signMessage(message)
+      const result = await w3pk.signMessage(message, options as any)
 
       // Extend session after successful operation for better UX
       w3pk.extendSession()
@@ -547,9 +663,18 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
 
       return result
     } catch (error) {
-      if (!isUserCancelledError(error)) {
-        const errorMessage = error instanceof Error ? error.message : 'Failed to send transaction'
+      // The SDK wraps the real failure (insufficient funds, no RPC endpoint,
+      // reverted call, expired session, ...) in a generic WalletError and
+      // stashes the actual cause in `originalError` — surface that instead
+      // of the generic "Failed to send transaction" message.
+      const originalError = (error as { originalError?: unknown })?.originalError
+      const errorMessage =
+        (originalError instanceof Error ? originalError.message : undefined) ??
+        (error instanceof Error ? error.message : 'Failed to send transaction')
 
+      console.error('[W3PK] sendTransaction failed:', error, originalError)
+
+      if (!isUserCancelledError(error)) {
         toaster.create({
           title: 'Transaction Failed',
           description: errorMessage,
@@ -562,157 +687,69 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const deriveWallet = useCallback(
-    async (
+    (
       mode?: string,
       tag?: string,
       options?: { requireAuth?: boolean; origin?: string }
-    ): Promise<DerivedWallet> => {
-      if (!user) {
-        throw new Error('Not authenticated. Please log in first.')
-      }
-
-      try {
-        await ensureAuthentication()
-        const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options)
-
-        // Extend session after successful operation
-        w3pk.extendSession()
-
-        return derivedWallet
-      } catch (error) {
-        if (
-          error instanceof Error &&
-          (error.message.includes('Not authenticated') ||
-            error.message.includes('login') ||
-            error.message.includes('Failed to derive wallet'))
-        ) {
-          try {
-            await w3pk.login()
-            const derivedWallet = await w3pk.deriveWallet(mode as any, tag as any, options)
-
-            // Extend session after successful retry
-            w3pk.extendSession()
-
-            return derivedWallet
-          } catch (retryError) {
-            if (!isUserCancelledError(retryError)) {
-              toaster.create({
-                title: 'Authentication Required',
-                description: 'Please authenticate to derive addresses',
-                type: 'error',
-                duration: 5000,
-              })
-            }
-            throw retryError
-          }
-        }
-
-        if (!isUserCancelledError(error)) {
-          const errorMessage =
-            error instanceof Error
-              ? error.message
-              : `Failed to derive wallet (${mode || 'STANDARD'}, ${tag || 'MAIN'})`
-
-          toaster.create({
-            title: 'Derivation Failed',
-            description: errorMessage,
-            type: 'error',
-            duration: 5000,
-          })
-        }
-        throw error
-      }
-    },
-    [user, w3pk, isUserCancelledError, ensureAuthentication]
+    ): Promise<DerivedWallet> =>
+      callWithAuthRetry(() => w3pk.deriveWallet(mode as any, tag as any, options), {
+        retryOn: 'Failed to derive wallet',
+        authPrompt: 'Please authenticate to derive addresses',
+        errorTitle: 'Derivation Failed',
+        fallbackMessage: `Failed to derive wallet (${mode || 'STANDARD'}, ${tag || 'MAIN'})`,
+      }),
+    [callWithAuthRetry, w3pk]
   )
 
   const getAddress = useCallback(
-    async (mode?: string, tag?: string): Promise<string> => {
-      if (!user) {
-        throw new Error('Not authenticated. Please log in first.')
-      }
-
-      try {
-        await ensureAuthentication()
-        const address = await w3pk.getAddress(mode as any, tag as any)
-
-        // Extend session after successful operation
-        w3pk.extendSession()
-
-        return address
-      } catch (error) {
-        if (
-          error instanceof Error &&
-          (error.message.includes('Not authenticated') ||
-            error.message.includes('login') ||
-            error.message.includes('Failed to get address'))
-        ) {
-          try {
-            await w3pk.login()
-            const address = await w3pk.getAddress(mode as any, tag as any)
-
-            // Extend session after successful retry
-            w3pk.extendSession()
-
-            return address
-          } catch (retryError) {
-            if (!isUserCancelledError(retryError)) {
-              toaster.create({
-                title: 'Authentication Required',
-                description: 'Please authenticate to get address',
-                type: 'error',
-                duration: 5000,
-              })
-            }
-            throw retryError
-          }
-        }
-
-        if (!isUserCancelledError(error)) {
-          const errorMessage =
-            error instanceof Error
-              ? error.message
-              : `Failed to get address (${mode || 'STANDARD'}, ${tag || 'MAIN'})`
-
-          toaster.create({
-            title: 'Failed to Get Address',
-            description: errorMessage,
-            type: 'error',
-            duration: 5000,
-          })
-        }
-        throw error
-      }
-    },
-    [user, w3pk, isUserCancelledError, ensureAuthentication]
+    (mode?: string, tag?: string): Promise<string> =>
+      callWithAuthRetry(() => w3pk.getAddress(mode as any, tag as any), {
+        retryOn: 'Failed to get address',
+        authPrompt: 'Please authenticate to get address',
+        errorTitle: 'Failed to Get Address',
+        fallbackMessage: `Failed to get address (${mode || 'STANDARD'}, ${tag || 'MAIN'})`,
+      }),
+    [callWithAuthRetry, w3pk]
   )
 
   const logout = async (): Promise<void> => {
-    // The SDK's logout() method clears both in-memory and ALL persistent sessions from IndexedDB
-    w3pk.logout()
-
-    // Extra cleanup for mobile: explicitly clear persistent session from IndexedDB
-    // This ensures the session is cleared even if the SDK's logout has issues on mobile
+    // The SDK's logout() clears the in-memory session and ALL persistent
+    // sessions from IndexedDB. Awaiting it ensures the IndexedDB clear
+    // completes before any navigation (interrupted clears used to leave
+    // stale sessions behind on mobile)
     try {
-      if (typeof window !== 'undefined' && window.indexedDB) {
-        const dbName = 'Web3PasskeyPersistentSessions'
-        const storeName = 'sessions'
-
-        // Open and clear the database
-        const request = indexedDB.open(dbName)
-        request.onsuccess = event => {
-          const db = (event.target as IDBOpenDBRequest).result
-          if (db.objectStoreNames.contains(storeName)) {
-            const transaction = db.transaction([storeName], 'readwrite')
-            const objectStore = transaction.objectStore(storeName)
-            objectStore.clear() // Clear all sessions
-          }
-          db.close()
-        }
-      }
+      await w3pk.logout()
     } catch (error) {
-      console.error('[W3PK] Error clearing persistent session:', error)
+      // Newer w3pk versions throw if persistent sessions couldn't be
+      // cleared; the user is still logged out in memory either way
+      console.error('[W3PK] Logout cleanup failed:', error)
+      toaster.create({
+        title: 'Logout Incomplete',
+        description:
+          'Your session ended, but stored session data may remain on this device. Please try logging out again.',
+        type: 'warning',
+        duration: 5000,
+      })
     }
+  }
+
+  const setPersistentSessionDuration = (days: number): void => {
+    localStorage.setItem('persistentSessionDuration', days.toString())
+    // Update the live SDK instance so the next (re-)login persists with the
+    // new window — without this, the value read at SDK creation would apply
+    // only after a full page reload
+    w3pk.setPersistentSessionDuration(days * 24)
+  }
+
+  const hasPersistentSession = (): Promise<boolean> => {
+    return checkIndexedDBForPersistentSession()
+  }
+
+  const hasLocalCredentials = async (): Promise<boolean> => {
+    // listExistingCredentials() reads the local credential store and
+    // returns [] on any storage error, so this never throws
+    const credentials = await w3pk.listExistingCredentials()
+    return credentials.length > 0
   }
 
   const getBackupStatus = async (): Promise<BackupStatus> => {
@@ -720,28 +757,9 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
       throw new Error('User not authenticated. Cannot check backup status.')
     }
 
-    if (!w3pk || typeof w3pk.getBackupStatus !== 'function') {
-      throw new Error('w3pk SDK does not support getBackupStatus.')
-    }
-
     try {
       setIsLoading(true)
-
-      try {
-        const result = await w3pk.getBackupStatus()
-        return result
-      } catch (initialError) {
-        if (
-          initialError instanceof Error &&
-          (initialError.message.includes('Must be authenticated') ||
-            initialError.message.includes('login'))
-        ) {
-          await w3pk.login()
-          const result = await w3pk.getBackupStatus()
-          return result
-        }
-        throw initialError
-      }
+      return await runWithAuthRetry(() => w3pk.getBackupStatus())
     } catch (error) {
       if (!isUserCancelledError(error)) {
         toaster.create({
@@ -762,28 +780,10 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
       throw new Error('User not authenticated. Cannot create backup.')
     }
 
-    if (!w3pk || typeof w3pk.createBackupFile !== 'function') {
-      throw new Error('w3pk SDK does not support createBackupFile.')
-    }
-
     try {
       setIsLoading(true)
-
-      try {
-        const result = await w3pk.createBackupFile('password', password)
-        return result.blob
-      } catch (initialError) {
-        if (
-          initialError instanceof Error &&
-          (initialError.message.includes('Must be authenticated') ||
-            initialError.message.includes('login'))
-        ) {
-          await w3pk.login()
-          const result = await w3pk.createBackupFile('password', password)
-          return result.blob
-        }
-        throw initialError
-      }
+      const result = await runWithAuthRetry(() => w3pk.createBackupFile('password', password))
+      return result.blob
     } catch (error) {
       if (!isUserCancelledError(error)) {
         toaster.create({
@@ -803,10 +803,6 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     backupData: string,
     password: string
   ): Promise<{ mnemonic: string; ethereumAddress: string }> => {
-    if (!w3pk || typeof w3pk.restoreFromBackupFile !== 'function') {
-      throw new Error('w3pk SDK does not support restoreFromBackupFile.')
-    }
-
     try {
       setIsLoading(true)
 
@@ -840,10 +836,6 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     password: string,
     username: string
   ): Promise<{ address: string; username: string }> => {
-    if (!w3pk || typeof w3pk.registerWithBackupFile !== 'function') {
-      throw new Error('w3pk SDK does not support registerWithBackupFile.')
-    }
-
     try {
       setIsLoading(true)
       console.log('[W3PK] Registration with backup file initiated for username:', username)
@@ -913,10 +905,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
       const backupJson = await backupBlob.blob.text()
 
       // Use w3pk's SocialRecoveryManager to split the backup file
-      const { SocialRecoveryManager } = await import('w3pk')
-      const socialRecoveryManager = new SocialRecoveryManager()
-
-      const guardianObjects = await socialRecoveryManager.setupSocialRecovery(
+      const guardianObjects = await new SocialRecoveryManager().setupSocialRecovery(
         backupJson,
         user.ethereumAddress,
         guardians,
@@ -948,11 +937,8 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
   }
 
   const getSocialRecoveryConfig = (): SocialRecoveryConfig | null => {
-    // Use w3pk's SocialRecoveryManager to get config
     try {
-      const { SocialRecoveryManager } = require('w3pk')
-      const socialRecoveryManager = new SocialRecoveryManager()
-      return socialRecoveryManager.getSocialRecoveryConfig()
+      return new SocialRecoveryManager().getSocialRecoveryConfig()
     } catch {
       return null
     }
@@ -962,11 +948,7 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     try {
       setIsLoading(true)
 
-      // Use w3pk's SocialRecoveryManager to generate invite
-      const { SocialRecoveryManager } = await import('w3pk')
-      const socialRecoveryManager = new SocialRecoveryManager()
-
-      const invite = await socialRecoveryManager.generateGuardianInvite(guardian)
+      const invite = await new SocialRecoveryManager().generateGuardianInvite(guardian)
 
       toaster.create({
         title: 'Guardian Invitation Generated',
@@ -998,12 +980,8 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
     try {
       setIsLoading(true)
 
-      // Use w3pk's SocialRecoveryManager to recover backup file
-      const { SocialRecoveryManager } = await import('w3pk')
-      const socialRecoveryManager = new SocialRecoveryManager()
-
       const { backupFileJson, ethereumAddress } =
-        await socialRecoveryManager.recoverFromGuardians(shareData)
+        await new SocialRecoveryManager().recoverFromGuardians(shareData)
 
       toaster.create({
         title: 'Backup File Recovered!',
@@ -1148,6 +1126,9 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
         clearSocialRecoveryConfig,
         getStealthKeys,
         generateStealthAddressFor,
+        setPersistentSessionDuration,
+        hasPersistentSession,
+        hasLocalCredentials,
       }}
     >
       {children}
