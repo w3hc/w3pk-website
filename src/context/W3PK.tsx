@@ -663,9 +663,18 @@ export const W3pkProvider: React.FC<W3pkProviderProps> = ({ children }) => {
 
       return result
     } catch (error) {
-      if (!isUserCancelledError(error)) {
-        const errorMessage = error instanceof Error ? error.message : 'Failed to send transaction'
+      // The SDK wraps the real failure (insufficient funds, no RPC endpoint,
+      // reverted call, expired session, ...) in a generic WalletError and
+      // stashes the actual cause in `originalError` — surface that instead
+      // of the generic "Failed to send transaction" message.
+      const originalError = (error as { originalError?: unknown })?.originalError
+      const errorMessage =
+        (originalError instanceof Error ? originalError.message : undefined) ??
+        (error instanceof Error ? error.message : 'Failed to send transaction')
 
+      console.error('[W3PK] sendTransaction failed:', error, originalError)
+
+      if (!isUserCancelledError(error)) {
         toaster.create({
           title: 'Transaction Failed',
           description: errorMessage,

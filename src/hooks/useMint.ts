@@ -4,12 +4,9 @@ import { useState } from 'react'
 import { useW3PK } from '@/context/W3PK'
 import { toaster } from '@/components/ui/toaster'
 
-const ALPHATESTER_CONTRACT_ADDRESS = '0x319503520456Fac47a18879d05A56f919f67ffa5'
-const OP_MAINNET_CHAIN_ID = 10
-
 export function useMint() {
   const [isMinting, setIsMinting] = useState(false)
-  const { isAuthenticated, sendTransaction, getAddress } = useW3PK()
+  const { isAuthenticated, getAddress } = useW3PK()
 
   const mint = async () => {
     if (!isAuthenticated) {
@@ -28,8 +25,10 @@ export function useMint() {
       // Get the user's address
       const userAddress = await getAddress('STANDARD', 'MAIN')
 
-      // Check if user already owns an NFT (via API)
-      const checkResponse = await fetch('/api/check-nft', {
+      // safeMint is owner-restricted on-chain, so minting goes through the
+      // relayer route (/api/mint-nft), which signs with the contract owner's
+      // key. It also checks NFT ownership server-side before minting.
+      const response = await fetch('/api/mint-nft', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,45 +38,29 @@ export function useMint() {
         }),
       })
 
-      const checkData = await checkResponse.json()
+      const data = await response.json()
 
-      if (checkData.hasNFT) {
-        toaster.create({
-          title: 'Already minted',
-          description: "You're already a member, thanks again for testing!",
-          type: 'error',
-          duration: 7000,
-        })
-        return
-      }
-
-      // Encode the safeMint function call
-      // safeMint(address to) - function signature: 0x40d097c3
-      const functionSelector = '0x40d097c3'
-      const encodedAddress = userAddress.slice(2).padStart(64, '0')
-      const data = functionSelector + encodedAddress
-
-      // Send transaction using w3pk's sendTransaction method
-      const result = await sendTransaction(
-        {
-          to: ALPHATESTER_CONTRACT_ADDRESS,
-          data,
-          chainId: OP_MAINNET_CHAIN_ID,
-        },
-        {
-          mode: 'STANDARD',
-          tag: 'MAIN',
+      if (!response.ok) {
+        if (data.error === 'Already minted') {
+          toaster.create({
+            title: 'Already minted',
+            description: data.message || "You're already a member, thanks again for testing!",
+            type: 'error',
+            duration: 7000,
+          })
+          return
         }
-      )
+        throw new Error(data.error || 'Failed to mint NFT')
+      }
 
       toaster.create({
         title: 'Done!',
-        description: `NFT minted! Transaction: ${result.hash.substring(0, 10)}...`,
+        description: `NFT minted! Transaction: ${data.txHash.substring(0, 10)}...`,
         type: 'success',
         duration: 10000,
       })
 
-      return { txHash: result.hash, ...result }
+      return { txHash: data.txHash as string }
     } catch (error) {
       console.error('Failed to mint AlphaTester NFT:', error)
 
