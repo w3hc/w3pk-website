@@ -321,8 +321,8 @@ export default function Home() {
         {/* Email Subscription Box */}
         <Box p={6} borderRadius="lg" bg="gray.900" borderWidth="1px" borderColor="gray.700">
           <Text fontSize="sm" color="gray.300" mb={4}>
-            w3pk is under dev. Receive emails when we ship new features (EIP-1193 support, AI
-            capacities, Viem helpers, chain abstraction, and more)
+            w3pk is under active development. Receive emails when we ship new features (hybrid
+            post-quantum signing once Ethereum&apos;s EIP-8141 lands, and more)
           </Text>
           <HStack gap={3}>
             <Input
