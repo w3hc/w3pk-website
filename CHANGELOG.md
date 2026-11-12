@@ -4,11 +4,14 @@
 
 ### Added
 
+- Hybrid post-quantum encryption in the home page's features list
 - Backup step after registration (`BackupStep.tsx`), the iOS Home Screen or backup choice before registration (`HomeScreenChoice.tsx`), and passwordless device sync with its import card and QR code link (`SyncImport.tsx`, `src/utils/syncLink.ts`), from genji 3.3.2
 - The registration dialog says when no built-in authenticator is found, and its "I already registered on another device" link opens `/settings#sync-import`
 
 ### Changed
 
+- The home page's features list matches the [w3pk README](https://github.com/w3hc/w3pk#features) for 0.12.4, and the EIP-7951 item links to its trust model
+- The newsletter blurb no longer announces EIP-1193 support, AI capacities, viem helpers or chain abstraction
 - Synced with genji template v3.3.2 (genji `main` at `7441e94`): `W3PK.tsx`, the settings page, the password modal, the utils, the translations and the header's login flow follow genji; the site's `sendTransaction` error handling, branding and menu stay
 - Updated `w3pk` to 0.12.4: the wallet on the device is encrypted under a key from the passkey's PRF output, registration needs a passkey with PRF, `PRIMARY` returns a P-256 smart account address, and wallets stored by earlier versions are restored from a backup or a sync file
 - `/sig` derives its indexed wallets without the `origin` option, which w3pk removed, and its callout explains that STANDARD addresses are scoped to the site's origin
@@ -20,11 +23,13 @@
 
 ### Removed
 
+- External wallet integration and AI-powered host app inspection from the features list, since w3pk no longer lists them
 - `react-markdown`, `remark-gfm` and `rehype-highlight`, which nothing imports
 - w3pk's optional `circomlibjs` dependency, through a pnpm override: `/zk` only shows code samples
 
 ### Fixed
 
+- The Alpha Tester NFT card's "View on Etherscan" links open the address's NFT transfers tab
 - Build verification no longer fails with `Failed to fetch`: `connect-src` in `next.config.ts` allows `https://registry.npmjs.org` instead of `https://unpkg.com`, since w3pk 0.12.4's `getCurrentBuildHash()` downloads the published tarball from the npm registry
 
 ### Security
