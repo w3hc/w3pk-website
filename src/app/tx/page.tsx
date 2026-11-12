@@ -284,7 +284,7 @@ export default function TxPage() {
                               Tap to flip
                             </Text>
                             <Link
-                              href={`https://optimistic.etherscan.io/address/${mainAddress}`}
+                              href={`https://optimistic.etherscan.io/address/${mainAddress}#nfttransfers`}
                               target="_blank"
                               rel="noopener noreferrer"
                               fontSize="0.875rem"
@@ -333,7 +333,7 @@ export default function TxPage() {
                               Tap to flip
                             </Text>
                             <Link
-                              href={`https://optimistic.etherscan.io/address/${mainAddress}`}
+                              href={`https://optimistic.etherscan.io/address/${mainAddress}#nfttransfers`}
                               target="_blank"
                               rel="noopener noreferrer"
                               fontSize="0.875rem"
