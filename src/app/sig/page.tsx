@@ -345,11 +345,7 @@ export default function Sig() {
     setDerivedWallets(prev => [...prev, { index: currentIndex, address: '', isLoading: true }])
 
     try {
-      // Derive wallet with shared origin convention for cross-app compatibility
-      // Using https://w3pk.w3hc.org as the standard origin
-      const wallet = await deriveWallet('STANDARD', `INDEX_${currentIndex}`, {
-        origin: 'https://w3pk.w3hc.org',
-      })
+      const wallet = await deriveWallet('STANDARD', `INDEX_${currentIndex}`)
 
       // Update the entry with the actual address
       setDerivedWallets(prev =>
@@ -1108,26 +1104,22 @@ export default function Sig() {
 
                 <Box p={3} bg="blue.900" borderRadius="md" borderWidth="1px" borderColor="blue.700">
                   <Text fontSize="xs" color="blue.200" fontWeight="bold" mb={2}>
-                    💡 Cross-App Wallet Convention
+                    💡 Origin-Scoped Wallets
                   </Text>
                   <Text fontSize="xs" color="gray.400">
-                    For wallets that work across different apps, there are two approaches:
+                    w3pk derives two kinds of addresses:
                   </Text>
                   <VStack gap={2} align="stretch" mt={2} fontSize="xs" color="gray.400">
                     <Text>
-                      <strong>1. PRIMARY mode (Recommended):</strong> Uses your passkey&apos;s P-256
-                      public key directly. The same passkey produces the same address across all
-                      apps. EIP-7951 compatible for native blockchain transactions.
+                      <strong>PRIMARY mode:</strong> the address of a smart account controlled by
+                      your passkey&apos;s P-256 key (EIP-7951), with no seed phrase involved.
                     </Text>
                     <Text>
-                      <strong>2. Shared origin convention (Used here):</strong> Apps agree on a
-                      standard origin like <code>https://w3pk.w3hc.org</code>. This page uses{' '}
-                      <code>
-                        deriveWallet(&apos;STANDARD&apos;, &apos;INDEX_0&apos;, &#123; origin:
-                        &apos;https://w3pk.w3hc.org&apos; &#125;)
-                      </code>{' '}
-                      so your INDEX_0 wallet will have the <strong>same address</strong> across all
-                      participating apps.
+                      <strong>STANDARD mode (used here):</strong>{' '}
+                      <code>deriveWallet(&apos;STANDARD&apos;, &apos;INDEX_0&apos;)</code> derives
+                      the address from your seed, this site&apos;s origin and the tag, so each app
+                      gets <strong>its own addresses</strong>. Since w3pk 0.11, apps can no longer
+                      pass another origin to share them.
                     </Text>
                   </VStack>
                 </Box>

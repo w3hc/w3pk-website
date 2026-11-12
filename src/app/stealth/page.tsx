@@ -200,7 +200,7 @@ export default function StealthAddresses() {
         {/* User Info */}
         <Box bg="gray.800" p={4} borderRadius="md">
           <Text fontSize="sm" color="gray.400" mb={2}>
-            Logged in as: <strong>{user?.displayName || user?.username}</strong>
+            Logged in as: <strong>{user?.username}</strong>
           </Text>
           <Text fontSize="xs" color="gray.500" mb={2}>
             Primary Address:{' '}
