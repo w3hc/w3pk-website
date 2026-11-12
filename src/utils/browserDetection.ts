@@ -221,3 +221,34 @@ export async function isPlatformAuthenticatorAvailable(): Promise<boolean> {
     return false
   }
 }
+
+export function isIOS(): boolean {
+  if (typeof navigator === 'undefined') return false
+  // iPadOS reports itself as macOS, but has touch points
+  return (
+    /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
+  )
+}
+
+export function isStandalone(): boolean {
+  if (typeof window === 'undefined') return false
+  return (
+    (navigator as Navigator & { standalone?: boolean }).standalone === true ||
+    window.matchMedia?.('(display-mode: standalone)').matches === true
+  )
+}
+
+/**
+ * Whether iOS can wipe the wallet before it is created: in a browser tab
+ * (not a Home Screen app) with storage not persisted. Mirrors w3pk's
+ * `evictionRisk`, which is only known after registration.
+ */
+export async function hasIOSEvictionRisk(): Promise<boolean> {
+  if (!isIOS() || isStandalone()) return false
+  try {
+    return !(await navigator.storage?.persisted?.())
+  } catch {
+    return true
+  }
+}
