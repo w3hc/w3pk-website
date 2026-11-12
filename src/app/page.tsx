@@ -4,11 +4,42 @@ import { Heading, Text, Box, VStack, HStack, Flex, Link, Icon, List } from '@cha
 import { Button } from '@/components/ui/button'
 import { useW3PK, base64UrlToArrayBuffer, base64UrlDecode, extractRS } from '@/context/W3PK'
 import { useTranslation } from '@/hooks/useTranslation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import { toaster } from '@/components/ui/toaster'
 import { Input } from '@/components/ui/input'
 import { brandColors } from '@/theme'
 import { FaGithub, FaNpm } from 'react-icons/fa'
+
+const features: ReactNode[] = [
+  'Passwordless authentication (WebAuthn/FIDO2)',
+  'Origin-specific key isolation with tag-based access control',
+  'Session management (in-memory + optional persistent)',
+  'HD wallet generation (BIP39/BIP44)',
+  'Multi-address derivation with security modes (STANDARD/STRICT/YOLO)',
+  'Multiple signing methods (EIP-191, SIWE/EIP-4361, EIP-712, rawHash)',
+  'On-chain transaction sending through the RPC endpoints you set in `rpcUrls` (`sendTransaction`)',
+  'EIP-1193 provider for ethers, viem, wagmi, RainbowKit (`getEIP1193Provider`)',
+  'ERC-5564 stealth addresses (opt-in)',
+  'ZK primitives (zero-knowledge proof generation and verification, Baby Jubjub keys, exponential ElGamal and circuit artifact verification against onchain pins in `w3pk/zk`, passkey-bound Semaphore identities with `getSemaphoreIdentity()`, and proofs over a passkey-bound secret the app never sees with `zkProve()`)',
+  'Hybrid post-quantum encryption (HPKE over ML-KEM-1024 + X25519)',
+  'Chainlist support (every network on chainid.network, fetched live)',
+  'EIP-7702 network detection (315 known networks, probing your `rpcUrls` for the others)',
+  <>
+    EIP-7951 PRIMARY mode: a P-256 passkey smart account (ERC-4337, EIP-1271) whose key the host app
+    can never reach (
+    <Link
+      href="https://github.com/w3hc/w3pk#trust-model"
+      target="_blank"
+      rel="noopener noreferrer"
+      color={brandColors.primary}
+    >
+      trust model
+    </Link>
+    )
+  </>,
+  'Build verification (IPFS CID hashing + DAO-maintained onchain registry)',
+  'Three-layer backup & recovery (passkey sync, encrypted backups, social recovery)',
+]
 
 const shimmerStyles = `
   @keyframes colorWave {
@@ -336,125 +367,16 @@ export default function Home() {
               },
             }}
           >
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Passwordless authentication (WebAuthn/FIDO2)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Origin-specific key isolation with tag-based access control
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Session management (in-memory + optional persistent)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              HD wallet generation (BIP39/BIP44)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Multi-address derivation with security modes (STANDARD/STRICT/YOLO)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Multiple signing methods (EIP-191, SIWE/EIP-4361, EIP-712, rawHash)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              On-chain transaction sending with automatic RPC resolution (`sendTransaction`)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              EIP-1193 provider for ethers, viem, wagmi, RainbowKit (`getEIP1193Provider`)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              ERC-5564 stealth addresses (opt-in)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              ZK primitives (zero-knowledge proof generation and verification)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Chainlist support (2390+ networks)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              EIP-7702 network detection (329+ networks)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              External wallet integration (delegate MetaMask/Ledger to w3pk via EIP-7702)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              EIP-7951 PRIMARY mode (P-256 passkey signing)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Build verification (IPFS CID hashing + DAO-maintained onchain registry)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              Three-layer backup & recovery (passkey sync, encrypted backups, social recovery)
-            </List.Item>
-            <List.Item
-              cursor="pointer"
-              transition="color 0.2s"
-              _hover={{ color: brandColors.accent }}
-            >
-              AI-powered host app inspection
-            </List.Item>
+            {features.map((feature, i) => (
+              <List.Item
+                key={i}
+                cursor="pointer"
+                transition="color 0.2s"
+                _hover={{ color: brandColors.accent }}
+              >
+                {feature}
+              </List.Item>
+            ))}
           </List.Root>
         </Box>
       </VStack>
