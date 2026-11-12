@@ -1,7 +1,7 @@
 {
   "name": "w3pk-website",
   "version": "0.1.0",
-  "templateVersion": "3.1.1",
+  "templateVersion": "3.3.2",
   "description": "W3PK Website",
   "main": "index.js",
   "scripts": {
