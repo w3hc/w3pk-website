@@ -121,9 +121,26 @@ export default function DocsPage() {
   }, [])
 
   useEffect(() => {
-    if (docFiles.length > 0) {
-      loadDoc(selectedDoc)
+    const file = docFiles.find(d => d.id === selectedDoc)
+    if (!file) return
+
+    const loadDoc = async () => {
+      setLoading(true)
+      try {
+        const response = await fetch(`/api/docs?file=${file.filename}`)
+        const data = await response.json()
+
+        if (data.content) {
+          setContent(data.content)
+        }
+      } catch (error) {
+        console.error('Error loading doc:', error)
+        setContent('Failed to load documentation')
+      } finally {
+        setLoading(false)
+      }
     }
+    loadDoc()
   }, [selectedDoc, docFiles])
 
   // Scroll to hash after content loads
@@ -145,26 +162,6 @@ export default function DocsPage() {
       }, 150)
     }
   }, [content])
-
-  const loadDoc = async (docId: string) => {
-    setLoading(true)
-    try {
-      const file = docFiles.find(d => d.id === docId)
-      if (!file) return
-
-      const response = await fetch(`/api/docs?file=${file.filename}`)
-      const data = await response.json()
-
-      if (data.content) {
-        setContent(data.content)
-      }
-    } catch (error) {
-      console.error('Error loading doc:', error)
-      setContent('Failed to load documentation')
-    } finally {
-      setLoading(false)
-    }
-  }
 
   // Convert heading text to URL-friendly anchor ID
   const textToAnchorId = (text: string): string => {

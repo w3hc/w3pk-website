@@ -79,8 +79,8 @@ type TranslationKeys = {
     firefoxMobileNote: string
 
     restoreBackupHeading: string
-    restoreBackupDescription: string
     restoreBackupSyncHint: string
+    restoreBackupDescription: string
     restoringText: string
     restoreBackupButton: string
 
@@ -88,30 +88,11 @@ type TranslationKeys = {
     debugStorageDescription: string
     inspectingText: string
     inspectLocalStorageButton: string
-    inspectIndexedDBButton: string
-
-    inspectSecurityDescriptionSmall: string
-    inspectSecurityButton: string
-    consoleCommandLabel: string
-    clearReportButton: string
-    filesAnalyzedLabel: string
-    inspectionHeadingBig: string
-    inspectSecurityDescriptionBig: string
-    inspectNowButton: string
-    consoleHintText: string
-    securityReportHeading: string
-    appUrlLabel: string
 
     localStorageResultsHeading: string
     itemsCount: (n: number) => string
     encryptedBadge: string
     clearItemAria: string
-    indexedDBResultsHeading: string
-    databasesCount: (n: number) => string
-    storesLabel: string
-    recordsLabel: string
-    clearRecordAria: string
-    storeKeyLabel: (store: string, key: string) => string
 
     currentAccountHeading: string
     currentAccountDescription: string
@@ -140,6 +121,7 @@ type TranslationKeys = {
     loadingText: string
     securityStatusHeading: string
     checkingStatusText: string
+    evictionRiskWarning: string
     refreshHeading: string
     refreshDescription: string
     checkingText: string
@@ -193,37 +175,43 @@ type TranslationKeys = {
     activeHeading: string
     activeDescription: (threshold: number, count: number) => string
     generateInviteButton: string
-    removeConfigQuestion: string
-    removeConfigButton: string
+    sharesNotStoredNotice: string
     invitationHeading: string
     downloadInviteButton: string
     sendInviteText: (name: string) => string
 
     deviceSyncHeading: string
     deviceSyncDescription: string
-    qrHeading: string
-    qrDescription: string
-    generateQrButton: string
-    qrNote: string
     hideQrButton: string
-    verifyHeading: string
-    verifyDescription: string
-    verifyPlaceholder: string
-    errorLabel: string
-    parsedDataLabel: string
-    usernameFieldLabel: string
-    ethAddressLabel: string
-    index0FieldLabel: string
-    mainTaggedLabel: string
-    openbarTaggedLabel: string
-    generatedLabel: string
-    linkWalletButton: string
-    linkExplanation: string
-    howQrWorksHeading: string
-    qrStep1: string
-    qrStep2: string
-    qrStep3: string
-    whatGetsStored: string
+    syncExportHeading: string
+    syncExportDescription: string
+    syncExportButton: string
+    syncExportNote: string
+    syncQrAlt: string
+    syncLinkReady: string
+    syncLinkButton: string
+    syncQrHint: string
+    syncImportHeading: string
+    syncImportDescription: string
+    syncImportButton: string
+    syncImportPasswordTitle: string
+    syncImportPasswordDescription: string
+    syncImportedTitle: string
+    syncImportErrorTitle: string
+    syncErrorInvalidFile: string
+    syncErrorCredentialMismatch: string
+    syncErrorPublicKeyMismatch: string
+    syncErrorUnsupportedBackup: string
+    syncErrorPrfUnsupported: string
+    syncErrorNoPasskey: string
+    syncHowHeading: string
+    syncStep1: string
+    syncStep2: string
+    syncStep3: string
+    syncExportedTitle: string
+    syncExportedPasswordDescription: string
+    syncPasswordModalTitle: string
+    syncPasswordModalDescription: string
     platformSyncHeading: string
     platformSyncIntro: string
     appleSyncNote: string
@@ -255,9 +243,6 @@ type TranslationKeys = {
     localStorageModalTitle: string
     foundItemsText: (n: number) => string
     noDataFound: string
-    indexedDBModalTitle: string
-    foundDatabasesText: (n: number) => string
-    noDatabasesFound: string
 
     registrationSuccessTitle: string
     registrationSuccessDescription: string
@@ -267,15 +252,9 @@ type TranslationKeys = {
     localStorageInspectedDescription: (n: number) => string
     genericErrorTitle: string
     failedInspectLocalStorage: string
-    indexedDBInspectedTitle: string
-    indexedDBInspectedDescription: (dbCount: number, recordCount: number) => string
-    failedInspectIndexedDB: string
     itemClearedTitle: string
     itemClearedDescription: (key: string) => string
     failedClearItem: (key: string) => string
-    recordClearedTitle: string
-    recordClearedDescription: (db: string, store: string) => string
-    failedClearRecord: string
     errorLoadingAddressesTitle: string
     failedDeriveAddresses: string
     errorLoadingBackupStatusTitle: string
@@ -295,10 +274,6 @@ type TranslationKeys = {
     usernameRequiredRestoreDescription: string
     walletRestoredRegisteredTitle: string
     walletRestoredRegisteredDescription: (address: string) => string
-    securityReportGeneratedTitle: string
-    securityReportGeneratedDescription: string
-    inspectionFailedTitle: string
-    inspectionFailedDescription: string
     backupStatusRetrievedTitle: string
     errorRetrievingStatusTitle: string
     unexpectedErrorDescription: string
@@ -328,18 +303,13 @@ type TranslationKeys = {
     fileLoadedTitle: string
     fileLoadedDescription: string
     failedReadGuardianFile: string
-    cannotSaveTitle: string
-    cannotSaveDescription: string
-    walletLinkedTitle: string
-    walletLinkedDescription: (address: string) => string
-    errorSavingLinkTitle: string
-    failedSaveSyncData: string
     recoveryPasswordPrompt: string
     recoveryUsernamePrompt: (address: string) => string
   }
   header: {
     registerTitle: string
     walletInfoText: string
+    noPlatformAuthenticatorHint: string
     usernameLabel: string
     usernamePlaceholder: string
     usernameError: string
@@ -351,6 +321,29 @@ type TranslationKeys = {
     noAccountFoundTitle: string
     noAccountFoundDescription: string
     alreadyRegisteredLink: string
+  }
+  backup: {
+    title: string
+    description: string
+    safariWarning: string
+    iosWarning: string
+    downloadButton: string
+    passwordModalTitle: string
+    passwordModalDescription: string
+    skipButton: string
+    backupCreatedTitle: string
+    backupFailedTitle: string
+  }
+  homeScreen: {
+    title: string
+    description: string
+    addButton: string
+    backupButton: string
+    stepsTitle: string
+    step1: string
+    step2: string
+    step3: string
+    backButton: string
   }
   passwordModal: {
     passwordLabel: string
@@ -365,10 +358,8 @@ type TranslationKeys = {
     strongPassword: string
     mustInclude: string
     reqMinLength: string
-    reqUpperCase: string
-    reqLowerCase: string
-    reqNumber: string
-    reqSpecialChar: string
+    reqNoRepeat: string
+    reqNotCommon: string
     satisfied: string
     required: string
     submit: string
@@ -446,10 +437,10 @@ export const translations: Translations = {
       firefoxMobileNote: 'Firefox Mobile - ⚠️ Avoid (known passkey persistence issues)',
 
       restoreBackupHeading: 'Restore from Backup',
+      restoreBackupSyncHint:
+        "If your passkey already synced to this device, the restore uses it. Otherwise you'll create a new passkey for the restored wallet. To move a wallet without a password, use a sync file instead.",
       restoreBackupDescription:
         'If you have a backup file, you can restore your wallet without logging in first.',
-      restoreBackupSyncHint:
-        'To sync with another device: log in on your other device, go to Settings → Create Backup to download an encrypted backup file, then upload it here and enter the same password.',
       restoringText: 'Restoring...',
       restoreBackupButton: 'Restore from Backup File',
 
@@ -457,32 +448,11 @@ export const translations: Translations = {
       debugStorageDescription: 'Inspect browser storage and activity logs',
       inspectingText: 'Inspecting...',
       inspectLocalStorageButton: 'Inspect LocalStorage',
-      inspectIndexedDBButton: 'Inspect IndexedDB',
-
-      inspectSecurityDescriptionSmall:
-        'Analyze this application for transaction and signing methods.',
-      inspectSecurityButton: 'Inspect Security',
-      consoleCommandLabel: 'Console command:',
-      clearReportButton: 'Clear Report',
-      filesAnalyzedLabel: 'Files Analyzed:',
-      inspectionHeadingBig: 'Security Inspection',
-      inspectSecurityDescriptionBig:
-        'Generate a comprehensive security report of this app. The report will analyze all transaction and signing methods.',
-      inspectNowButton: 'Inspect now',
-      consoleHintText: 'You can also run await w3pk.inspectNow() in the browser console',
-      securityReportHeading: 'Security Report',
-      appUrlLabel: 'App URL:',
 
       localStorageResultsHeading: 'LocalStorage Results',
       itemsCount: n => `${n} items`,
       encryptedBadge: 'Encrypted',
       clearItemAria: 'Clear item',
-      indexedDBResultsHeading: 'IndexedDB Results',
-      databasesCount: n => `${n} database(s)`,
-      storesLabel: 'Stores:',
-      recordsLabel: 'Records:',
-      clearRecordAria: 'Clear record',
-      storeKeyLabel: (store, key) => `Store: ${store} | Key: ${key}`,
 
       currentAccountHeading: 'Current account',
       currentAccountDescription: 'This is your currently logged-in account.',
@@ -493,16 +463,16 @@ export const translations: Translations = {
 
       sessionHeading: 'Keep my session alive',
       sessionDescription:
-        'Set how long your session should stay active without a passkey prompt. When it expires, your next visit asks for your biometric/PIN once and starts a fresh session — so this is also how often you re-authenticate. This setting applies to STANDARD and YOLO modes only. STRICT and PRIMARY modes always require fresh authentication and do not use persistent sessions.',
+        'Set how long your session should stay active without a passkey prompt. When it expires, your next visit asks for your passkey once and starts a fresh session — so this is also how often you re-authenticate. This setting applies to STANDARD and YOLO modes only. STRICT and PRIMARY modes always require fresh authentication and do not use persistent sessions.',
       noStoredSessionText:
-        "No stored session on this device. Your authenticator doesn't appear to support the WebAuthn PRF extension, which w3pk requires to keep sessions alive securely. Your session will stay in memory only: it ends when you close the tab, and each visit will ask for your biometric/PIN. Everything else works normally.",
+        "No stored session on this device. Your authenticator doesn't appear to support the WebAuthn PRF extension, which w3pk requires to keep sessions alive securely. Your session will stay in memory only: it ends when you close the tab, and each visit will ask for your passkey. Everything else works normally.",
       sessionDurationLabel: 'Session Duration',
       dayLabel: n => `${n} day${n > 1 ? 's' : ''}`,
       oneDayLabel: '1 day',
       thirtyDaysLabel: '30 days',
       sessionHowItWorksTitle: 'How it works:',
       sessionHowItWorksText:
-        "Each time you log in with your biometric/PIN, your authenticator releases a hardware-backed secret (WebAuthn PRF extension) that encrypts your session on this device — nothing stored on disk can recreate that key. The countdown starts fresh at each real login: with a 7-day duration, logging in today keeps you signed in until 7 days from today, when you'll be prompted once and the session is re-encrypted under a fresh key.",
+        "Each time you log in with your passkey, your authenticator releases a hardware-backed secret (WebAuthn PRF extension) that encrypts your session on this device — nothing stored on disk can recreate that key. The countdown starts fresh at each real login: with a 7-day duration, logging in today keeps you signed in until 7 days from today, when you'll be prompted once and the session is re-encrypted under a fresh key.",
 
       walletBackupHeading: 'Wallet Backup',
       walletBackupDescription:
@@ -515,6 +485,8 @@ export const translations: Translations = {
       loadingText: 'Loading...',
       securityStatusHeading: 'Security Status',
       checkingStatusText: 'Checking backup status...',
+      evictionRiskWarning:
+        'This browser can wipe your wallet after 7 days without a visit. Keep a backup, or add genji to your home screen.',
       refreshHeading: 'Refresh Backup Status',
       refreshDescription: 'Reload your current security score and backup recommendations',
       checkingText: 'Checking...',
@@ -530,7 +502,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         "Your wallet's core secret (the mnemonic phrase) is generated and encrypted entirely on your device. The backup process retrieves this encrypted data from your browser's local storage using your password, then packages it into a secure file for you to download.",
       aboutBackupPara2:
-        'The encryption key for your wallet is derived using a WebAuthn signature, which requires your biometric authentication (fingerprint, face scan) or device PIN. This means even if someone gains access to the encrypted data stored in your browser, they cannot decrypt it without your physical device and authentication.',
+        'The encryption key for your wallet is derived using a WebAuthn signature from your passkey, which lives on your authenticator: this device, your phone or a security key. This means even if someone gains access to the encrypted data stored in your browser, they cannot decrypt it without your authenticator.',
       aboutBackupPara3:
         'Your backup file is encrypted using AES-256-GCM with a key derived from the password you provide. Store this file securely and remember your password.',
       aboutBackupWarning:
@@ -578,9 +550,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `Your wallet is protected with ${threshold}-of-${count} guardian recovery`,
       generateInviteButton: 'Generate Invite',
-      removeConfigQuestion:
-        'All guardians have their shares? You can now remove the guardian configuration from local storage. The shares are safely stored with your guardians and can be used for recovery anytime.',
-      removeConfigButton: 'Clear Guardian Config from Local Storage',
+      sharesNotStoredNotice:
+        "Download each guardian's invitation now: the shares are not stored on this device, and leaving this page discards them. To change guardians, set up social recovery again.",
       invitationHeading: 'Guardian Invitation',
       downloadInviteButton: 'Download Invitation',
       sendInviteText: name => `Send this invitation to ${name} via a secure channel`,
@@ -588,37 +559,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'Device Sync',
       deviceSyncDescription:
         'Your passkey automatically syncs across devices using platform services',
-      qrHeading: 'Sync QR Code',
-      qrDescription:
-        'Generate a QR code containing your wallet addresses to easily sync or verify your account information on another device.',
-      generateQrButton: 'Generate Sync QR Code',
-      qrNote:
-        'Note: This QR code contains your public wallet addresses only. It does NOT contain your private keys or recovery phrase. Use it to verify your account on another device.',
       hideQrButton: 'Hide QR Code',
-      verifyHeading: 'Verify QR Code Data',
-      verifyDescription:
-        'Paste the JSON string from a scanned QR code to verify the wallet addresses.',
-      verifyPlaceholder: 'Paste JSON data here (e.g., {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'Error:',
-      parsedDataLabel: 'Parsed Data:',
-      usernameFieldLabel: 'Username:',
-      ethAddressLabel: 'Ethereum Address:',
-      index0FieldLabel: 'Index #0:',
-      mainTaggedLabel: 'MAIN-tagged:',
-      openbarTaggedLabel: 'OPENBAR-tagged:',
-      generatedLabel: 'Generated:',
-      linkWalletButton: 'Link This Wallet to Your Passkey Account',
-      linkExplanation:
-        'What happens when you link: This will save the wallet addresses to both localStorage and IndexedDB, creating a persistent link between your passkey account and this HD wallet. You can use this to verify or sync wallet data across devices.',
-      howQrWorksHeading: 'How QR Code Wallet Sync Works',
-      qrStep1:
-        "Step 1: Generate QR Code - On your primary device, generate a QR code containing your wallet's public addresses. This QR code is safe to share as it only contains public information.",
-      qrStep2:
-        'Step 2: Scan & Verify - On your secondary device, scan the QR code using any QR scanner app, or manually copy the JSON data displayed in the QR code.',
-      qrStep3:
-        'Step 3: Link Wallets - Paste the JSON data into the verification area above and click "Link This Wallet". This creates a persistent connection between your passkey account and the HD wallet addresses.',
-      whatGetsStored:
-        'What Gets Stored: Only public wallet addresses are stored in localStorage and IndexedDB. Your private keys and recovery phrase remain secure and are never transmitted or stored through this sync mechanism.',
+      syncExportHeading: 'Export for Sync',
+      syncExportDescription:
+        'Download a sync file locked to your passkey. On any device where your passkey synced, import it with one passkey prompt and no password.',
+      syncExportButton: 'Export Sync File',
+      syncExportNote:
+        'Only your passkey can open this file. Passkeys sync within one ecosystem (Apple or Google): to move across ecosystems, use a password backup instead.',
+      syncQrAlt: 'Sync file QR code',
+      syncLinkReady:
+        'This link carries a sync file. Tap below and confirm with your passkey to bring the wallet to this device.',
+      syncLinkButton: 'Sync This Wallet',
+      syncQrHint:
+        'Scan with the camera on your other device: genji opens and syncs your wallet after one passkey prompt.',
+      syncImportHeading: 'Import Sync File',
+      syncImportDescription:
+        'Bring your wallet to this device with a sync file from another device. Your passkey must already be synced here (iCloud Keychain or Google Password Manager).',
+      syncImportButton: 'Choose Sync File',
+      syncImportPasswordTitle: 'Enter the Sync Password',
+      syncImportPasswordDescription:
+        'This file is protected by a password. Enter the password you chose when you exported it.',
+      syncImportedTitle: 'Wallet synced to this device',
+      syncImportErrorTitle: 'Sync failed',
+      syncErrorInvalidFile: "This isn't a w3pk sync or backup file.",
+      syncErrorCredentialMismatch:
+        'This file belongs to another passkey. Log out, or pick the passkey that exported it.',
+      syncErrorPublicKeyMismatch:
+        "This file doesn't match your passkey. It may have been altered: export a new one.",
+      syncErrorUnsupportedBackup:
+        "This backup can't set up a new device. Restore it below, or export a sync file on your other device.",
+      syncErrorPrfUnsupported:
+        "This browser can't open a passwordless sync file. Try Chrome or Safari, or export a password backup instead.",
+      syncErrorNoPasskey:
+        "Your passkey isn't on this device yet. Turn on iCloud Keychain or Google Password Manager, wait for it to sync, then try again.",
+      syncHowHeading: 'How Device Sync Works',
+      syncStep1:
+        'Step 1: Export - On the device that has your wallet, export a sync file. Your passkey locks it: no password, and the file is useless without the passkey.',
+      syncStep2:
+        'Step 2: Move the file - Send it to your other device (AirDrop, a cloud drive or a cable), or scan its QR code.',
+      syncStep3:
+        "Step 3: Import - On the other device, open Settings, choose the file and confirm with your passkey. You're logged in with the same wallet.",
+      syncExportedTitle: 'Sync file downloaded',
+      syncExportedPasswordDescription:
+        "Your passkey doesn't support passwordless sync, so this file needs the password you chose.",
+      syncPasswordModalTitle: 'Set a Sync Password',
+      syncPasswordModalDescription:
+        "This browser or authenticator can't lock the file to your passkey alone. Choose a password: you'll enter it with your passkey on the other device.",
       platformSyncHeading: 'Passkey Platform Sync',
       platformSyncIntro:
         'Your passkey credentials automatically sync across devices within the same ecosystem:',
@@ -660,9 +646,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'LocalStorage Inspection',
       foundItemsText: n => `Found ${n} items in localStorage`,
       noDataFound: 'No data found',
-      indexedDBModalTitle: 'IndexedDB Inspection',
-      foundDatabasesText: n => `Found ${n} database(s)`,
-      noDatabasesFound: 'No w3pk-related databases found',
 
       registrationSuccessTitle: 'Registration Successful',
       registrationSuccessDescription: 'Your new account has been created.',
@@ -672,16 +655,9 @@ export const translations: Translations = {
       localStorageInspectedDescription: n => `Found ${n} items. Scroll down to see results.`,
       genericErrorTitle: 'Error',
       failedInspectLocalStorage: 'Failed to inspect localStorage',
-      indexedDBInspectedTitle: 'IndexedDB Inspected',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `Found ${dbCount} database(s) with ${recordCount} record(s). Scroll down to see results.`,
-      failedInspectIndexedDB: 'Failed to inspect IndexedDB',
       itemClearedTitle: 'Item Cleared',
       itemClearedDescription: key => `Removed "${key}" from localStorage`,
       failedClearItem: key => `Failed to clear "${key}"`,
-      recordClearedTitle: 'Record Cleared',
-      recordClearedDescription: (db, store) => `Removed record from ${db}/${store}`,
-      failedClearRecord: 'Failed to clear record',
       errorLoadingAddressesTitle: 'Error loading addresses',
       failedDeriveAddresses: 'Failed to derive wallet addresses',
       errorLoadingBackupStatusTitle: 'Error loading backup status',
@@ -706,11 +682,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'Wallet Restored & Registered!',
       walletRestoredRegisteredDescription: address =>
         `Successfully restored and registered wallet: ${address}`,
-      securityReportGeneratedTitle: 'Security Report Generated',
-      securityReportGeneratedDescription: 'View the detailed analysis below',
-      inspectionFailedTitle: 'Inspection Failed',
-      inspectionFailedDescription:
-        "Host app inspection did not work. It's probably due to Anthropic request rate limit reached.",
       backupStatusRetrievedTitle: 'Backup Status Retrieved.',
       errorRetrievingStatusTitle: 'Error retrieving status.',
       unexpectedErrorDescription: 'An unexpected error occurred.',
@@ -744,12 +715,6 @@ export const translations: Translations = {
       fileLoadedTitle: 'File Loaded',
       fileLoadedDescription: 'Guardian share loaded from file. Click "Add Share" to add it.',
       failedReadGuardianFile: 'Failed to read guardian share file',
-      cannotSaveTitle: 'Cannot save',
-      cannotSaveDescription: 'Invalid QR data or user not authenticated',
-      walletLinkedTitle: 'Wallet Linked Successfully!',
-      walletLinkedDescription: address => `Linked wallet ${address} to your passkey account`,
-      errorSavingLinkTitle: 'Error saving wallet link',
-      failedSaveSyncData: 'Failed to save wallet sync data',
       recoveryPasswordPrompt:
         'Enter the password you set when configuring social recovery.\n\nThis password was NOT shared with guardians - you set it during setup.',
       recoveryUsernamePrompt: address =>
@@ -759,6 +724,8 @@ export const translations: Translations = {
       registerTitle: 'Register New Account',
       walletInfoText:
         'An Ethereum wallet will be created and securely stored on your device, protected by your biometric or PIN thanks to',
+      noPlatformAuthenticatorHint:
+        'No built-in authenticator found: use your phone or a security key.',
       usernameLabel: 'Username',
       usernamePlaceholder: 'Enter your username',
       usernameError:
@@ -772,23 +739,49 @@ export const translations: Translations = {
       noAccountFoundDescription: 'No passkey found. Please register to create a new account.',
       alreadyRegisteredLink: 'I already registered on another device',
     },
+    backup: {
+      title: 'Back up your wallet',
+      description:
+        'Your wallet is stored only in this browser. If its data is wiped, a backup file is the only way to get your wallet back.',
+      safariWarning:
+        "Safari deletes this site's data after 7 days without a visit. Without a backup, your wallet would be lost.",
+      iosWarning:
+        "On iPhone and iPad, every browser deletes this site's data after 7 days without a visit",
+      downloadButton: 'Download a backup file',
+      passwordModalTitle: 'Protect your backup',
+      passwordModalDescription:
+        'Choose a strong password. You will need it to restore your wallet from this file.',
+      skipButton: 'I understand the risk',
+      backupCreatedTitle: 'Backup downloaded',
+      backupFailedTitle: 'Backup failed',
+    },
+    homeScreen: {
+      title: 'Keep your wallet on this device',
+      description:
+        'An app added to your Home Screen keeps its data. In the browser, a backup file is the only way to get your wallet back.',
+      addButton: 'Add to Home Screen',
+      backupButton: 'Back up',
+      stepsTitle: 'Add to Home Screen',
+      step1: 'Tap the Share button.',
+      step2: 'Tap "Add to Home Screen".',
+      step3: 'Open the app from the new icon and create your wallet there.',
+      backButton: 'Back',
+    },
     passwordModal: {
       passwordLabel: 'Password',
       passwordPlaceholder: 'Enter your password',
       passwordRequiredTitle: 'Password Required.',
       passwordRequiredDescription: 'Please enter your password.',
       weakPasswordTitle: 'Weak Password.',
-      weakPasswordDescription: 'Please use a stronger password that meets all requirements.',
+      weakPasswordDescription: 'Please use a password that meets all requirements.',
       submissionErrorTitle: 'Submission Error.',
       submissionErrorDefaultDescription: 'An unexpected error occurred.',
       requirementsNotMet: 'Password does not meet all requirements',
       strongPassword: 'Strong password!',
-      mustInclude: 'Password must include:',
-      reqMinLength: 'At least 12 characters',
-      reqUpperCase: 'One uppercase letter',
-      reqLowerCase: 'One lowercase letter',
-      reqNumber: 'One number',
-      reqSpecialChar: 'One special character',
+      mustInclude: 'Password must be:',
+      reqMinLength: 'At least 15 characters: a passphrase works',
+      reqNoRepeat: 'Not one character repeated',
+      reqNotCommon: 'Not a common password',
       satisfied: ' (satisfied)',
       required: ' (required)',
       submit: 'Submit',
@@ -860,9 +853,9 @@ export const translations: Translations = {
       firefoxMobileNote: 'Firefox 移动版 - ⚠️ 请避免使用（已知通行密钥持久化问题）',
 
       restoreBackupHeading: '从备份恢复',
-      restoreBackupDescription: '如果您有备份文件，无需先登录即可恢复您的钱包。',
       restoreBackupSyncHint:
-        '要与其他设备同步：请在您的另一台设备上登录，前往"设置 → 创建备份"下载加密备份文件，然后在此处上传该文件并输入相同的密码。',
+        '如果您的通行密钥已同步到此设备，恢复时将使用它；否则，您将为恢复的钱包创建一个新的通行密钥。如需无密码迁移钱包，请改用同步文件。',
+      restoreBackupDescription: '如果您有备份文件，无需先登录即可恢复您的钱包。',
       restoringText: '正在恢复...',
       restoreBackupButton: '从备份文件恢复',
 
@@ -870,31 +863,11 @@ export const translations: Translations = {
       debugStorageDescription: '检查浏览器存储和活动日志',
       inspectingText: '正在检查...',
       inspectLocalStorageButton: '检查 LocalStorage',
-      inspectIndexedDBButton: '检查 IndexedDB',
-
-      inspectSecurityDescriptionSmall: '分析此应用程序的交易和签名方法。',
-      inspectSecurityButton: '检查安全性',
-      consoleCommandLabel: '控制台命令：',
-      clearReportButton: '清除报告',
-      filesAnalyzedLabel: '已分析文件：',
-      inspectionHeadingBig: '安全检查',
-      inspectSecurityDescriptionBig:
-        '生成此应用程序的全面安全报告。该报告将分析所有交易和签名方法。',
-      inspectNowButton: '立即检查',
-      consoleHintText: '您也可以在浏览器控制台中运行 await w3pk.inspectNow()',
-      securityReportHeading: '安全报告',
-      appUrlLabel: '应用网址：',
 
       localStorageResultsHeading: 'LocalStorage 结果',
       itemsCount: n => `${n} 项`,
       encryptedBadge: '已加密',
       clearItemAria: '清除项目',
-      indexedDBResultsHeading: 'IndexedDB 结果',
-      databasesCount: n => `${n} 个数据库`,
-      storesLabel: '存储对象：',
-      recordsLabel: '记录：',
-      clearRecordAria: '清除记录',
-      storeKeyLabel: (store, key) => `存储对象：${store} | 键：${key}`,
 
       currentAccountHeading: '当前账户',
       currentAccountDescription: '这是您当前登录的账户。',
@@ -905,16 +878,16 @@ export const translations: Translations = {
 
       sessionHeading: '保持我的会话有效',
       sessionDescription:
-        '设置您的会话在不弹出通行密钥提示的情况下保持有效的时长。会话过期后，您下次访问时将被要求进行一次生物识别/PIN验证，并开始一个新的会话——这也决定了您重新进行身份验证的频率。此设置仅适用于 STANDARD 和 YOLO 模式。STRICT 和 PRIMARY 模式始终需要重新进行身份验证，不使用持久化会话。',
+        '设置您的会话在不弹出通行密钥提示的情况下保持有效的时长。会话过期后，您下次访问时将被要求验证一次通行密钥，并开始一个新的会话——这也决定了您重新进行身份验证的频率。此设置仅适用于 STANDARD 和 YOLO 模式。STRICT 和 PRIMARY 模式始终需要重新进行身份验证，不使用持久化会话。',
       noStoredSessionText:
-        '此设备上没有存储的会话。您的身份验证器似乎不支持 WebAuthn PRF 扩展，而 w3pk 需要该扩展来安全地保持会话有效。您的会话将仅保存在内存中：关闭标签页后即结束，每次访问都会要求进行生物识别/PIN验证。其他功能均正常运作。',
+        '此设备上没有存储的会话。您的身份验证器似乎不支持 WebAuthn PRF 扩展，而 w3pk 需要该扩展来安全地保持会话有效。您的会话将仅保存在内存中：关闭标签页后即结束，每次访问都会要求验证通行密钥。其他功能均正常运作。',
       sessionDurationLabel: '会话时长',
       dayLabel: n => `${n} 天`,
       oneDayLabel: '1 天',
       thirtyDaysLabel: '30 天',
       sessionHowItWorksTitle: '工作原理：',
       sessionHowItWorksText:
-        '每次使用生物识别/PIN登录时，您的身份验证器都会释放一个由硬件保护的密钥（WebAuthn PRF 扩展），用于加密您在此设备上的会话——磁盘上存储的任何数据都无法重新生成该密钥。每次真正登录都会重新开始倒计时：例如设置为7天时长，今天登录后您将保持登录状态直到7天后，届时系统会提示您验证一次，并在新密钥下重新加密会话。',
+        '每次使用通行密钥登录时，您的身份验证器都会释放一个由硬件保护的密钥（WebAuthn PRF 扩展），用于加密您在此设备上的会话——磁盘上存储的任何数据都无法重新生成该密钥。每次真正登录都会重新开始倒计时：例如设置为7天时长，今天登录后您将保持登录状态直到7天后，届时系统会提示您验证一次，并在新密钥下重新加密会话。',
 
       walletBackupHeading: '钱包备份',
       walletBackupDescription: '创建钱包的加密备份，确保您永远不会失去访问权限',
@@ -926,6 +899,8 @@ export const translations: Translations = {
       loadingText: '加载中...',
       securityStatusHeading: '安全状态',
       checkingStatusText: '正在检查备份状态...',
+      evictionRiskWarning:
+        '如果 7 天未访问，此浏览器可能会清除您的钱包。请保留备份，或将 genji 添加到主屏幕。',
       refreshHeading: '刷新备份状态',
       refreshDescription: '重新加载您当前的安全评分和备份建议',
       checkingText: '正在检查...',
@@ -941,7 +916,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         '您钱包的核心密钥（助记词）完全在您的设备上生成并加密。备份过程会使用您的密码从浏览器的本地存储中检索这些加密数据，然后将其打包成一个安全文件供您下载。',
       aboutBackupPara2:
-        '您钱包的加密密钥是通过 WebAuthn 签名派生的，这需要您进行生物识别验证（指纹、面部扫描）或设备PIN验证。这意味着即使有人获取了存储在浏览器中的加密数据，如果没有您的实体设备和身份验证，也无法解密。',
+        '您钱包的加密密钥是通过您的通行密钥生成的 WebAuthn 签名派生的，该通行密钥保存在您的验证器上：本设备、您的手机或安全密钥。这意味着即使有人获取了存储在浏览器中的加密数据，如果没有您的验证器，也无法解密。',
       aboutBackupPara3:
         '您的备份文件使用 AES-256-GCM 加密，密钥由您提供的密码派生而来。请妥善保管此文件并记住您的密码。',
       aboutBackupWarning:
@@ -987,44 +962,54 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `您的钱包受到 ${count} 中取 ${threshold} 监护人恢复机制的保护`,
       generateInviteButton: '生成邀请',
-      removeConfigQuestion:
-        '所有监护人都已获得各自的份额？您现在可以从本地存储中移除监护人配置。份额已安全保存在您的监护人处，可随时用于恢复。',
-      removeConfigButton: '从本地存储清除监护人配置',
+      sharesNotStoredNotice:
+        '请立即下载每位监护人的邀请：份额不会存储在此设备上，离开此页面后将被丢弃。如需更换监护人，请重新设置社交恢复。',
       invitationHeading: '监护人邀请',
       downloadInviteButton: '下载邀请',
       sendInviteText: name => `通过安全渠道将此邀请发送给 ${name}`,
 
       deviceSyncHeading: '设备同步',
       deviceSyncDescription: '您的通行密钥会通过平台服务自动在各设备间同步',
-      qrHeading: '同步二维码',
-      qrDescription: '生成一个包含您钱包地址的二维码，以便在其他设备上轻松同步或验证您的账户信息。',
-      generateQrButton: '生成同步二维码',
-      qrNote:
-        '注意：此二维码仅包含您的公开钱包地址，不包含您的私钥或恢复助记词。可用于在其他设备上验证您的账户。',
       hideQrButton: '隐藏二维码',
-      verifyHeading: '验证二维码数据',
-      verifyDescription: '粘贴扫描二维码得到的 JSON 字符串以验证钱包地址。',
-      verifyPlaceholder: '在此粘贴 JSON 数据（例如：{"username":"...","ethereumAddress":"..."}）',
-      errorLabel: '错误：',
-      parsedDataLabel: '解析数据：',
-      usernameFieldLabel: '用户名：',
-      ethAddressLabel: '以太坊地址：',
-      index0FieldLabel: '索引 #0：',
-      mainTaggedLabel: 'MAIN 标记：',
-      openbarTaggedLabel: 'OPENBAR 标记：',
-      generatedLabel: '生成时间：',
-      linkWalletButton: '将此钱包关联到您的通行密钥账户',
-      linkExplanation:
-        '关联后会发生什么：这将把钱包地址同时保存到 localStorage 和 IndexedDB 中，在您的通行密钥账户与此 HD 钱包之间建立持久关联。您可以借此在各设备间验证或同步钱包数据。',
-      howQrWorksHeading: '二维码钱包同步的工作原理',
-      qrStep1:
-        '第一步：生成二维码 - 在您的主设备上，生成一个包含钱包公开地址的二维码。由于该二维码仅包含公开信息，可以安全分享。',
-      qrStep2:
-        '第二步：扫描与验证 - 在您的辅助设备上，使用任意二维码扫描应用扫描该二维码，或手动复制二维码中显示的 JSON 数据。',
-      qrStep3:
-        '第三步：关联钱包 - 将 JSON 数据粘贴到上方的验证区域，然后点击"关联此钱包"。这将在您的通行密钥账户与 HD 钱包地址之间建立持久连接。',
-      whatGetsStored:
-        '存储内容：localStorage 和 IndexedDB 中仅存储公开的钱包地址。您的私钥和恢复助记词始终保持安全，绝不会通过此同步机制被传输或存储。',
+      syncExportHeading: '导出以同步',
+      syncExportDescription:
+        '下载一个绑定到您通行密钥的同步文件。在通行密钥已同步的任何设备上，只需一次通行密钥验证即可导入，无需密码。',
+      syncExportButton: '导出同步文件',
+      syncExportNote:
+        '只有您的通行密钥才能打开此文件。通行密钥仅在同一生态系统内同步（Apple 或 Google）：如需跨生态系统迁移，请改用密码备份。',
+      syncQrAlt: '同步文件二维码',
+      syncLinkReady: '此链接包含一个同步文件。点击下方按钮并用通行密钥确认，即可将钱包导入此设备。',
+      syncLinkButton: '同步此钱包',
+      syncQrHint: '用另一台设备的相机扫描：genji 将打开，并在一次通行密钥验证后同步您的钱包。',
+      syncImportHeading: '导入同步文件',
+      syncImportDescription:
+        '使用来自另一台设备的同步文件，将您的钱包导入此设备。您的通行密钥必须已同步到此设备（iCloud 钥匙串或 Google 密码管理器）。',
+      syncImportButton: '选择同步文件',
+      syncImportPasswordTitle: '输入同步密码',
+      syncImportPasswordDescription: '此文件受密码保护。请输入导出时设置的密码。',
+      syncImportedTitle: '钱包已同步到此设备',
+      syncImportErrorTitle: '同步失败',
+      syncErrorInvalidFile: '这不是 w3pk 同步或备份文件。',
+      syncErrorCredentialMismatch: '此文件属于另一个通行密钥。请退出登录，或选择导出它的通行密钥。',
+      syncErrorPublicKeyMismatch: '此文件与您的通行密钥不匹配，可能已被篡改：请重新导出。',
+      syncErrorUnsupportedBackup:
+        '此备份无法用于设置新设备。请在下方恢复，或在另一台设备上导出同步文件。',
+      syncErrorPrfUnsupported:
+        '此浏览器无法打开无密码同步文件。请尝试 Chrome 或 Safari，或改为导出密码备份。',
+      syncErrorNoPasskey:
+        '您的通行密钥尚未同步到此设备。请开启 iCloud 钥匙串或 Google 密码管理器，等待同步完成后重试。',
+      syncHowHeading: '设备同步的工作原理',
+      syncStep1:
+        '第 1 步：导出 - 在存有钱包的设备上导出同步文件。文件由您的通行密钥锁定：无需密码，没有通行密钥该文件无法使用。',
+      syncStep2:
+        '第 2 步：传输文件 - 将文件发送到另一台设备（AirDrop、云盘或数据线），或扫描其二维码。',
+      syncStep3:
+        '第 3 步：导入 - 在另一台设备上打开设置，选择该文件并用通行密钥确认。您将以同一个钱包登录。',
+      syncExportedTitle: '同步文件已下载',
+      syncExportedPasswordDescription: '您的通行密钥不支持无密码同步，因此此文件需要您设置的密码。',
+      syncPasswordModalTitle: '设置同步密码',
+      syncPasswordModalDescription:
+        '此浏览器或认证器无法仅用通行密钥锁定文件。请设置一个密码：在另一台设备上，您需要同时使用通行密钥和该密码。',
       platformSyncHeading: '通行密钥平台同步',
       platformSyncIntro: '您的通行密钥凭证会在同一生态系统内的各设备间自动同步：',
       appleSyncNote: 'Apple：通过 iCloud Keychain 同步（iPhone、iPad、Mac）',
@@ -1061,9 +1046,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'LocalStorage 检查',
       foundItemsText: n => `在 localStorage 中找到 ${n} 项`,
       noDataFound: '未找到数据',
-      indexedDBModalTitle: 'IndexedDB 检查',
-      foundDatabasesText: n => `找到 ${n} 个数据库`,
-      noDatabasesFound: '未找到与 w3pk 相关的数据库',
 
       registrationSuccessTitle: '注册成功',
       registrationSuccessDescription: '您的新账户已创建。',
@@ -1073,16 +1055,9 @@ export const translations: Translations = {
       localStorageInspectedDescription: n => `找到 ${n} 项。向下滚动查看结果。`,
       genericErrorTitle: '错误',
       failedInspectLocalStorage: '检查 localStorage 失败',
-      indexedDBInspectedTitle: 'IndexedDB 检查完成',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `找到 ${dbCount} 个数据库，共 ${recordCount} 条记录。向下滚动查看结果。`,
-      failedInspectIndexedDB: '检查 IndexedDB 失败',
       itemClearedTitle: '项目已清除',
       itemClearedDescription: key => `已从 localStorage 中移除 "${key}"`,
       failedClearItem: key => `清除 "${key}" 失败`,
-      recordClearedTitle: '记录已清除',
-      recordClearedDescription: (db, store) => `已从 ${db}/${store} 中移除记录`,
-      failedClearRecord: '清除记录失败',
       errorLoadingAddressesTitle: '加载地址出错',
       failedDeriveAddresses: '派生钱包地址失败',
       errorLoadingBackupStatusTitle: '加载备份状态出错',
@@ -1103,11 +1078,6 @@ export const translations: Translations = {
       usernameRequiredRestoreDescription: '请输入用户名以注册恢复的钱包。',
       walletRestoredRegisteredTitle: '钱包已恢复并注册！',
       walletRestoredRegisteredDescription: address => `已成功恢复并注册钱包：${address}`,
-      securityReportGeneratedTitle: '安全报告已生成',
-      securityReportGeneratedDescription: '请在下方查看详细分析',
-      inspectionFailedTitle: '检查失败',
-      inspectionFailedDescription:
-        '宿主应用检查未成功。这可能是由于达到了 Anthropic 请求速率限制。',
       backupStatusRetrievedTitle: '已获取备份状态。',
       errorRetrievingStatusTitle: '获取状态出错。',
       unexpectedErrorDescription: '发生了意外错误。',
@@ -1138,12 +1108,6 @@ export const translations: Translations = {
       fileLoadedTitle: '文件已加载',
       fileLoadedDescription: '已从文件加载监护人份额。点击"添加份额"以添加它。',
       failedReadGuardianFile: '读取监护人份额文件失败',
-      cannotSaveTitle: '无法保存',
-      cannotSaveDescription: '二维码数据无效或用户未通过身份验证',
-      walletLinkedTitle: '钱包关联成功！',
-      walletLinkedDescription: address => `已将钱包 ${address} 关联到您的通行密钥账户`,
-      errorSavingLinkTitle: '保存钱包关联出错',
-      failedSaveSyncData: '保存钱包同步数据失败',
       recoveryPasswordPrompt:
         '请输入您在配置社交恢复时设置的密码。\n\n此密码未与监护人共享——是您在设置时自行设定的。',
       recoveryUsernamePrompt: address =>
@@ -1153,6 +1117,7 @@ export const translations: Translations = {
       registerTitle: '注册新账户',
       walletInfoText:
         '系统将为您创建一个以太坊钱包，并安全地存储在您的设备上，通过生物识别或PIN码保护，这要归功于',
+      noPlatformAuthenticatorHint: '未找到内置验证器：请使用您的手机或安全密钥。',
       usernameLabel: '用户名',
       usernamePlaceholder: '请输入您的用户名',
       usernameError:
@@ -1166,6 +1131,29 @@ export const translations: Translations = {
       noAccountFoundDescription: '未找到通行密钥。请注册以创建新账户。',
       alreadyRegisteredLink: '我已在其他设备上注册过',
     },
+    backup: {
+      title: '备份您的钱包',
+      description: '您的钱包仅存储在此浏览器中。如果其数据被清除，备份文件是找回钱包的唯一方式。',
+      safariWarning: 'Safari 会在 7 天未访问后删除此网站的数据。没有备份，您的钱包将会丢失。',
+      iosWarning: '在 iPhone 和 iPad 上，所有浏览器都会在 7 天未访问后删除此网站的数据',
+      downloadButton: '下载备份文件',
+      passwordModalTitle: '保护您的备份',
+      passwordModalDescription: '请选择一个强密码。从此文件恢复钱包时需要用到它。',
+      skipButton: '我了解风险',
+      backupCreatedTitle: '备份已下载',
+      backupFailedTitle: '备份失败',
+    },
+    homeScreen: {
+      title: '在此设备上保留您的钱包',
+      description: '添加到主屏幕的应用会保留其数据。在浏览器中，备份文件是找回钱包的唯一方式。',
+      addButton: '添加到主屏幕',
+      backupButton: '备份',
+      stepsTitle: '添加到主屏幕',
+      step1: '点按"分享"按钮。',
+      step2: '点按"添加到主屏幕"。',
+      step3: '从新图标打开应用，并在其中创建您的钱包。',
+      backButton: '返回',
+    },
     passwordModal: {
       passwordLabel: '密码',
       passwordPlaceholder: '请输入您的密码',
@@ -1177,12 +1165,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: '发生意外错误。',
       requirementsNotMet: '密码不满足所有要求',
       strongPassword: '密码强度足够！',
-      mustInclude: '密码必须包含：',
-      reqMinLength: '至少12个字符',
-      reqUpperCase: '一个大写字母',
-      reqLowerCase: '一个小写字母',
-      reqNumber: '一个数字',
-      reqSpecialChar: '一个特殊字符',
+      mustInclude: '密码必须：',
+      reqMinLength: '至少 15 个字符：可以使用短语',
+      reqNoRepeat: '不是同一个字符的重复',
+      reqNotCommon: '不是常见密码',
       satisfied: '（已满足）',
       required: '（必需）',
       submit: '提交',
@@ -1255,10 +1241,10 @@ export const translations: Translations = {
       firefoxMobileNote: 'Firefox Mobile - ⚠️ से बचें (पासकी स्थायित्व की ज्ञात समस्याएं)',
 
       restoreBackupHeading: 'बैकअप से पुनर्स्थापित करें',
+      restoreBackupSyncHint:
+        'अगर आपकी पासकी इस डिवाइस पर पहले से सिंक है, तो रिस्टोर उसी का उपयोग करेगा। नहीं तो, आप रिस्टोर किए गए वॉलेट के लिए नई पासकी बनाएँगे। बिना पासवर्ड वॉलेट ले जाने के लिए, सिंक फ़ाइल का उपयोग करें।',
       restoreBackupDescription:
         'यदि आपके पास बैकअप फ़ाइल है, तो आप पहले लॉगिन किए बिना अपना वॉलेट पुनर्स्थापित कर सकते हैं।',
-      restoreBackupSyncHint:
-        'किसी अन्य डिवाइस के साथ सिंक करने के लिए: अपने दूसरे डिवाइस पर लॉगिन करें, एन्क्रिप्टेड बैकअप फ़ाइल डाउनलोड करने के लिए सेटिंग्स → बैकअप बनाएं पर जाएं, फिर इसे यहां अपलोड करें और वही पासवर्ड दर्ज करें।',
       restoringText: 'पुनर्स्थापित हो रहा है...',
       restoreBackupButton: 'बैकअप फ़ाइल से पुनर्स्थापित करें',
 
@@ -1266,32 +1252,11 @@ export const translations: Translations = {
       debugStorageDescription: 'ब्राउज़र स्टोरेज और गतिविधि लॉग का निरीक्षण करें',
       inspectingText: 'निरीक्षण हो रहा है...',
       inspectLocalStorageButton: 'LocalStorage का निरीक्षण करें',
-      inspectIndexedDBButton: 'IndexedDB का निरीक्षण करें',
-
-      inspectSecurityDescriptionSmall:
-        'लेनदेन और हस्ताक्षर विधियों के लिए इस एप्लिकेशन का विश्लेषण करें।',
-      inspectSecurityButton: 'सुरक्षा का निरीक्षण करें',
-      consoleCommandLabel: 'कंसोल कमांड:',
-      clearReportButton: 'रिपोर्ट साफ़ करें',
-      filesAnalyzedLabel: 'विश्लेषित फ़ाइलें:',
-      inspectionHeadingBig: 'सुरक्षा निरीक्षण',
-      inspectSecurityDescriptionBig:
-        'इस ऐप की एक व्यापक सुरक्षा रिपोर्ट बनाएं। रिपोर्ट सभी लेनदेन और हस्ताक्षर विधियों का विश्लेषण करेगी।',
-      inspectNowButton: 'अभी निरीक्षण करें',
-      consoleHintText: 'आप ब्राउज़र कंसोल में await w3pk.inspectNow() भी चला सकते हैं',
-      securityReportHeading: 'सुरक्षा रिपोर्ट',
-      appUrlLabel: 'ऐप URL:',
 
       localStorageResultsHeading: 'LocalStorage परिणाम',
       itemsCount: n => `${n} आइटम`,
       encryptedBadge: 'एन्क्रिप्टेड',
       clearItemAria: 'आइटम साफ़ करें',
-      indexedDBResultsHeading: 'IndexedDB परिणाम',
-      databasesCount: n => `${n} डेटाबेस`,
-      storesLabel: 'स्टोर्स:',
-      recordsLabel: 'रिकॉर्ड्स:',
-      clearRecordAria: 'रिकॉर्ड साफ़ करें',
-      storeKeyLabel: (store, key) => `स्टोर: ${store} | की: ${key}`,
 
       currentAccountHeading: 'वर्तमान खाता',
       currentAccountDescription: 'यह आपका वर्तमान में लॉग इन किया गया खाता है।',
@@ -1302,16 +1267,16 @@ export const translations: Translations = {
 
       sessionHeading: 'मेरा सत्र सक्रिय रखें',
       sessionDescription:
-        'तय करें कि पासकी प्रॉम्प्ट के बिना आपका सत्र कितनी देर तक सक्रिय रहना चाहिए। जब यह समाप्त हो जाता है, तो आपकी अगली विज़िट एक बार आपके बायोमेट्रिक/पिन के लिए पूछती है और एक नया सत्र शुरू करती है — इसलिए यह भी बताता है कि आप कितनी बार पुनः प्रमाणीकरण करते हैं। यह सेटिंग केवल STANDARD और YOLO मोड पर लागू होती है। STRICT और PRIMARY मोड हमेशा नए प्रमाणीकरण की आवश्यकता रखते हैं और स्थायी सत्रों का उपयोग नहीं करते।',
+        'तय करें कि पासकी प्रॉम्प्ट के बिना आपका सत्र कितनी देर तक सक्रिय रहना चाहिए। जब यह समाप्त हो जाता है, तो आपकी अगली विज़िट एक बार आपकी पासकी के लिए पूछती है और एक नया सत्र शुरू करती है — इसलिए यह भी बताता है कि आप कितनी बार पुनः प्रमाणीकरण करते हैं। यह सेटिंग केवल STANDARD और YOLO मोड पर लागू होती है। STRICT और PRIMARY मोड हमेशा नए प्रमाणीकरण की आवश्यकता रखते हैं और स्थायी सत्रों का उपयोग नहीं करते।',
       noStoredSessionText:
-        'इस डिवाइस पर कोई संग्रहीत सत्र नहीं है। ऐसा लगता है कि आपका ऑथेंटिकेटर WebAuthn PRF एक्सटेंशन का समर्थन नहीं करता, जिसकी w3pk को सत्रों को सुरक्षित रूप से सक्रिय रखने के लिए आवश्यकता होती है। आपका सत्र केवल मेमोरी में रहेगा: जब आप टैब बंद करते हैं तो यह समाप्त हो जाता है, और हर विज़िट पर आपसे आपका बायोमेट्रिक/पिन पूछा जाएगा। बाकी सब कुछ सामान्य रूप से काम करता है।',
+        'इस डिवाइस पर कोई संग्रहीत सत्र नहीं है। ऐसा लगता है कि आपका ऑथेंटिकेटर WebAuthn PRF एक्सटेंशन का समर्थन नहीं करता, जिसकी w3pk को सत्रों को सुरक्षित रूप से सक्रिय रखने के लिए आवश्यकता होती है। आपका सत्र केवल मेमोरी में रहेगा: जब आप टैब बंद करते हैं तो यह समाप्त हो जाता है, और हर विज़िट पर आपसे आपकी पासकी पूछा जाएगा। बाकी सब कुछ सामान्य रूप से काम करता है।',
       sessionDurationLabel: 'सत्र अवधि',
       dayLabel: n => `${n} दिन`,
       oneDayLabel: '1 दिन',
       thirtyDaysLabel: '30 दिन',
       sessionHowItWorksTitle: 'यह कैसे काम करता है:',
       sessionHowItWorksText:
-        'हर बार जब आप अपने बायोमेट्रिक/पिन से लॉगिन करते हैं, तो आपका ऑथेंटिकेटर एक हार्डवेयर-समर्थित सीक्रेट (WebAuthn PRF एक्सटेंशन) जारी करता है जो इस डिवाइस पर आपके सत्र को एन्क्रिप्ट करता है — डिस्क पर संग्रहीत कुछ भी उस कुंजी को फिर से नहीं बना सकता। हर वास्तविक लॉगिन पर काउंटडाउन नए सिरे से शुरू होता है: 7 दिन की अवधि के साथ, आज लॉगिन करने पर आप आज से 7 दिन बाद तक साइन इन रहेंगे, जब आपसे एक बार पूछा जाएगा और सत्र को एक नई कुंजी के तहत फिर से एन्क्रिप्ट किया जाएगा।',
+        'हर बार जब आप अपनी पासकी से लॉगिन करते हैं, तो आपका ऑथेंटिकेटर एक हार्डवेयर-समर्थित सीक्रेट (WebAuthn PRF एक्सटेंशन) जारी करता है जो इस डिवाइस पर आपके सत्र को एन्क्रिप्ट करता है — डिस्क पर संग्रहीत कुछ भी उस कुंजी को फिर से नहीं बना सकता। हर वास्तविक लॉगिन पर काउंटडाउन नए सिरे से शुरू होता है: 7 दिन की अवधि के साथ, आज लॉगिन करने पर आप आज से 7 दिन बाद तक साइन इन रहेंगे, जब आपसे एक बार पूछा जाएगा और सत्र को एक नई कुंजी के तहत फिर से एन्क्रिप्ट किया जाएगा।',
 
       walletBackupHeading: 'वॉलेट बैकअप',
       walletBackupDescription:
@@ -1324,6 +1289,8 @@ export const translations: Translations = {
       loadingText: 'लोड हो रहा है...',
       securityStatusHeading: 'सुरक्षा स्थिति',
       checkingStatusText: 'बैकअप स्थिति की जांच हो रही है...',
+      evictionRiskWarning:
+        '7 दिनों तक न आने पर यह ब्राउज़र आपका वॉलेट मिटा सकता है। बैकअप रखें, या genji को होम स्क्रीन पर जोड़ें।',
       refreshHeading: 'बैकअप स्थिति रीफ़्रेश करें',
       refreshDescription: 'अपने वर्तमान सुरक्षा स्कोर और बैकअप सिफारिशों को फिर से लोड करें',
       checkingText: 'जांच हो रही है...',
@@ -1339,7 +1306,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'आपके वॉलेट का मूल सीक्रेट (म्नेमोनिक फ्रेज़) पूरी तरह से आपके डिवाइस पर जनरेट और एन्क्रिप्ट किया जाता है। बैकअप प्रक्रिया आपके पासवर्ड का उपयोग करके आपके ब्राउज़र के लोकल स्टोरेज से इस एन्क्रिप्टेड डेटा को प्राप्त करती है, फिर इसे डाउनलोड करने के लिए एक सुरक्षित फ़ाइल में पैकेज करती है।',
       aboutBackupPara2:
-        'आपके वॉलेट के लिए एन्क्रिप्शन कुंजी एक WebAuthn हस्ताक्षर का उपयोग करके प्राप्त की जाती है, जिसके लिए आपके बायोमेट्रिक प्रमाणीकरण (फिंगरप्रिंट, फेस स्कैन) या डिवाइस पिन की आवश्यकता होती है। इसका मतलब है कि भले ही कोई आपके ब्राउज़र में संग्रहीत एन्क्रिप्टेड डेटा तक पहुंच प्राप्त कर ले, वे आपके भौतिक डिवाइस और प्रमाणीकरण के बिना इसे डिक्रिप्ट नहीं कर सकते।',
+        'आपके वॉलेट के लिए एन्क्रिप्शन कुंजी आपकी पासकी से बने एक WebAuthn हस्ताक्षर का उपयोग करके प्राप्त की जाती है, जो आपके ऑथेंटिकेटर पर रहती है: यह डिवाइस, आपका फ़ोन या एक सुरक्षा कुंजी। इसका मतलब है कि भले ही कोई आपके ब्राउज़र में संग्रहीत एन्क्रिप्टेड डेटा तक पहुंच प्राप्त कर ले, वे आपके ऑथेंटिकेटर के बिना इसे डिक्रिप्ट नहीं कर सकते।',
       aboutBackupPara3:
         'आपकी बैकअप फ़ाइल आपके द्वारा दिए गए पासवर्ड से प्राप्त एक कुंजी के साथ AES-256-GCM का उपयोग करके एन्क्रिप्ट की जाती है। इस फ़ाइल को सुरक्षित रूप से संग्रहीत करें और अपना पासवर्ड याद रखें।',
       aboutBackupWarning:
@@ -1390,9 +1357,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `आपका वॉलेट ${count} में से ${threshold} अभिभावक रिकवरी से सुरक्षित है`,
       generateInviteButton: 'आमंत्रण जनरेट करें',
-      removeConfigQuestion:
-        'क्या सभी अभिभावकों के पास अपने शेयर हैं? अब आप लोकल स्टोरेज से अभिभावक कॉन्फ़िगरेशन हटा सकते हैं। शेयर आपके अभिभावकों के पास सुरक्षित रूप से संग्रहीत हैं और कभी भी रिकवरी के लिए उपयोग किए जा सकते हैं।',
-      removeConfigButton: 'लोकल स्टोरेज से अभिभावक कॉन्फ़िगरेशन साफ़ करें',
+      sharesNotStoredNotice:
+        'हर अभिभावक का आमंत्रण अभी डाउनलोड करें: शेयर इस डिवाइस पर संग्रहीत नहीं होते, और यह पेज छोड़ने पर हटा दिए जाते हैं। अभिभावक बदलने के लिए, सोशल रिकवरी फिर से सेट करें।',
       invitationHeading: 'अभिभावक आमंत्रण',
       downloadInviteButton: 'आमंत्रण डाउनलोड करें',
       sendInviteText: name => `यह आमंत्रण ${name} को एक सुरक्षित चैनल के माध्यम से भेजें`,
@@ -1400,38 +1366,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'डिवाइस सिंक',
       deviceSyncDescription:
         'आपकी पासकी प्लेटफ़ॉर्म सेवाओं का उपयोग करके डिवाइसों में स्वचालित रूप से सिंक होती है',
-      qrHeading: 'सिंक QR कोड',
-      qrDescription:
-        'किसी अन्य डिवाइस पर अपनी खाता जानकारी को आसानी से सिंक या सत्यापित करने के लिए अपने वॉलेट पतों वाला एक QR कोड जनरेट करें।',
-      generateQrButton: 'सिंक QR कोड जनरेट करें',
-      qrNote:
-        'नोट: इस QR कोड में केवल आपके सार्वजनिक वॉलेट पते शामिल हैं। इसमें आपकी निजी कुंजियां या रिकवरी फ्रेज़ शामिल नहीं है। किसी अन्य डिवाइस पर अपने खाते को सत्यापित करने के लिए इसका उपयोग करें।',
       hideQrButton: 'QR कोड छिपाएं',
-      verifyHeading: 'QR कोड डेटा सत्यापित करें',
-      verifyDescription:
-        'वॉलेट पतों को सत्यापित करने के लिए स्कैन किए गए QR कोड से JSON स्ट्रिंग पेस्ट करें।',
-      verifyPlaceholder:
-        'यहां JSON डेटा पेस्ट करें (उदाहरण के लिए, {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'त्रुटि:',
-      parsedDataLabel: 'पार्स किया गया डेटा:',
-      usernameFieldLabel: 'उपयोगकर्ता नाम:',
-      ethAddressLabel: 'एथेरियम पता:',
-      index0FieldLabel: 'इंडेक्स #0:',
-      mainTaggedLabel: 'MAIN-टैग:',
-      openbarTaggedLabel: 'OPENBAR-टैग:',
-      generatedLabel: 'जनरेट किया गया:',
-      linkWalletButton: 'इस वॉलेट को अपने पासकी खाते से लिंक करें',
-      linkExplanation:
-        'लिंक करने पर क्या होता है: यह वॉलेट पतों को localStorage और IndexedDB दोनों में सहेजेगा, जिससे आपके पासकी खाते और इस HD वॉलेट के बीच एक स्थायी लिंक बनेगा। आप इसका उपयोग डिवाइसों में वॉलेट डेटा को सत्यापित या सिंक करने के लिए कर सकते हैं।',
-      howQrWorksHeading: 'QR कोड वॉलेट सिंक कैसे काम करता है',
-      qrStep1:
-        'चरण 1: QR कोड जनरेट करें - अपने प्राथमिक डिवाइस पर, अपने वॉलेट के सार्वजनिक पतों वाला एक QR कोड जनरेट करें। यह QR कोड साझा करने के लिए सुरक्षित है क्योंकि इसमें केवल सार्वजनिक जानकारी है।',
-      qrStep2:
-        'चरण 2: स्कैन करें और सत्यापित करें - अपने द्वितीयक डिवाइस पर, किसी भी QR स्कैनर ऐप का उपयोग करके QR कोड स्कैन करें, या QR कोड में प्रदर्शित JSON डेटा को मैन्युअल रूप से कॉपी करें।',
-      qrStep3:
-        'चरण 3: वॉलेट लिंक करें - ऊपर दिए गए सत्यापन क्षेत्र में JSON डेटा पेस्ट करें और "इस वॉलेट को लिंक करें" पर क्लिक करें। इससे आपके पासकी खाते और HD वॉलेट पतों के बीच एक स्थायी कनेक्शन बनता है।',
-      whatGetsStored:
-        'क्या संग्रहीत किया जाता है: localStorage और IndexedDB में केवल सार्वजनिक वॉलेट पते संग्रहीत किए जाते हैं। आपकी निजी कुंजियां और रिकवरी फ्रेज़ सुरक्षित रहते हैं और इस सिंक तंत्र के माध्यम से कभी भी प्रसारित या संग्रहीत नहीं किए जाते।',
+      syncExportHeading: 'सिंक के लिए निर्यात करें',
+      syncExportDescription:
+        'अपनी पासकी से लॉक एक सिंक फ़ाइल डाउनलोड करें। जिस भी डिवाइस पर आपकी पासकी सिंक हुई है, वहाँ एक पासकी प्रॉम्प्ट से, बिना पासवर्ड के, इसे इम्पोर्ट करें।',
+      syncExportButton: 'सिंक फ़ाइल निर्यात करें',
+      syncExportNote:
+        'यह फ़ाइल केवल आपकी पासकी खोल सकती है। पासकी एक ही इकोसिस्टम (Apple या Google) में सिंक होती हैं: इकोसिस्टम बदलने के लिए, पासवर्ड बैकअप का उपयोग करें।',
+      syncQrAlt: 'सिंक फ़ाइल QR कोड',
+      syncLinkReady:
+        'इस लिंक में एक सिंक फ़ाइल है। नीचे टैप करें और अपनी पासकी से पुष्टि करें, ताकि वॉलेट इस डिवाइस पर आ जाए।',
+      syncLinkButton: 'यह वॉलेट सिंक करें',
+      syncQrHint:
+        'अपने दूसरे डिवाइस के कैमरे से स्कैन करें: genji खुलेगा और एक पासकी प्रॉम्प्ट के बाद आपका वॉलेट सिंक कर देगा।',
+      syncImportHeading: 'सिंक फ़ाइल इम्पोर्ट करें',
+      syncImportDescription:
+        'किसी दूसरे डिवाइस की सिंक फ़ाइल से अपना वॉलेट इस डिवाइस पर लाएँ। आपकी पासकी यहाँ पहले से सिंक होनी चाहिए (iCloud Keychain या Google Password Manager)।',
+      syncImportButton: 'सिंक फ़ाइल चुनें',
+      syncImportPasswordTitle: 'सिंक पासवर्ड दर्ज करें',
+      syncImportPasswordDescription:
+        'यह फ़ाइल पासवर्ड से सुरक्षित है। निर्यात करते समय चुना गया पासवर्ड दर्ज करें।',
+      syncImportedTitle: 'वॉलेट इस डिवाइस पर सिंक हो गया',
+      syncImportErrorTitle: 'सिंक विफल रहा',
+      syncErrorInvalidFile: 'यह w3pk सिंक या बैकअप फ़ाइल नहीं है।',
+      syncErrorCredentialMismatch:
+        'यह फ़ाइल किसी दूसरी पासकी की है। लॉग आउट करें, या वह पासकी चुनें जिससे इसे निर्यात किया गया था।',
+      syncErrorPublicKeyMismatch:
+        'यह फ़ाइल आपकी पासकी से मेल नहीं खाती। हो सकता है इसमें बदलाव किया गया हो: नई फ़ाइल निर्यात करें।',
+      syncErrorUnsupportedBackup:
+        'इस बैकअप से नया डिवाइस सेट नहीं हो सकता। इसे नीचे रिस्टोर करें, या अपने दूसरे डिवाइस पर सिंक फ़ाइल निर्यात करें।',
+      syncErrorPrfUnsupported:
+        'यह ब्राउज़र बिना पासवर्ड वाली सिंक फ़ाइल नहीं खोल सकता। Chrome या Safari आज़माएँ, या पासवर्ड बैकअप निर्यात करें।',
+      syncErrorNoPasskey:
+        'आपकी पासकी अभी इस डिवाइस पर नहीं है। iCloud Keychain या Google Password Manager चालू करें, सिंक होने दें, फिर दोबारा कोशिश करें।',
+      syncHowHeading: 'डिवाइस सिंक कैसे काम करता है',
+      syncStep1:
+        'चरण 1: निर्यात - जिस डिवाइस पर आपका वॉलेट है, वहाँ सिंक फ़ाइल निर्यात करें। आपकी पासकी इसे लॉक करती है: कोई पासवर्ड नहीं, और पासकी के बिना फ़ाइल बेकार है।',
+      syncStep2:
+        'चरण 2: फ़ाइल भेजें - इसे अपने दूसरे डिवाइस पर भेजें (AirDrop, क्लाउड ड्राइव या केबल), या इसका QR कोड स्कैन करें।',
+      syncStep3:
+        'चरण 3: इम्पोर्ट - दूसरे डिवाइस पर सेटिंग्स खोलें, फ़ाइल चुनें और अपनी पासकी से पुष्टि करें। आप उसी वॉलेट से लॉग इन हो जाएँगे।',
+      syncExportedTitle: 'सिंक फ़ाइल डाउनलोड हो गई',
+      syncExportedPasswordDescription:
+        'आपकी पासकी बिना पासवर्ड सिंक का समर्थन नहीं करती, इसलिए इस फ़ाइल के लिए आपके चुने हुए पासवर्ड की ज़रूरत होगी।',
+      syncPasswordModalTitle: 'सिंक पासवर्ड सेट करें',
+      syncPasswordModalDescription:
+        'यह ब्राउज़र या ऑथेंटिकेटर फ़ाइल को केवल आपकी पासकी से लॉक नहीं कर सकता। एक पासवर्ड चुनें: दूसरे डिवाइस पर आप इसे अपनी पासकी के साथ दर्ज करेंगे।',
       platformSyncHeading: 'पासकी प्लेटफ़ॉर्म सिंक',
       platformSyncIntro:
         'आपकी पासकी क्रेडेंशियल्स एक ही इकोसिस्टम के भीतर डिवाइसों में स्वचालित रूप से सिंक होती हैं:',
@@ -1475,9 +1455,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'LocalStorage निरीक्षण',
       foundItemsText: n => `localStorage में ${n} आइटम मिले`,
       noDataFound: 'कोई डेटा नहीं मिला',
-      indexedDBModalTitle: 'IndexedDB निरीक्षण',
-      foundDatabasesText: n => `${n} डेटाबेस मिले`,
-      noDatabasesFound: 'w3pk-संबंधित कोई डेटाबेस नहीं मिला',
 
       registrationSuccessTitle: 'पंजीकरण सफल',
       registrationSuccessDescription: 'आपका नया खाता बना दिया गया है।',
@@ -1488,16 +1465,9 @@ export const translations: Translations = {
         `${n} आइटम मिले। परिणाम देखने के लिए नीचे स्क्रॉल करें।`,
       genericErrorTitle: 'त्रुटि',
       failedInspectLocalStorage: 'localStorage का निरीक्षण करने में विफल',
-      indexedDBInspectedTitle: 'IndexedDB निरीक्षित',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `${recordCount} रिकॉर्ड के साथ ${dbCount} डेटाबेस मिले। परिणाम देखने के लिए नीचे स्क्रॉल करें।`,
-      failedInspectIndexedDB: 'IndexedDB का निरीक्षण करने में विफल',
       itemClearedTitle: 'आइटम साफ़ किया गया',
       itemClearedDescription: key => `localStorage से "${key}" हटाया गया`,
       failedClearItem: key => `"${key}" साफ़ करने में विफल`,
-      recordClearedTitle: 'रिकॉर्ड साफ़ किया गया',
-      recordClearedDescription: (db, store) => `${db}/${store} से रिकॉर्ड हटाया गया`,
-      failedClearRecord: 'रिकॉर्ड साफ़ करने में विफल',
       errorLoadingAddressesTitle: 'पते लोड करने में त्रुटि',
       failedDeriveAddresses: 'वॉलेट पते प्राप्त करने में विफल',
       errorLoadingBackupStatusTitle: 'बैकअप स्थिति लोड करने में त्रुटि',
@@ -1521,11 +1491,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'वॉलेट पुनर्स्थापित और पंजीकृत हुआ!',
       walletRestoredRegisteredDescription: address =>
         `वॉलेट सफलतापूर्वक पुनर्स्थापित और पंजीकृत किया गया: ${address}`,
-      securityReportGeneratedTitle: 'सुरक्षा रिपोर्ट जनरेट हुई',
-      securityReportGeneratedDescription: 'नीचे विस्तृत विश्लेषण देखें',
-      inspectionFailedTitle: 'निरीक्षण विफल',
-      inspectionFailedDescription:
-        'होस्ट ऐप निरीक्षण काम नहीं आया। यह संभवतः Anthropic अनुरोध दर सीमा तक पहुंचने के कारण है।',
       backupStatusRetrievedTitle: 'बैकअप स्थिति प्राप्त हुई।',
       errorRetrievingStatusTitle: 'स्थिति प्राप्त करने में त्रुटि।',
       unexpectedErrorDescription: 'एक अप्रत्याशित त्रुटि हुई।',
@@ -1562,12 +1527,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'फ़ाइल से अभिभावक शेयर लोड हुआ। इसे जोड़ने के लिए "शेयर जोड़ें" पर क्लिक करें।',
       failedReadGuardianFile: 'अभिभावक शेयर फ़ाइल पढ़ने में विफल',
-      cannotSaveTitle: 'सहेज नहीं सकते',
-      cannotSaveDescription: 'अमान्य QR डेटा या उपयोगकर्ता प्रमाणित नहीं है',
-      walletLinkedTitle: 'वॉलेट सफलतापूर्वक लिंक हुआ!',
-      walletLinkedDescription: address => `वॉलेट ${address} को आपके पासकी खाते से लिंक किया गया`,
-      errorSavingLinkTitle: 'वॉलेट लिंक सहेजने में त्रुटि',
-      failedSaveSyncData: 'वॉलेट सिंक डेटा सहेजने में विफल',
       recoveryPasswordPrompt:
         'सामाजिक रिकवरी कॉन्फ़िगर करते समय आपने जो पासवर्ड सेट किया था उसे दर्ज करें।\n\nयह पासवर्ड अभिभावकों के साथ साझा नहीं किया गया था - आपने इसे सेटअप के दौरान सेट किया था।',
       recoveryUsernamePrompt: address =>
@@ -1577,6 +1536,8 @@ export const translations: Translations = {
       registerTitle: 'नया खाता पंजीकृत करें',
       walletInfoText:
         'एक एथेरियम वॉलेट बनाया जाएगा और आपके डिवाइस पर सुरक्षित रूप से संग्रहीत किया जाएगा, जो आपके बायोमेट्रिक या पिन द्वारा सुरक्षित होगा, धन्यवाद',
+      noPlatformAuthenticatorHint:
+        'कोई अंतर्निहित ऑथेंटिकेटर नहीं मिला: अपने फ़ोन या सुरक्षा कुंजी का उपयोग करें।',
       usernameLabel: 'उपयोगकर्ता नाम',
       usernamePlaceholder: 'अपना उपयोगकर्ता नाम दर्ज करें',
       usernameError:
@@ -1590,6 +1551,33 @@ export const translations: Translations = {
       noAccountFoundDescription: 'कोई पासकी नहीं मिली। नया खाता बनाने के लिए कृपया रजिस्टर करें।',
       alreadyRegisteredLink: 'मैंने पहले ही किसी अन्य डिवाइस पर पंजीकरण कर लिया है',
     },
+    backup: {
+      title: 'अपने वॉलेट का बैकअप लें',
+      description:
+        'आपका वॉलेट केवल इसी ब्राउज़र में संग्रहीत है। यदि इसका डेटा मिट जाता है, तो बैकअप फ़ाइल ही आपका वॉलेट वापस पाने का एकमात्र तरीका है।',
+      safariWarning:
+        'Safari 7 दिनों तक साइट पर न आने पर इसका डेटा हटा देता है। बैकअप के बिना आपका वॉलेट खो जाएगा।',
+      iosWarning: 'iPhone और iPad पर, हर ब्राउज़र 7 दिन तक न आने पर इस साइट का डेटा हटा देता है',
+      downloadButton: 'बैकअप फ़ाइल डाउनलोड करें',
+      passwordModalTitle: 'अपने बैकअप को सुरक्षित करें',
+      passwordModalDescription:
+        'एक मज़बूत पासवर्ड चुनें। इस फ़ाइल से वॉलेट पुनर्स्थापित करने के लिए इसकी आवश्यकता होगी।',
+      skipButton: 'मैं जोखिम समझता/समझती हूँ',
+      backupCreatedTitle: 'बैकअप डाउनलोड हो गया',
+      backupFailedTitle: 'बैकअप विफल रहा',
+    },
+    homeScreen: {
+      title: 'अपना वॉलेट इस डिवाइस पर रखें',
+      description:
+        'होम स्क्रीन पर जोड़ा गया ऐप अपना डेटा रखता है। ब्राउज़र में, बैकअप फ़ाइल ही आपका वॉलेट वापस पाने का एकमात्र तरीका है।',
+      addButton: 'होम स्क्रीन पर जोड़ें',
+      backupButton: 'बैकअप लें',
+      stepsTitle: 'होम स्क्रीन पर जोड़ें',
+      step1: 'शेयर बटन पर टैप करें।',
+      step2: '"होम स्क्रीन पर जोड़ें" पर टैप करें।',
+      step3: 'नए आइकन से ऐप खोलें और वहीं अपना वॉलेट बनाएं।',
+      backButton: 'वापस',
+    },
     passwordModal: {
       passwordLabel: 'पासवर्ड',
       passwordPlaceholder: 'अपना पासवर्ड दर्ज करें',
@@ -1602,12 +1590,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'एक अप्रत्याशित त्रुटि हुई।',
       requirementsNotMet: 'पासवर्ड सभी आवश्यकताओं को पूरा नहीं करता',
       strongPassword: 'मजबूत पासवर्ड!',
-      mustInclude: 'पासवर्ड में शामिल होना चाहिए:',
-      reqMinLength: 'कम से कम 12 अक्षर',
-      reqUpperCase: 'एक बड़ा अक्षर',
-      reqLowerCase: 'एक छोटा अक्षर',
-      reqNumber: 'एक संख्या',
-      reqSpecialChar: 'एक विशेष वर्ण',
+      mustInclude: 'पासवर्ड ऐसा होना चाहिए:',
+      reqMinLength: 'कम से कम 15 अक्षर: एक पासफ़्रेज़ भी चलेगा',
+      reqNoRepeat: 'एक ही अक्षर का दोहराव नहीं',
+      reqNotCommon: 'कोई आम पासवर्ड नहीं',
       satisfied: ' (पूर्ण)',
       required: ' (आवश्यक)',
       submit: 'जमा करें',
@@ -1681,10 +1667,10 @@ export const translations: Translations = {
         'Firefox Mobile - ⚠️ Evitar (problemas conocidos de persistencia de claves de acceso)',
 
       restoreBackupHeading: 'Restaurar desde copia de seguridad',
+      restoreBackupSyncHint:
+        'Si tu passkey ya se sincronizó en este dispositivo, la restauración la usa. Si no, crearás una passkey nueva para la billetera restaurada. Para mover una billetera sin contraseña, usa un archivo de sincronización.',
       restoreBackupDescription:
         'Si tienes un archivo de copia de seguridad, puedes restaurar tu billetera sin iniciar sesión primero.',
-      restoreBackupSyncHint:
-        'Para sincronizar con otro dispositivo: inicia sesión en tu otro dispositivo, ve a Configuración → Crear copia de seguridad para descargar un archivo de copia de seguridad cifrado, luego súbelo aquí e introduce la misma contraseña.',
       restoringText: 'Restaurando...',
       restoreBackupButton: 'Restaurar desde archivo de copia de seguridad',
 
@@ -1693,33 +1679,11 @@ export const translations: Translations = {
         'Inspecciona el almacenamiento del navegador y los registros de actividad',
       inspectingText: 'Inspeccionando...',
       inspectLocalStorageButton: 'Inspeccionar LocalStorage',
-      inspectIndexedDBButton: 'Inspeccionar IndexedDB',
-
-      inspectSecurityDescriptionSmall:
-        'Analiza esta aplicación en busca de métodos de transacción y firma.',
-      inspectSecurityButton: 'Inspeccionar seguridad',
-      consoleCommandLabel: 'Comando de consola:',
-      clearReportButton: 'Borrar informe',
-      filesAnalyzedLabel: 'Archivos analizados:',
-      inspectionHeadingBig: 'Inspección de seguridad',
-      inspectSecurityDescriptionBig:
-        'Genera un informe de seguridad completo de esta aplicación. El informe analizará todos los métodos de transacción y firma.',
-      inspectNowButton: 'Inspeccionar ahora',
-      consoleHintText:
-        'También puedes ejecutar await w3pk.inspectNow() en la consola del navegador',
-      securityReportHeading: 'Informe de seguridad',
-      appUrlLabel: 'URL de la app:',
 
       localStorageResultsHeading: 'Resultados de LocalStorage',
       itemsCount: n => `${n} elementos`,
       encryptedBadge: 'Cifrado',
       clearItemAria: 'Borrar elemento',
-      indexedDBResultsHeading: 'Resultados de IndexedDB',
-      databasesCount: n => `${n} base(s) de datos`,
-      storesLabel: 'Almacenes:',
-      recordsLabel: 'Registros:',
-      clearRecordAria: 'Borrar registro',
-      storeKeyLabel: (store, key) => `Almacén: ${store} | Clave: ${key}`,
 
       currentAccountHeading: 'Cuenta actual',
       currentAccountDescription: 'Esta es la cuenta con la que has iniciado sesión actualmente.',
@@ -1730,16 +1694,16 @@ export const translations: Translations = {
 
       sessionHeading: 'Mantener mi sesión activa',
       sessionDescription:
-        'Establece cuánto tiempo debe permanecer activa tu sesión sin que se solicite la clave de acceso. Cuando caduque, tu próxima visita te pedirá tu biometría/PIN una vez y comenzará una sesión nueva; por lo tanto, esto también determina con qué frecuencia vuelves a autenticarte. Esta opción se aplica solo a los modos STANDARD y YOLO. Los modos STRICT y PRIMARY siempre requieren una autenticación nueva y no usan sesiones persistentes.',
+        'Establece cuánto tiempo debe permanecer activa tu sesión sin que se solicite la clave de acceso. Cuando caduque, tu próxima visita te pedirá tu clave de acceso una vez y comenzará una sesión nueva; por lo tanto, esto también determina con qué frecuencia vuelves a autenticarte. Esta opción se aplica solo a los modos STANDARD y YOLO. Los modos STRICT y PRIMARY siempre requieren una autenticación nueva y no usan sesiones persistentes.',
       noStoredSessionText:
-        'No hay ninguna sesión almacenada en este dispositivo. Parece que tu autenticador no admite la extensión PRF de WebAuthn, que w3pk necesita para mantener las sesiones activas de forma segura. Tu sesión permanecerá solo en memoria: terminará al cerrar la pestaña, y cada visita te pedirá tu biometría/PIN. Todo lo demás funciona con normalidad.',
+        'No hay ninguna sesión almacenada en este dispositivo. Parece que tu autenticador no admite la extensión PRF de WebAuthn, que w3pk necesita para mantener las sesiones activas de forma segura. Tu sesión permanecerá solo en memoria: terminará al cerrar la pestaña, y cada visita te pedirá tu clave de acceso. Todo lo demás funciona con normalidad.',
       sessionDurationLabel: 'Duración de la sesión',
       dayLabel: n => `${n} día${n > 1 ? 's' : ''}`,
       oneDayLabel: '1 día',
       thirtyDaysLabel: '30 días',
       sessionHowItWorksTitle: 'Cómo funciona:',
       sessionHowItWorksText:
-        'Cada vez que inicias sesión con tu biometría/PIN, tu autenticador libera un secreto respaldado por hardware (extensión PRF de WebAuthn) que cifra tu sesión en este dispositivo; nada almacenado en disco puede recrear esa clave. La cuenta regresiva se reinicia en cada inicio de sesión real: con una duración de 7 días, iniciar sesión hoy te mantiene conectado hasta dentro de 7 días, momento en el que se te pedirá una vez y la sesión se volverá a cifrar con una clave nueva.',
+        'Cada vez que inicias sesión con tu clave de acceso, tu autenticador libera un secreto respaldado por hardware (extensión PRF de WebAuthn) que cifra tu sesión en este dispositivo; nada almacenado en disco puede recrear esa clave. La cuenta regresiva se reinicia en cada inicio de sesión real: con una duración de 7 días, iniciar sesión hoy te mantiene conectado hasta dentro de 7 días, momento en el que se te pedirá una vez y la sesión se volverá a cifrar con una clave nueva.',
 
       walletBackupHeading: 'Copia de seguridad de la billetera',
       walletBackupDescription:
@@ -1753,6 +1717,8 @@ export const translations: Translations = {
       loadingText: 'Cargando...',
       securityStatusHeading: 'Estado de seguridad',
       checkingStatusText: 'Comprobando el estado de la copia de seguridad...',
+      evictionRiskWarning:
+        'Este navegador puede borrar tu billetera tras 7 días sin visitas. Guarda una copia de seguridad o añade genji a tu pantalla de inicio.',
       refreshHeading: 'Actualizar estado de la copia de seguridad',
       refreshDescription:
         'Vuelve a cargar tu puntuación de seguridad actual y las recomendaciones de copia de seguridad',
@@ -1771,7 +1737,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'El secreto principal de tu billetera (la frase mnemotécnica) se genera y se cifra por completo en tu dispositivo. El proceso de copia de seguridad recupera estos datos cifrados del almacenamiento local de tu navegador usando tu contraseña, y luego los empaqueta en un archivo seguro para que lo descargues.',
       aboutBackupPara2:
-        'La clave de cifrado de tu billetera se deriva mediante una firma WebAuthn, que requiere tu autenticación biométrica (huella dactilar, escaneo facial) o el PIN del dispositivo. Esto significa que, aunque alguien acceda a los datos cifrados almacenados en tu navegador, no podrá descifrarlos sin tu dispositivo físico y tu autenticación.',
+        'La clave de cifrado de tu billetera se deriva mediante una firma WebAuthn de tu passkey, que reside en tu autenticador: este dispositivo, tu teléfono o una llave de seguridad. Esto significa que, aunque alguien acceda a los datos cifrados almacenados en tu navegador, no podrá descifrarlos sin tu autenticador.',
       aboutBackupPara3:
         'Tu archivo de copia de seguridad se cifra con AES-256-GCM utilizando una clave derivada de la contraseña que proporciones. Guarda este archivo de forma segura y recuerda tu contraseña.',
       aboutBackupWarning:
@@ -1822,9 +1788,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `Tu billetera está protegida con una recuperación de ${threshold}-de-${count} guardianes`,
       generateInviteButton: 'Generar invitación',
-      removeConfigQuestion:
-        '¿Todos los guardianes tienen sus partes? Ahora puedes eliminar la configuración de guardianes del almacenamiento local. Las partes están guardadas de forma segura con tus guardianes y pueden usarse para la recuperación en cualquier momento.',
-      removeConfigButton: 'Borrar configuración de guardianes del almacenamiento local',
+      sharesNotStoredNotice:
+        'Descarga ahora la invitación de cada guardián: las partes no se guardan en este dispositivo y se descartan al salir de esta página. Para cambiar de guardianes, vuelve a configurar la recuperación social.',
       invitationHeading: 'Invitación de guardián',
       downloadInviteButton: 'Descargar invitación',
       sendInviteText: name => `Envía esta invitación a ${name} a través de un canal seguro`,
@@ -1832,38 +1797,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'Sincronización de dispositivos',
       deviceSyncDescription:
         'Tu clave de acceso se sincroniza automáticamente entre dispositivos mediante los servicios de la plataforma',
-      qrHeading: 'Código QR de sincronización',
-      qrDescription:
-        'Genera un código QR que contenga las direcciones de tu billetera para sincronizar o verificar fácilmente la información de tu cuenta en otro dispositivo.',
-      generateQrButton: 'Generar código QR de sincronización',
-      qrNote:
-        'Nota: este código QR contiene únicamente las direcciones públicas de tu billetera. NO contiene tus claves privadas ni tu frase de recuperación. Úsalo para verificar tu cuenta en otro dispositivo.',
       hideQrButton: 'Ocultar código QR',
-      verifyHeading: 'Verificar datos del código QR',
-      verifyDescription:
-        'Pega la cadena JSON de un código QR escaneado para verificar las direcciones de la billetera.',
-      verifyPlaceholder:
-        'Pega aquí los datos JSON (p. ej., {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'Error:',
-      parsedDataLabel: 'Datos analizados:',
-      usernameFieldLabel: 'Nombre de usuario:',
-      ethAddressLabel: 'Dirección de Ethereum:',
-      index0FieldLabel: 'Índice n.º 0:',
-      mainTaggedLabel: 'Etiquetada como MAIN:',
-      openbarTaggedLabel: 'Etiquetada como OPENBAR:',
-      generatedLabel: 'Generado:',
-      linkWalletButton: 'Vincular esta billetera a tu cuenta de clave de acceso',
-      linkExplanation:
-        'Qué ocurre al vincular: esto guardará las direcciones de la billetera tanto en localStorage como en IndexedDB, creando un vínculo persistente entre tu cuenta de clave de acceso y esta billetera HD. Puedes usarlo para verificar o sincronizar los datos de la billetera entre dispositivos.',
-      howQrWorksHeading: 'Cómo funciona la sincronización de billetera por código QR',
-      qrStep1:
-        'Paso 1: generar código QR - En tu dispositivo principal, genera un código QR que contenga las direcciones públicas de tu billetera. Este código QR es seguro de compartir, ya que solo contiene información pública.',
-      qrStep2:
-        'Paso 2: escanear y verificar - En tu dispositivo secundario, escanea el código QR con cualquier aplicación de escaneo de QR, o copia manualmente los datos JSON que se muestran en el código QR.',
-      qrStep3:
-        'Paso 3: vincular billeteras - Pega los datos JSON en el área de verificación de arriba y haz clic en "Vincular esta billetera". Esto crea una conexión persistente entre tu cuenta de clave de acceso y las direcciones de la billetera HD.',
-      whatGetsStored:
-        'Qué se almacena: solo las direcciones públicas de la billetera se guardan en localStorage y en IndexedDB. Tus claves privadas y tu frase de recuperación permanecen seguras y nunca se transmiten ni se almacenan mediante este mecanismo de sincronización.',
+      syncExportHeading: 'Exportar para sincronizar',
+      syncExportDescription:
+        'Descarga un archivo de sincronización vinculado a tu passkey. En cualquier dispositivo donde se haya sincronizado tu passkey, impórtalo con una sola solicitud de passkey y sin contraseña.',
+      syncExportButton: 'Exportar archivo de sincronización',
+      syncExportNote:
+        'Solo tu passkey puede abrir este archivo. Las passkeys se sincronizan dentro de un mismo ecosistema (Apple o Google): para cambiar de ecosistema, usa una copia de seguridad con contraseña.',
+      syncQrAlt: 'Código QR del archivo de sincronización',
+      syncLinkReady:
+        'Este enlace contiene un archivo de sincronización. Toca abajo y confirma con tu passkey para traer la billetera a este dispositivo.',
+      syncLinkButton: 'Sincronizar esta billetera',
+      syncQrHint:
+        'Escanéalo con la cámara de tu otro dispositivo: genji se abre y sincroniza tu billetera tras una solicitud de passkey.',
+      syncImportHeading: 'Importar archivo de sincronización',
+      syncImportDescription:
+        'Trae tu billetera a este dispositivo con un archivo de sincronización de otro dispositivo. Tu passkey ya debe estar sincronizada aquí (Llavero de iCloud o Gestor de contraseñas de Google).',
+      syncImportButton: 'Elegir archivo de sincronización',
+      syncImportPasswordTitle: 'Introduce la contraseña de sincronización',
+      syncImportPasswordDescription:
+        'Este archivo está protegido con contraseña. Introduce la contraseña que elegiste al exportarlo.',
+      syncImportedTitle: 'Billetera sincronizada en este dispositivo',
+      syncImportErrorTitle: 'Error de sincronización',
+      syncErrorInvalidFile: 'Este no es un archivo de sincronización o copia de seguridad de w3pk.',
+      syncErrorCredentialMismatch:
+        'Este archivo pertenece a otra passkey. Cierra sesión o elige la passkey que lo exportó.',
+      syncErrorPublicKeyMismatch:
+        'Este archivo no coincide con tu passkey. Puede haber sido alterado: exporta uno nuevo.',
+      syncErrorUnsupportedBackup:
+        'Esta copia de seguridad no puede configurar un dispositivo nuevo. Restáurala abajo o exporta un archivo de sincronización en tu otro dispositivo.',
+      syncErrorPrfUnsupported:
+        'Este navegador no puede abrir un archivo de sincronización sin contraseña. Prueba con Chrome o Safari, o exporta una copia de seguridad con contraseña.',
+      syncErrorNoPasskey:
+        'Tu passkey aún no está en este dispositivo. Activa el Llavero de iCloud o el Gestor de contraseñas de Google, espera a que se sincronice e inténtalo de nuevo.',
+      syncHowHeading: 'Cómo funciona la sincronización de dispositivos',
+      syncStep1:
+        'Paso 1: Exportar - En el dispositivo que tiene tu billetera, exporta un archivo de sincronización. Tu passkey lo bloquea: sin contraseña, y el archivo no sirve sin la passkey.',
+      syncStep2:
+        'Paso 2: Mover el archivo - Envíalo a tu otro dispositivo (AirDrop, una unidad en la nube o un cable), o escanea su código QR.',
+      syncStep3:
+        'Paso 3: Importar - En el otro dispositivo, abre Ajustes, elige el archivo y confirma con tu passkey. Habrás iniciado sesión con la misma billetera.',
+      syncExportedTitle: 'Archivo de sincronización descargado',
+      syncExportedPasswordDescription:
+        'Tu passkey no admite la sincronización sin contraseña, así que este archivo necesita la contraseña que elegiste.',
+      syncPasswordModalTitle: 'Establece una contraseña de sincronización',
+      syncPasswordModalDescription:
+        'Este navegador o autenticador no puede vincular el archivo solo a tu passkey. Elige una contraseña: la introducirás junto con tu passkey en el otro dispositivo.',
       platformSyncHeading: 'Sincronización de la clave de acceso entre plataformas',
       platformSyncIntro:
         'Tus credenciales de clave de acceso se sincronizan automáticamente entre dispositivos dentro del mismo ecosistema:',
@@ -1910,9 +1889,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'Inspección de LocalStorage',
       foundItemsText: n => `Se encontraron ${n} elementos en localStorage`,
       noDataFound: 'No se encontraron datos',
-      indexedDBModalTitle: 'Inspección de IndexedDB',
-      foundDatabasesText: n => `Se encontraron ${n} base(s) de datos`,
-      noDatabasesFound: 'No se encontraron bases de datos relacionadas con w3pk',
 
       registrationSuccessTitle: 'Registro exitoso',
       registrationSuccessDescription: 'Tu nueva cuenta ha sido creada.',
@@ -1923,16 +1899,9 @@ export const translations: Translations = {
         `Se encontraron ${n} elementos. Desplázate hacia abajo para ver los resultados.`,
       genericErrorTitle: 'Error',
       failedInspectLocalStorage: 'No se pudo inspeccionar localStorage',
-      indexedDBInspectedTitle: 'IndexedDB inspeccionado',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `Se encontraron ${dbCount} base(s) de datos con ${recordCount} registro(s). Desplázate hacia abajo para ver los resultados.`,
-      failedInspectIndexedDB: 'No se pudo inspeccionar IndexedDB',
       itemClearedTitle: 'Elemento borrado',
       itemClearedDescription: key => `Se eliminó "${key}" de localStorage`,
       failedClearItem: key => `No se pudo borrar "${key}"`,
-      recordClearedTitle: 'Registro borrado',
-      recordClearedDescription: (db, store) => `Se eliminó el registro de ${db}/${store}`,
-      failedClearRecord: 'No se pudo borrar el registro',
       errorLoadingAddressesTitle: 'Error al cargar las direcciones',
       failedDeriveAddresses: 'No se pudieron derivar las direcciones de la billetera',
       errorLoadingBackupStatusTitle: 'Error al cargar el estado de la copia de seguridad',
@@ -1957,11 +1926,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: '¡Billetera restaurada y registrada!',
       walletRestoredRegisteredDescription: address =>
         `Billetera restaurada y registrada correctamente: ${address}`,
-      securityReportGeneratedTitle: 'Informe de seguridad generado',
-      securityReportGeneratedDescription: 'Consulta el análisis detallado a continuación',
-      inspectionFailedTitle: 'Error de inspección',
-      inspectionFailedDescription:
-        'La inspección de la aplicación anfitriona no funcionó. Probablemente se deba a que se alcanzó el límite de solicitudes de Anthropic.',
       backupStatusRetrievedTitle: 'Estado de la copia de seguridad obtenido.',
       errorRetrievingStatusTitle: 'Error al obtener el estado.',
       unexpectedErrorDescription: 'Ocurrió un error inesperado.',
@@ -1998,13 +1962,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'Parte de guardián cargada desde el archivo. Haz clic en "Añadir parte" para agregarla.',
       failedReadGuardianFile: 'No se pudo leer el archivo de parte de guardián',
-      cannotSaveTitle: 'No se puede guardar',
-      cannotSaveDescription: 'Datos de QR no válidos o usuario no autenticado',
-      walletLinkedTitle: '¡Billetera vinculada correctamente!',
-      walletLinkedDescription: address =>
-        `Billetera ${address} vinculada a tu cuenta de clave de acceso`,
-      errorSavingLinkTitle: 'Error al guardar el vínculo de la billetera',
-      failedSaveSyncData: 'No se pudieron guardar los datos de sincronización de la billetera',
       recoveryPasswordPrompt:
         'Introduce la contraseña que estableciste al configurar la recuperación social.\n\nEsta contraseña NO se compartió con los guardianes: la estableciste durante la configuración.',
       recoveryUsernamePrompt: address =>
@@ -2014,6 +1971,8 @@ export const translations: Translations = {
       registerTitle: 'Registrar nueva cuenta',
       walletInfoText:
         'Se creará una billetera de Ethereum y se almacenará de forma segura en tu dispositivo, protegida por tu biometría o PIN gracias a',
+      noPlatformAuthenticatorHint:
+        'No se encontró ningún autenticador integrado: usa tu teléfono o una llave de seguridad.',
       usernameLabel: 'Nombre de usuario',
       usernamePlaceholder: 'Introduce tu nombre de usuario',
       usernameError:
@@ -2028,6 +1987,34 @@ export const translations: Translations = {
         'No se encontró ninguna clave de acceso. Por favor regístrate para crear una nueva cuenta.',
       alreadyRegisteredLink: 'Ya me registré en otro dispositivo',
     },
+    backup: {
+      title: 'Haz una copia de seguridad de tu billetera',
+      description:
+        'Tu billetera solo está guardada en este navegador. Si sus datos se borran, un archivo de copia de seguridad es la única forma de recuperarla.',
+      safariWarning:
+        'Safari borra los datos de este sitio tras 7 días sin visitarlo. Sin una copia de seguridad, perderías tu billetera.',
+      iosWarning:
+        'En iPhone y iPad, todos los navegadores borran los datos de este sitio tras 7 días sin visitarlo',
+      downloadButton: 'Descargar un archivo de copia de seguridad',
+      passwordModalTitle: 'Protege tu copia de seguridad',
+      passwordModalDescription:
+        'Elige una contraseña segura. La necesitarás para restaurar tu billetera desde este archivo.',
+      skipButton: 'Entiendo el riesgo',
+      backupCreatedTitle: 'Copia de seguridad descargada',
+      backupFailedTitle: 'Error en la copia de seguridad',
+    },
+    homeScreen: {
+      title: 'Conserva tu monedero en este dispositivo',
+      description:
+        'Una app añadida a tu pantalla de inicio conserva sus datos. En el navegador, un archivo de copia de seguridad es la única forma de recuperar tu monedero.',
+      addButton: 'Añadir a pantalla de inicio',
+      backupButton: 'Hacer copia de seguridad',
+      stepsTitle: 'Añadir a pantalla de inicio',
+      step1: 'Toca el botón Compartir.',
+      step2: 'Toca "Añadir a pantalla de inicio".',
+      step3: 'Abre la app desde el nuevo icono y crea tu monedero allí.',
+      backButton: 'Volver',
+    },
     passwordModal: {
       passwordLabel: 'Contraseña',
       passwordPlaceholder: 'Introduce tu contraseña',
@@ -2040,12 +2027,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'Ocurrió un error inesperado.',
       requirementsNotMet: 'La contraseña no cumple con todos los requisitos',
       strongPassword: '¡Contraseña segura!',
-      mustInclude: 'La contraseña debe incluir:',
-      reqMinLength: 'Al menos 12 caracteres',
-      reqUpperCase: 'Una letra mayúscula',
-      reqLowerCase: 'Una letra minúscula',
-      reqNumber: 'Un número',
-      reqSpecialChar: 'Un carácter especial',
+      mustInclude: 'La contraseña debe ser:',
+      reqMinLength: 'Al menos 15 caracteres: una frase sirve',
+      reqNoRepeat: 'No un solo carácter repetido',
+      reqNotCommon: 'No una contraseña común',
       satisfied: ' (cumplido)',
       required: ' (requerido)',
       submit: 'Enviar',
@@ -2119,10 +2104,10 @@ export const translations: Translations = {
         "Firefox Mobile - ⚠️ À éviter (problèmes connus de persistance des clés d'accès)",
 
       restoreBackupHeading: 'Restaurer depuis une sauvegarde',
+      restoreBackupSyncHint:
+        "Si votre passkey est déjà synchronisée sur cet appareil, la restauration l'utilise. Sinon, vous créerez une nouvelle passkey pour le portefeuille restauré. Pour déplacer un portefeuille sans mot de passe, utilisez plutôt un fichier de synchronisation.",
       restoreBackupDescription:
         "Si vous disposez d'un fichier de sauvegarde, vous pouvez restaurer votre portefeuille sans vous connecter au préalable.",
-      restoreBackupSyncHint:
-        'Pour synchroniser avec un autre appareil : connectez-vous sur votre autre appareil, allez dans Paramètres → Créer une sauvegarde pour télécharger un fichier de sauvegarde chiffré, puis importez-le ici et saisissez le même mot de passe.',
       restoringText: 'Restauration en cours...',
       restoreBackupButton: 'Restaurer depuis un fichier de sauvegarde',
 
@@ -2130,33 +2115,11 @@ export const translations: Translations = {
       debugStorageDescription: "Inspecter le stockage du navigateur et les journaux d'activité",
       inspectingText: 'Inspection en cours...',
       inspectLocalStorageButton: 'Inspecter LocalStorage',
-      inspectIndexedDBButton: 'Inspecter IndexedDB',
-
-      inspectSecurityDescriptionSmall:
-        'Analyser cette application pour ses méthodes de transaction et de signature.',
-      inspectSecurityButton: 'Inspecter la sécurité',
-      consoleCommandLabel: 'Commande console :',
-      clearReportButton: 'Effacer le rapport',
-      filesAnalyzedLabel: 'Fichiers analysés :',
-      inspectionHeadingBig: 'Inspection de sécurité',
-      inspectSecurityDescriptionBig:
-        'Générer un rapport de sécurité complet pour cette application. Le rapport analysera toutes les méthodes de transaction et de signature.',
-      inspectNowButton: 'Inspecter maintenant',
-      consoleHintText:
-        'Vous pouvez également exécuter await w3pk.inspectNow() dans la console du navigateur',
-      securityReportHeading: 'Rapport de sécurité',
-      appUrlLabel: "URL de l'application :",
 
       localStorageResultsHeading: 'Résultats LocalStorage',
       itemsCount: n => `${n} éléments`,
       encryptedBadge: 'Chiffré',
       clearItemAria: "Effacer l'élément",
-      indexedDBResultsHeading: 'Résultats IndexedDB',
-      databasesCount: n => `${n} base(s) de données`,
-      storesLabel: 'Magasins :',
-      recordsLabel: 'Enregistrements :',
-      clearRecordAria: "Effacer l'enregistrement",
-      storeKeyLabel: (store, key) => `Magasin : ${store} | Clé : ${key}`,
 
       currentAccountHeading: 'Compte actuel',
       currentAccountDescription: 'Voici le compte actuellement connecté.',
@@ -2167,16 +2130,16 @@ export const translations: Translations = {
 
       sessionHeading: 'Garder ma session active',
       sessionDescription:
-        "Définissez la durée pendant laquelle votre session doit rester active sans demande de clé d'accès. Une fois expirée, votre prochaine visite vous demandera une fois votre biométrie/code PIN et démarrera une nouvelle session — c'est donc aussi la fréquence à laquelle vous vous réauthentifiez. Ce paramètre s'applique uniquement aux modes STANDARD et YOLO. Les modes STRICT et PRIMARY exigent toujours une authentification à chaque fois et n'utilisent pas de sessions persistantes.",
+        "Définissez la durée pendant laquelle votre session doit rester active sans demande de clé d'accès. Une fois expirée, votre prochaine visite vous demandera une fois votre clé d'accès et démarrera une nouvelle session — c'est donc aussi la fréquence à laquelle vous vous réauthentifiez. Ce paramètre s'applique uniquement aux modes STANDARD et YOLO. Les modes STRICT et PRIMARY exigent toujours une authentification à chaque fois et n'utilisent pas de sessions persistantes.",
       noStoredSessionText:
-        "Aucune session stockée sur cet appareil. Votre authentificateur ne semble pas prendre en charge l'extension WebAuthn PRF, requise par w3pk pour maintenir les sessions actives de manière sécurisée. Votre session restera uniquement en mémoire : elle se termine à la fermeture de l'onglet, et chaque visite vous demandera votre biométrie/code PIN. Tout le reste fonctionne normalement.",
+        "Aucune session stockée sur cet appareil. Votre authentificateur ne semble pas prendre en charge l'extension WebAuthn PRF, requise par w3pk pour maintenir les sessions actives de manière sécurisée. Votre session restera uniquement en mémoire : elle se termine à la fermeture de l'onglet, et chaque visite vous demandera votre clé d'accès. Tout le reste fonctionne normalement.",
       sessionDurationLabel: 'Durée de la session',
       dayLabel: n => `${n} jour${n > 1 ? 's' : ''}`,
       oneDayLabel: '1 jour',
       thirtyDaysLabel: '30 jours',
       sessionHowItWorksTitle: 'Comment ça marche :',
       sessionHowItWorksText:
-        "Chaque fois que vous vous connectez avec votre biométrie/code PIN, votre authentificateur libère un secret matériel (extension WebAuthn PRF) qui chiffre votre session sur cet appareil — rien de ce qui est stocké sur le disque ne peut recréer cette clé. Le compte à rebours redémarre à chaque connexion réelle : avec une durée de 7 jours, vous connecter aujourd'hui vous maintient connecté jusqu'à 7 jours à partir d'aujourd'hui, moment où il vous sera demandé une fois de vous authentifier et où la session sera rechiffrée avec une nouvelle clé.",
+        "Chaque fois que vous vous connectez avec votre clé d'accès, votre authentificateur libère un secret matériel (extension WebAuthn PRF) qui chiffre votre session sur cet appareil — rien de ce qui est stocké sur le disque ne peut recréer cette clé. Le compte à rebours redémarre à chaque connexion réelle : avec une durée de 7 jours, vous connecter aujourd'hui vous maintient connecté jusqu'à 7 jours à partir d'aujourd'hui, moment où il vous sera demandé une fois de vous authentifier et où la session sera rechiffrée avec une nouvelle clé.",
 
       walletBackupHeading: 'Sauvegarde du portefeuille',
       walletBackupDescription:
@@ -2190,6 +2153,8 @@ export const translations: Translations = {
       loadingText: 'Chargement...',
       securityStatusHeading: 'État de la sécurité',
       checkingStatusText: "Vérification de l'état de la sauvegarde...",
+      evictionRiskWarning:
+        "Ce navigateur peut effacer votre portefeuille après 7 jours sans visite. Gardez une sauvegarde, ou ajoutez genji à votre écran d'accueil.",
       refreshHeading: "Actualiser l'état de la sauvegarde",
       refreshDescription:
         'Recharger votre score de sécurité actuel et les recommandations de sauvegarde',
@@ -2208,7 +2173,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         "Le secret principal de votre portefeuille (la phrase mnémonique) est généré et chiffré entièrement sur votre appareil. Le processus de sauvegarde récupère ces données chiffrées depuis le stockage local de votre navigateur à l'aide de votre mot de passe, puis les regroupe dans un fichier sécurisé à télécharger.",
       aboutBackupPara2:
-        "La clé de chiffrement de votre portefeuille est dérivée à partir d'une signature WebAuthn, qui nécessite votre authentification biométrique (empreinte digitale, reconnaissance faciale) ou le code PIN de l'appareil. Cela signifie que même si quelqu'un accède aux données chiffrées stockées dans votre navigateur, il ne pourra pas les déchiffrer sans votre appareil physique et votre authentification.",
+        "La clé de chiffrement de votre portefeuille est dérivée d'une signature WebAuthn de votre clé d'accès, qui réside sur votre authentificateur : cet appareil, votre téléphone ou une clé de sécurité. Cela signifie que même si quelqu'un accède aux données chiffrées stockées dans votre navigateur, il ne pourra pas les déchiffrer sans votre authentificateur.",
       aboutBackupPara3:
         "Votre fichier de sauvegarde est chiffré avec AES-256-GCM à l'aide d'une clé dérivée du mot de passe que vous fournissez. Conservez ce fichier en lieu sûr et n'oubliez pas votre mot de passe.",
       aboutBackupWarning:
@@ -2259,9 +2224,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `Votre portefeuille est protégé par une récupération à ${threshold} gardiens sur ${count}`,
       generateInviteButton: 'Générer une invitation',
-      removeConfigQuestion:
-        'Tous les gardiens ont-ils leur part ? Vous pouvez désormais supprimer la configuration des gardiens du stockage local. Les parts sont conservées en sécurité chez vos gardiens et peuvent être utilisées à tout moment pour la récupération.',
-      removeConfigButton: 'Effacer la configuration des gardiens du stockage local',
+      sharesNotStoredNotice:
+        "Téléchargez maintenant l'invitation de chaque gardien : les parts ne sont pas stockées sur cet appareil et sont perdues en quittant cette page. Pour changer de gardiens, configurez à nouveau la récupération sociale.",
       invitationHeading: 'Invitation du gardien',
       downloadInviteButton: "Télécharger l'invitation",
       sendInviteText: name => `Envoyez cette invitation à ${name} via un canal sécurisé`,
@@ -2269,38 +2233,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'Synchronisation des appareils',
       deviceSyncDescription:
         "Votre clé d'accès se synchronise automatiquement entre vos appareils grâce aux services de la plateforme",
-      qrHeading: 'QR code de synchronisation',
-      qrDescription:
-        'Générez un QR code contenant les adresses de votre portefeuille pour synchroniser ou vérifier facilement les informations de votre compte sur un autre appareil.',
-      generateQrButton: 'Générer le QR code de synchronisation',
-      qrNote:
-        'Remarque : ce QR code contient uniquement les adresses publiques de votre portefeuille. Il ne contient PAS vos clés privées ni votre phrase de récupération. Utilisez-le pour vérifier votre compte sur un autre appareil.',
       hideQrButton: 'Masquer le QR code',
-      verifyHeading: 'Vérifier les données du QR code',
-      verifyDescription:
-        "Collez la chaîne JSON issue d'un QR code scanné pour vérifier les adresses du portefeuille.",
-      verifyPlaceholder:
-        'Collez les données JSON ici (ex. : {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'Erreur :',
-      parsedDataLabel: 'Données analysées :',
-      usernameFieldLabel: "Nom d'utilisateur :",
-      ethAddressLabel: 'Adresse Ethereum :',
-      index0FieldLabel: 'Index #0 :',
-      mainTaggedLabel: 'Étiqueté MAIN :',
-      openbarTaggedLabel: 'Étiqueté OPENBAR :',
-      generatedLabel: 'Généré :',
-      linkWalletButton: "Lier ce portefeuille à votre compte à clé d'accès",
-      linkExplanation:
-        "Ce qui se passe lors de la liaison : les adresses du portefeuille seront enregistrées à la fois dans localStorage et IndexedDB, créant un lien persistant entre votre compte à clé d'accès et ce portefeuille HD. Cela vous permet de vérifier ou de synchroniser les données du portefeuille entre vos appareils.",
-      howQrWorksHeading: 'Comment fonctionne la synchronisation du portefeuille par QR code',
-      qrStep1:
-        'Étape 1 : générer le QR code - Sur votre appareil principal, générez un QR code contenant les adresses publiques de votre portefeuille. Ce QR code peut être partagé sans risque car il ne contient que des informations publiques.',
-      qrStep2:
-        "Étape 2 : scanner et vérifier - Sur votre appareil secondaire, scannez le QR code avec n'importe quelle application de scan, ou copiez manuellement les données JSON affichées dans le QR code.",
-      qrStep3:
-        "Étape 3 : lier les portefeuilles - Collez les données JSON dans la zone de vérification ci-dessus et cliquez sur « Lier ce portefeuille ». Cela crée une connexion persistante entre votre compte à clé d'accès et les adresses du portefeuille HD.",
-      whatGetsStored:
-        'Ce qui est stocké : seules les adresses publiques du portefeuille sont stockées dans localStorage et IndexedDB. Vos clés privées et votre phrase de récupération restent sécurisées et ne sont jamais transmises ni stockées via ce mécanisme de synchronisation.',
+      syncExportHeading: 'Exporter pour synchroniser',
+      syncExportDescription:
+        'Téléchargez un fichier de synchronisation lié à votre passkey. Sur tout appareil où votre passkey est synchronisée, importez-le avec une seule demande de passkey, sans mot de passe.',
+      syncExportButton: 'Exporter le fichier de synchronisation',
+      syncExportNote:
+        "Seule votre passkey peut ouvrir ce fichier. Les passkeys se synchronisent au sein d'un même écosystème (Apple ou Google) : pour changer d'écosystème, utilisez plutôt une sauvegarde par mot de passe.",
+      syncQrAlt: 'QR code du fichier de synchronisation',
+      syncLinkReady:
+        'Ce lien contient un fichier de synchronisation. Touchez ci-dessous et confirmez avec votre passkey pour récupérer le portefeuille sur cet appareil.',
+      syncLinkButton: 'Synchroniser ce portefeuille',
+      syncQrHint:
+        "Scannez avec l'appareil photo de votre autre appareil : genji s'ouvre et synchronise votre portefeuille après une demande de passkey.",
+      syncImportHeading: 'Importer un fichier de synchronisation',
+      syncImportDescription:
+        "Récupérez votre portefeuille sur cet appareil avec un fichier de synchronisation venant d'un autre appareil. Votre passkey doit déjà être synchronisée ici (Trousseau iCloud ou Gestionnaire de mots de passe de Google).",
+      syncImportButton: 'Choisir le fichier de synchronisation',
+      syncImportPasswordTitle: 'Saisir le mot de passe de synchronisation',
+      syncImportPasswordDescription:
+        "Ce fichier est protégé par un mot de passe. Saisissez celui que vous avez choisi lors de l'export.",
+      syncImportedTitle: 'Portefeuille synchronisé sur cet appareil',
+      syncImportErrorTitle: 'Échec de la synchronisation',
+      syncErrorInvalidFile: "Ce n'est pas un fichier de synchronisation ou de sauvegarde w3pk.",
+      syncErrorCredentialMismatch:
+        "Ce fichier appartient à une autre passkey. Déconnectez-vous, ou choisissez la passkey qui l'a exporté.",
+      syncErrorPublicKeyMismatch:
+        'Ce fichier ne correspond pas à votre passkey. Il a peut-être été modifié : exportez-en un nouveau.',
+      syncErrorUnsupportedBackup:
+        'Cette sauvegarde ne peut pas configurer un nouvel appareil. Restaurez-la ci-dessous, ou exportez un fichier de synchronisation sur votre autre appareil.',
+      syncErrorPrfUnsupported:
+        'Ce navigateur ne peut pas ouvrir un fichier de synchronisation sans mot de passe. Essayez Chrome ou Safari, ou exportez plutôt une sauvegarde par mot de passe.',
+      syncErrorNoPasskey:
+        "Votre passkey n'est pas encore sur cet appareil. Activez le Trousseau iCloud ou le Gestionnaire de mots de passe de Google, attendez la synchronisation, puis réessayez.",
+      syncHowHeading: 'Comment fonctionne la synchronisation des appareils',
+      syncStep1:
+        "Étape 1 : Exporter - Sur l'appareil qui contient votre portefeuille, exportez un fichier de synchronisation. Votre passkey le verrouille : pas de mot de passe, et le fichier est inutilisable sans elle.",
+      syncStep2:
+        'Étape 2 : Transférer le fichier - Envoyez-le sur votre autre appareil (AirDrop, un stockage en ligne ou un câble), ou scannez son QR code.',
+      syncStep3:
+        "Étape 3 : Importer - Sur l'autre appareil, ouvrez les Paramètres, choisissez le fichier et confirmez avec votre passkey. Vous êtes connecté avec le même portefeuille.",
+      syncExportedTitle: 'Fichier de synchronisation téléchargé',
+      syncExportedPasswordDescription:
+        'Votre passkey ne prend pas en charge la synchronisation sans mot de passe : ce fichier demandera le mot de passe que vous avez choisi.',
+      syncPasswordModalTitle: 'Définir un mot de passe de synchronisation',
+      syncPasswordModalDescription:
+        "Ce navigateur ou cet authentificateur ne peut pas lier le fichier à votre seule passkey. Choisissez un mot de passe : vous le saisirez avec votre passkey sur l'autre appareil.",
       platformSyncHeading: "Synchronisation des clés d'accès par plateforme",
       platformSyncIntro:
         "Vos identifiants de clé d'accès se synchronisent automatiquement entre vos appareils au sein du même écosystème :",
@@ -2348,9 +2326,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'Inspection de LocalStorage',
       foundItemsText: n => `${n} éléments trouvés dans localStorage`,
       noDataFound: 'Aucune donnée trouvée',
-      indexedDBModalTitle: 'Inspection de IndexedDB',
-      foundDatabasesText: n => `${n} base(s) de données trouvée(s)`,
-      noDatabasesFound: 'Aucune base de données liée à w3pk trouvée',
 
       registrationSuccessTitle: 'Inscription réussie',
       registrationSuccessDescription: 'Votre nouveau compte a été créé.',
@@ -2362,16 +2337,9 @@ export const translations: Translations = {
         `${n} éléments trouvés. Faites défiler vers le bas pour voir les résultats.`,
       genericErrorTitle: 'Erreur',
       failedInspectLocalStorage: "Échec de l'inspection de localStorage",
-      indexedDBInspectedTitle: 'IndexedDB inspecté',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `${dbCount} base(s) de données trouvée(s) avec ${recordCount} enregistrement(s). Faites défiler vers le bas pour voir les résultats.`,
-      failedInspectIndexedDB: "Échec de l'inspection de IndexedDB",
       itemClearedTitle: 'Élément effacé',
       itemClearedDescription: key => `« ${key} » supprimé de localStorage`,
       failedClearItem: key => `Échec de la suppression de « ${key} »`,
-      recordClearedTitle: 'Enregistrement effacé',
-      recordClearedDescription: (db, store) => `Enregistrement supprimé de ${db}/${store}`,
-      failedClearRecord: "Échec de la suppression de l'enregistrement",
       errorLoadingAddressesTitle: 'Erreur lors du chargement des adresses',
       failedDeriveAddresses: 'Échec de la dérivation des adresses du portefeuille',
       errorLoadingBackupStatusTitle: "Erreur lors du chargement de l'état de la sauvegarde",
@@ -2396,11 +2364,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'Portefeuille restauré et inscrit !',
       walletRestoredRegisteredDescription: address =>
         `Portefeuille restauré et inscrit avec succès : ${address}`,
-      securityReportGeneratedTitle: 'Rapport de sécurité généré',
-      securityReportGeneratedDescription: "Consultez l'analyse détaillée ci-dessous",
-      inspectionFailedTitle: "Échec de l'inspection",
-      inspectionFailedDescription:
-        "L'inspection de l'application hôte n'a pas fonctionné. C'est probablement dû à la limite de requêtes Anthropic atteinte.",
       backupStatusRetrievedTitle: 'État de la sauvegarde récupéré.',
       errorRetrievingStatusTitle: "Erreur lors de la récupération de l'état.",
       unexpectedErrorDescription: "Une erreur inattendue s'est produite.",
@@ -2438,14 +2401,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         "Part de gardien chargée depuis le fichier. Cliquez sur « Ajouter la part » pour l'ajouter.",
       failedReadGuardianFile: 'Échec de la lecture du fichier de part de gardien',
-      cannotSaveTitle: "Impossible d'enregistrer",
-      cannotSaveDescription: 'Données QR invalides ou utilisateur non authentifié',
-      walletLinkedTitle: 'Portefeuille lié avec succès !',
-      walletLinkedDescription: address =>
-        `Portefeuille ${address} lié à votre compte à clé d'accès`,
-      errorSavingLinkTitle: "Erreur lors de l'enregistrement du lien du portefeuille",
-      failedSaveSyncData:
-        "Échec de l'enregistrement des données de synchronisation du portefeuille",
       recoveryPasswordPrompt:
         "Entrez le mot de passe que vous avez défini lors de la configuration de la récupération sociale.\n\nCe mot de passe n'a PAS été partagé avec les gardiens - vous l'avez défini lors de la configuration.",
       recoveryUsernamePrompt: address =>
@@ -2455,6 +2410,8 @@ export const translations: Translations = {
       registerTitle: 'Créer un nouveau compte',
       walletInfoText:
         'Un portefeuille Ethereum sera créé et stocké en toute sécurité sur votre appareil, protégé par votre biométrie ou votre code PIN grâce à',
+      noPlatformAuthenticatorHint:
+        'Aucun authentificateur intégré trouvé : utilisez votre téléphone ou une clé de sécurité.',
       usernameLabel: "Nom d'utilisateur",
       usernamePlaceholder: "Entrez votre nom d'utilisateur",
       usernameError:
@@ -2469,6 +2426,34 @@ export const translations: Translations = {
         "Aucune clé d'accès trouvée. Veuillez vous inscrire pour créer un nouveau compte.",
       alreadyRegisteredLink: 'Je suis déjà inscrit sur un autre appareil',
     },
+    backup: {
+      title: 'Sauvegardez votre portefeuille',
+      description:
+        'Votre portefeuille est stocké uniquement dans ce navigateur. Si ses données sont effacées, un fichier de sauvegarde est le seul moyen de le récupérer.',
+      safariWarning:
+        'Safari supprime les données de ce site après 7 jours sans visite. Sans sauvegarde, votre portefeuille serait perdu.',
+      iosWarning:
+        'Sur iPhone et iPad, tous les navigateurs suppriment les données de ce site après 7 jours sans visite',
+      downloadButton: 'Télécharger un fichier de sauvegarde',
+      passwordModalTitle: 'Protégez votre sauvegarde',
+      passwordModalDescription:
+        'Choisissez un mot de passe fort. Il vous sera demandé pour restaurer votre portefeuille à partir de ce fichier.',
+      skipButton: 'Je comprends le risque',
+      backupCreatedTitle: 'Sauvegarde téléchargée',
+      backupFailedTitle: 'Échec de la sauvegarde',
+    },
+    homeScreen: {
+      title: 'Gardez votre portefeuille sur cet appareil',
+      description:
+        "Une app ajoutée à l'écran d'accueil garde ses données. Dans le navigateur, un fichier de sauvegarde est le seul moyen de récupérer votre portefeuille.",
+      addButton: "Sur l'écran d'accueil",
+      backupButton: 'Sauvegarder',
+      stepsTitle: "Ajouter à l'écran d'accueil",
+      step1: 'Touchez le bouton Partager.',
+      step2: "Touchez « Sur l'écran d'accueil ».",
+      step3: "Ouvrez l'app depuis la nouvelle icône et créez-y votre portefeuille.",
+      backButton: 'Retour',
+    },
     passwordModal: {
       passwordLabel: 'Mot de passe',
       passwordPlaceholder: 'Entrez votre mot de passe',
@@ -2481,12 +2466,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: "Une erreur inattendue s'est produite.",
       requirementsNotMet: 'Le mot de passe ne répond pas à toutes les exigences',
       strongPassword: 'Mot de passe robuste !',
-      mustInclude: 'Le mot de passe doit inclure :',
-      reqMinLength: 'Au moins 12 caractères',
-      reqUpperCase: 'Une lettre majuscule',
-      reqLowerCase: 'Une lettre minuscule',
-      reqNumber: 'Un chiffre',
-      reqSpecialChar: 'Un caractère spécial',
+      mustInclude: 'Le mot de passe doit être :',
+      reqMinLength: 'Au moins 15 caractères : une phrase de passe convient',
+      reqNoRepeat: 'Pas un seul caractère répété',
+      reqNotCommon: 'Pas un mot de passe courant',
       satisfied: ' (satisfait)',
       required: ' (requis)',
       submit: 'Soumettre',
@@ -2558,10 +2541,10 @@ export const translations: Translations = {
       firefoxMobileNote: 'Firefox Mobile - ⚠️ تجنبه (مشاكل معروفة في استمرارية مفتاح المرور)',
 
       restoreBackupHeading: 'الاستعادة من نسخة احتياطية',
+      restoreBackupSyncHint:
+        'إذا كان مفتاح المرور قد تمت مزامنته مع هذا الجهاز، فستستخدمه الاستعادة. وإلا فستنشئ مفتاح مرور جديدًا للمحفظة المستعادة. لنقل محفظة دون كلمة مرور، استخدم ملف مزامنة بدلًا من ذلك.',
       restoreBackupDescription:
         'إذا كان لديك ملف نسخة احتياطية، يمكنك استعادة محفظتك دون تسجيل الدخول أولاً.',
-      restoreBackupSyncHint:
-        'للمزامنة مع جهاز آخر: سجّل الدخول على جهازك الآخر، انتقل إلى الإعدادات ← إنشاء نسخة احتياطية لتنزيل ملف نسخة احتياطية مشفّر، ثم قم برفعه هنا وأدخل نفس كلمة المرور.',
       restoringText: 'جارٍ الاستعادة...',
       restoreBackupButton: 'الاستعادة من ملف النسخة الاحتياطية',
 
@@ -2569,31 +2552,11 @@ export const translations: Translations = {
       debugStorageDescription: 'فحص تخزين المتصفح وسجلات النشاط',
       inspectingText: 'جارٍ الفحص...',
       inspectLocalStorageButton: 'فحص LocalStorage',
-      inspectIndexedDBButton: 'فحص IndexedDB',
-
-      inspectSecurityDescriptionSmall: 'تحليل هذا التطبيق لطرق المعاملات والتوقيع.',
-      inspectSecurityButton: 'فحص الأمان',
-      consoleCommandLabel: 'أمر وحدة التحكم:',
-      clearReportButton: 'مسح التقرير',
-      filesAnalyzedLabel: 'الملفات التي تم تحليلها:',
-      inspectionHeadingBig: 'فحص الأمان',
-      inspectSecurityDescriptionBig:
-        'إنشاء تقرير أمني شامل لهذا التطبيق. سيحلل التقرير جميع طرق المعاملات والتوقيع.',
-      inspectNowButton: 'افحص الآن',
-      consoleHintText: 'يمكنك أيضاً تشغيل await w3pk.inspectNow() في وحدة تحكم المتصفح',
-      securityReportHeading: 'تقرير الأمان',
-      appUrlLabel: 'رابط التطبيق:',
 
       localStorageResultsHeading: 'نتائج LocalStorage',
       itemsCount: n => `${n} عنصر`,
       encryptedBadge: 'مشفّر',
       clearItemAria: 'مسح العنصر',
-      indexedDBResultsHeading: 'نتائج IndexedDB',
-      databasesCount: n => `${n} قاعدة بيانات`,
-      storesLabel: 'المخازن:',
-      recordsLabel: 'السجلات:',
-      clearRecordAria: 'مسح السجل',
-      storeKeyLabel: (store, key) => `المخزن: ${store} | المفتاح: ${key}`,
 
       currentAccountHeading: 'الحساب الحالي',
       currentAccountDescription: 'هذا هو الحساب الذي قمت بتسجيل الدخول إليه حالياً.',
@@ -2604,16 +2567,16 @@ export const translations: Translations = {
 
       sessionHeading: 'إبقاء جلستي نشطة',
       sessionDescription:
-        'حدد المدة التي تظل خلالها جلستك نشطة دون طلب مفتاح المرور. عند انتهائها، ستطلب زيارتك التالية بصمتك البيومترية/رمز PIN مرة واحدة وتبدأ جلسة جديدة — وهذا يحدد أيضاً وتيرة إعادة المصادقة. ينطبق هذا الإعداد فقط على وضعي STANDARD وYOLO. تتطلب وضعا STRICT وPRIMARY دائماً مصادقة جديدة ولا يستخدمان جلسات دائمة.',
+        'حدد المدة التي تظل خلالها جلستك نشطة دون طلب مفتاح المرور. عند انتهائها، ستطلب زيارتك التالية مفتاح المرور الخاص بك مرة واحدة وتبدأ جلسة جديدة — وهذا يحدد أيضاً وتيرة إعادة المصادقة. ينطبق هذا الإعداد فقط على وضعي STANDARD وYOLO. تتطلب وضعا STRICT وPRIMARY دائماً مصادقة جديدة ولا يستخدمان جلسات دائمة.',
       noStoredSessionText:
-        'لا توجد جلسة مخزنة على هذا الجهاز. يبدو أن جهاز المصادقة الخاص بك لا يدعم امتداد WebAuthn PRF، الذي يحتاجه w3pk للحفاظ على الجلسات نشطة بأمان. ستبقى جلستك في الذاكرة فقط: تنتهي عند إغلاق التبويب، وستطلب كل زيارة بصمتك البيومترية/رمز PIN. كل شيء آخر يعمل بشكل طبيعي.',
+        'لا توجد جلسة مخزنة على هذا الجهاز. يبدو أن جهاز المصادقة الخاص بك لا يدعم امتداد WebAuthn PRF، الذي يحتاجه w3pk للحفاظ على الجلسات نشطة بأمان. ستبقى جلستك في الذاكرة فقط: تنتهي عند إغلاق التبويب، وستطلب كل زيارة مفتاح المرور الخاص بك. كل شيء آخر يعمل بشكل طبيعي.',
       sessionDurationLabel: 'مدة الجلسة',
       dayLabel: n => `${n} يوم`,
       oneDayLabel: 'يوم واحد',
       thirtyDaysLabel: '30 يوماً',
       sessionHowItWorksTitle: 'كيف يعمل:',
       sessionHowItWorksText:
-        'في كل مرة تسجل فيها الدخول ببصمتك البيومترية/رمز PIN، يصدر جهاز المصادقة الخاص بك سراً مدعوماً بالأجهزة (امتداد WebAuthn PRF) يقوم بتشفير جلستك على هذا الجهاز — ولا يمكن لأي شيء مخزن على القرص إعادة إنشاء هذا المفتاح. يبدأ العد التنازلي من جديد عند كل تسجيل دخول فعلي: مع مدة 7 أيام، يبقيك تسجيل الدخول اليوم متصلاً حتى مرور 7 أيام من اليوم، حيث سيُطلب منك ذلك مرة واحدة ويُعاد تشفير الجلسة بمفتاح جديد.',
+        'في كل مرة تسجل فيها الدخول بمفتاح المرور الخاص بك، يصدر جهاز المصادقة الخاص بك سراً مدعوماً بالأجهزة (امتداد WebAuthn PRF) يقوم بتشفير جلستك على هذا الجهاز — ولا يمكن لأي شيء مخزن على القرص إعادة إنشاء هذا المفتاح. يبدأ العد التنازلي من جديد عند كل تسجيل دخول فعلي: مع مدة 7 أيام، يبقيك تسجيل الدخول اليوم متصلاً حتى مرور 7 أيام من اليوم، حيث سيُطلب منك ذلك مرة واحدة ويُعاد تشفير الجلسة بمفتاح جديد.',
 
       walletBackupHeading: 'النسخ الاحتياطي للمحفظة',
       walletBackupDescription:
@@ -2626,6 +2589,8 @@ export const translations: Translations = {
       loadingText: 'جارٍ التحميل...',
       securityStatusHeading: 'حالة الأمان',
       checkingStatusText: 'جارٍ التحقق من حالة النسخ الاحتياطي...',
+      evictionRiskWarning:
+        'قد يمسح هذا المتصفح محفظتك بعد 7 أيام دون زيارة. احتفظ بنسخة احتياطية، أو أضف genji إلى شاشتك الرئيسية.',
       refreshHeading: 'تحديث حالة النسخ الاحتياطي',
       refreshDescription: 'إعادة تحميل درجة أمانك الحالية وتوصيات النسخ الاحتياطي',
       checkingText: 'جارٍ التحقق...',
@@ -2641,7 +2606,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'يتم إنشاء السر الأساسي لمحفظتك (العبارة التذكيرية) وتشفيره بالكامل على جهازك. تسترجع عملية النسخ الاحتياطي هذه البيانات المشفّرة من التخزين المحلي لمتصفحك باستخدام كلمة مرورك، ثم تحزمها في ملف آمن لتنزيله.',
       aboutBackupPara2:
-        'يتم اشتقاق مفتاح تشفير محفظتك باستخدام توقيع WebAuthn، الذي يتطلب مصادقتك البيومترية (بصمة الإصبع، مسح الوجه) أو رمز PIN الخاص بالجهاز. هذا يعني أنه حتى لو تمكن شخص ما من الوصول إلى البيانات المشفّرة المخزنة في متصفحك، فلن يتمكن من فك تشفيرها دون جهازك الفعلي ومصادقتك.',
+        'يتم اشتقاق مفتاح تشفير محفظتك باستخدام توقيع WebAuthn من مفتاح المرور الخاص بك، الموجود على أداة المصادقة لديك: هذا الجهاز أو هاتفك أو مفتاح أمان. هذا يعني أنه حتى لو تمكن شخص ما من الوصول إلى البيانات المشفّرة المخزنة في متصفحك، فلن يتمكن من فك تشفيرها دون أداة المصادقة الخاصة بك.',
       aboutBackupPara3:
         'يتم تشفير ملف النسخة الاحتياطية باستخدام AES-256-GCM بمفتاح مشتق من كلمة المرور التي تقدمها. احتفظ بهذا الملف بأمان وتذكر كلمة مرورك.',
       aboutBackupWarning:
@@ -2690,9 +2655,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `محفظتك محمية باسترداد ${threshold} من ${count} أوصياء`,
       generateInviteButton: 'إنشاء دعوة',
-      removeConfigQuestion:
-        'هل حصل جميع الأوصياء على حصصهم؟ يمكنك الآن إزالة إعدادات الأوصياء من التخزين المحلي. الحصص مخزنة بأمان لدى أوصيائك ويمكن استخدامها للاسترداد في أي وقت.',
-      removeConfigButton: 'مسح إعدادات الأوصياء من التخزين المحلي',
+      sharesNotStoredNotice:
+        'نزّل دعوة كل وصي الآن: لا تُخزَّن الحصص على هذا الجهاز، وتُحذف عند مغادرة هذه الصفحة. لتغيير الأوصياء، أعد إعداد الاسترداد الاجتماعي.',
       invitationHeading: 'دعوة الوصي',
       downloadInviteButton: 'تنزيل الدعوة',
       sendInviteText: name => `أرسل هذه الدعوة إلى ${name} عبر قناة آمنة`,
@@ -2700,36 +2664,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'مزامنة الأجهزة',
       deviceSyncDescription:
         'تتم مزامنة مفتاح المرور الخاص بك تلقائياً عبر الأجهزة باستخدام خدمات المنصة',
-      qrHeading: 'رمز QR للمزامنة',
-      qrDescription:
-        'أنشئ رمز QR يحتوي على عناوين محفظتك لمزامنة أو التحقق من معلومات حسابك بسهولة على جهاز آخر.',
-      generateQrButton: 'إنشاء رمز QR للمزامنة',
-      qrNote:
-        'ملاحظة: يحتوي رمز QR هذا على عناوين محفظتك العامة فقط. لا يحتوي على مفاتيحك الخاصة أو عبارة الاسترداد. استخدمه للتحقق من حسابك على جهاز آخر.',
       hideQrButton: 'إخفاء رمز QR',
-      verifyHeading: 'التحقق من بيانات رمز QR',
-      verifyDescription: 'الصق سلسلة JSON من رمز QR الممسوح ضوئياً للتحقق من عناوين المحفظة.',
-      verifyPlaceholder: 'الصق بيانات JSON هنا (مثال: {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'خطأ:',
-      parsedDataLabel: 'البيانات المحلَّلة:',
-      usernameFieldLabel: 'اسم المستخدم:',
-      ethAddressLabel: 'عنوان إيثريوم:',
-      index0FieldLabel: 'الفهرس #0:',
-      mainTaggedLabel: 'بعلامة MAIN:',
-      openbarTaggedLabel: 'بعلامة OPENBAR:',
-      generatedLabel: 'تاريخ الإنشاء:',
-      linkWalletButton: 'ربط هذه المحفظة بحساب مفتاح المرور الخاص بك',
-      linkExplanation:
-        'ماذا يحدث عند الربط: سيؤدي هذا إلى حفظ عناوين المحفظة في كل من localStorage وIndexedDB، مما ينشئ رابطاً دائماً بين حساب مفتاح المرور الخاص بك ومحفظة HD هذه. يمكنك استخدام ذلك للتحقق من بيانات المحفظة أو مزامنتها عبر الأجهزة.',
-      howQrWorksHeading: 'كيف تعمل مزامنة المحفظة عبر رمز QR',
-      qrStep1:
-        'الخطوة 1: إنشاء رمز QR - على جهازك الأساسي، أنشئ رمز QR يحتوي على العناوين العامة لمحفظتك. رمز QR هذا آمن للمشاركة لأنه يحتوي فقط على معلومات عامة.',
-      qrStep2:
-        'الخطوة 2: المسح والتحقق - على جهازك الثانوي، امسح رمز QR باستخدام أي تطبيق لمسح رموز QR، أو انسخ يدوياً بيانات JSON المعروضة في رمز QR.',
-      qrStep3:
-        'الخطوة 3: ربط المحافظ - الصق بيانات JSON في منطقة التحقق أعلاه وانقر على "ربط هذه المحفظة". يؤدي هذا إلى إنشاء اتصال دائم بين حساب مفتاح المرور الخاص بك وعناوين محفظة HD.',
-      whatGetsStored:
-        'ما الذي يتم تخزينه: يتم تخزين عناوين المحفظة العامة فقط في localStorage وIndexedDB. تبقى مفاتيحك الخاصة وعبارة الاسترداد آمنة ولا يتم إرسالها أو تخزينها أبداً عبر آلية المزامنة هذه.',
+      syncExportHeading: 'تصدير للمزامنة',
+      syncExportDescription:
+        'نزّل ملف مزامنة مقفلًا بمفتاح المرور الخاص بك. على أي جهاز تمت مزامنة مفتاح المرور إليه، استورده بطلب واحد لمفتاح المرور ودون كلمة مرور.',
+      syncExportButton: 'تصدير ملف المزامنة',
+      syncExportNote:
+        'لا يفتح هذا الملف إلا مفتاح المرور الخاص بك. تتم مزامنة مفاتيح المرور داخل منظومة واحدة (Apple أو Google): للانتقال بين المنظومات، استخدم نسخة احتياطية بكلمة مرور.',
+      syncQrAlt: 'رمز QR لملف المزامنة',
+      syncLinkReady:
+        'يحمل هذا الرابط ملف مزامنة. اضغط أدناه وأكّد بمفتاح المرور لنقل المحفظة إلى هذا الجهاز.',
+      syncLinkButton: 'مزامنة هذه المحفظة',
+      syncQrHint:
+        'امسحه بكاميرا جهازك الآخر: سيفتح genji ويزامن محفظتك بعد طلب واحد لمفتاح المرور.',
+      syncImportHeading: 'استيراد ملف المزامنة',
+      syncImportDescription:
+        'انقل محفظتك إلى هذا الجهاز باستخدام ملف مزامنة من جهاز آخر. يجب أن يكون مفتاح المرور قد تمت مزامنته هنا مسبقًا (سلسلة مفاتيح iCloud أو مدير كلمات مرور Google).',
+      syncImportButton: 'اختر ملف المزامنة',
+      syncImportPasswordTitle: 'أدخل كلمة مرور المزامنة',
+      syncImportPasswordDescription:
+        'هذا الملف محمي بكلمة مرور. أدخل كلمة المرور التي اخترتها عند تصديره.',
+      syncImportedTitle: 'تمت مزامنة المحفظة على هذا الجهاز',
+      syncImportErrorTitle: 'فشلت المزامنة',
+      syncErrorInvalidFile: 'هذا ليس ملف مزامنة أو نسخة احتياطية من w3pk.',
+      syncErrorCredentialMismatch:
+        'ينتمي هذا الملف إلى مفتاح مرور آخر. سجّل الخروج، أو اختر مفتاح المرور الذي صدّره.',
+      syncErrorPublicKeyMismatch:
+        'هذا الملف لا يطابق مفتاح المرور الخاص بك. ربما تم تعديله: صدّر ملفًا جديدًا.',
+      syncErrorUnsupportedBackup:
+        'لا يمكن لهذه النسخة الاحتياطية إعداد جهاز جديد. استعدها أدناه، أو صدّر ملف مزامنة على جهازك الآخر.',
+      syncErrorPrfUnsupported:
+        'لا يستطيع هذا المتصفح فتح ملف مزامنة دون كلمة مرور. جرّب Chrome أو Safari، أو صدّر نسخة احتياطية بكلمة مرور بدلًا من ذلك.',
+      syncErrorNoPasskey:
+        'مفتاح المرور غير موجود على هذا الجهاز بعد. فعّل سلسلة مفاتيح iCloud أو مدير كلمات مرور Google، وانتظر المزامنة، ثم حاول مجددًا.',
+      syncHowHeading: 'كيف تعمل مزامنة الأجهزة',
+      syncStep1:
+        'الخطوة 1: التصدير - على الجهاز الذي يحتوي على محفظتك، صدّر ملف مزامنة. يقفله مفتاح المرور: دون كلمة مرور، ولا فائدة من الملف دون مفتاح المرور.',
+      syncStep2:
+        'الخطوة 2: نقل الملف - أرسله إلى جهازك الآخر (AirDrop أو تخزين سحابي أو كابل)، أو امسح رمز QR الخاص به.',
+      syncStep3:
+        'الخطوة 3: الاستيراد - على الجهاز الآخر، افتح الإعدادات، واختر الملف، وأكّد بمفتاح المرور. ستكون مسجّل الدخول بالمحفظة نفسها.',
+      syncExportedTitle: 'تم تنزيل ملف المزامنة',
+      syncExportedPasswordDescription:
+        'لا يدعم مفتاح المرور الخاص بك المزامنة دون كلمة مرور، لذا يتطلب هذا الملف كلمة المرور التي اخترتها.',
+      syncPasswordModalTitle: 'عيّن كلمة مرور للمزامنة',
+      syncPasswordModalDescription:
+        'لا يستطيع هذا المتصفح أو المصادِق قفل الملف بمفتاح المرور وحده. اختر كلمة مرور: ستُدخلها مع مفتاح المرور على الجهاز الآخر.',
       platformSyncHeading: 'مزامنة منصة مفتاح المرور',
       platformSyncIntro:
         'تتم مزامنة بيانات اعتماد مفتاح المرور الخاص بك تلقائياً عبر الأجهزة ضمن نفس النظام البيئي:',
@@ -2772,9 +2752,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'فحص LocalStorage',
       foundItemsText: n => `تم العثور على ${n} عنصر في localStorage`,
       noDataFound: 'لم يتم العثور على بيانات',
-      indexedDBModalTitle: 'فحص IndexedDB',
-      foundDatabasesText: n => `تم العثور على ${n} قاعدة بيانات`,
-      noDatabasesFound: 'لم يتم العثور على قواعد بيانات متعلقة بـ w3pk',
 
       registrationSuccessTitle: 'تم التسجيل بنجاح',
       registrationSuccessDescription: 'تم إنشاء حسابك الجديد.',
@@ -2784,16 +2761,9 @@ export const translations: Translations = {
       localStorageInspectedDescription: n => `تم العثور على ${n} عنصر. مرر لأسفل لرؤية النتائج.`,
       genericErrorTitle: 'خطأ',
       failedInspectLocalStorage: 'فشل فحص localStorage',
-      indexedDBInspectedTitle: 'تم فحص IndexedDB',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `تم العثور على ${dbCount} قاعدة بيانات تحتوي على ${recordCount} سجل. مرر لأسفل لرؤية النتائج.`,
-      failedInspectIndexedDB: 'فشل فحص IndexedDB',
       itemClearedTitle: 'تم مسح العنصر',
       itemClearedDescription: key => `تمت إزالة "${key}" من localStorage`,
       failedClearItem: key => `فشل مسح "${key}"`,
-      recordClearedTitle: 'تم مسح السجل',
-      recordClearedDescription: (db, store) => `تمت إزالة السجل من ${db}/${store}`,
-      failedClearRecord: 'فشل مسح السجل',
       errorLoadingAddressesTitle: 'خطأ في تحميل العناوين',
       failedDeriveAddresses: 'فشل اشتقاق عناوين المحفظة',
       errorLoadingBackupStatusTitle: 'خطأ في تحميل حالة النسخ الاحتياطي',
@@ -2815,11 +2785,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'تمت استعادة المحفظة وتسجيلها!',
       walletRestoredRegisteredDescription: address =>
         `تمت استعادة المحفظة وتسجيلها بنجاح: ${address}`,
-      securityReportGeneratedTitle: 'تم إنشاء تقرير الأمان',
-      securityReportGeneratedDescription: 'اطلع على التحليل التفصيلي أدناه',
-      inspectionFailedTitle: 'فشل الفحص',
-      inspectionFailedDescription:
-        'لم يعمل فحص التطبيق المضيف. ربما يكون ذلك بسبب الوصول إلى حد معدل الطلبات لدى Anthropic.',
       backupStatusRetrievedTitle: 'تم استرجاع حالة النسخ الاحتياطي.',
       errorRetrievingStatusTitle: 'خطأ في استرجاع الحالة.',
       unexpectedErrorDescription: 'حدث خطأ غير متوقع.',
@@ -2852,12 +2817,6 @@ export const translations: Translations = {
       fileLoadedTitle: 'تم تحميل الملف',
       fileLoadedDescription: 'تم تحميل حصة الوصي من الملف. انقر على "إضافة حصة" لإضافتها.',
       failedReadGuardianFile: 'فشل قراءة ملف حصة الوصي',
-      cannotSaveTitle: 'تعذر الحفظ',
-      cannotSaveDescription: 'بيانات QR غير صالحة أو المستخدم غير مصادَق عليه',
-      walletLinkedTitle: 'تم ربط المحفظة بنجاح!',
-      walletLinkedDescription: address => `تم ربط المحفظة ${address} بحساب مفتاح المرور الخاص بك`,
-      errorSavingLinkTitle: 'خطأ في حفظ رابط المحفظة',
-      failedSaveSyncData: 'فشل حفظ بيانات مزامنة المحفظة',
       recoveryPasswordPrompt:
         'أدخل كلمة المرور التي حددتها عند إعداد الاسترداد الاجتماعي.\n\nلم تتم مشاركة كلمة المرور هذه مع الأوصياء - لقد حددتها أثناء الإعداد.',
       recoveryUsernamePrompt: address =>
@@ -2867,6 +2826,8 @@ export const translations: Translations = {
       registerTitle: 'تسجيل حساب جديد',
       walletInfoText:
         'سيتم إنشاء محفظة إيثريوم وتخزينها بأمان على جهازك، محمية ببصمتك البيومترية أو رمز PIN بفضل',
+      noPlatformAuthenticatorHint:
+        'لم يتم العثور على أداة مصادقة مدمجة: استخدم هاتفك أو مفتاح أمان.',
       usernameLabel: 'اسم المستخدم',
       usernamePlaceholder: 'أدخل اسم المستخدم الخاص بك',
       usernameError:
@@ -2880,6 +2841,32 @@ export const translations: Translations = {
       noAccountFoundDescription: 'لم يتم العثور على مفتاح مرور. يرجى التسجيل لإنشاء حساب جديد.',
       alreadyRegisteredLink: 'لقد قمت بالتسجيل بالفعل على جهاز آخر',
     },
+    backup: {
+      title: 'انسخ محفظتك احتياطياً',
+      description:
+        'محفظتك مخزّنة في هذا المتصفح فقط. إذا مُسحت بياناته، فملف النسخة الاحتياطية هو الطريقة الوحيدة لاستعادة محفظتك.',
+      safariWarning:
+        'يحذف Safari بيانات هذا الموقع بعد 7 أيام دون زيارة. بدون نسخة احتياطية ستفقد محفظتك.',
+      iosWarning: 'على iPhone وiPad، تحذف كل المتصفحات بيانات هذا الموقع بعد 7 أيام دون زيارة',
+      downloadButton: 'تنزيل ملف النسخة الاحتياطية',
+      passwordModalTitle: 'احمِ نسختك الاحتياطية',
+      passwordModalDescription: 'اختر كلمة مرور قوية. ستحتاجها لاستعادة محفظتك من هذا الملف.',
+      skipButton: 'أفهم المخاطرة',
+      backupCreatedTitle: 'تم تنزيل النسخة الاحتياطية',
+      backupFailedTitle: 'فشل النسخ الاحتياطي',
+    },
+    homeScreen: {
+      title: 'احتفظ بمحفظتك على هذا الجهاز',
+      description:
+        'يحتفظ التطبيق المضاف إلى شاشتك الرئيسية ببياناته. في المتصفح، ملف النسخ الاحتياطي هو الطريقة الوحيدة لاستعادة محفظتك.',
+      addButton: 'إضافة إلى الشاشة الرئيسية',
+      backupButton: 'نسخ احتياطي',
+      stepsTitle: 'إضافة إلى الشاشة الرئيسية',
+      step1: 'اضغط على زر المشاركة.',
+      step2: 'اضغط على "إضافة إلى الشاشة الرئيسية".',
+      step3: 'افتح التطبيق من الأيقونة الجديدة وأنشئ محفظتك هناك.',
+      backButton: 'رجوع',
+    },
     passwordModal: {
       passwordLabel: 'كلمة المرور',
       passwordPlaceholder: 'أدخل كلمة المرور الخاصة بك',
@@ -2891,12 +2878,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'حدث خطأ غير متوقع.',
       requirementsNotMet: 'كلمة المرور لا تستوفي جميع المتطلبات',
       strongPassword: 'كلمة مرور قوية!',
-      mustInclude: 'يجب أن تتضمن كلمة المرور:',
-      reqMinLength: '12 حرفًا على الأقل',
-      reqUpperCase: 'حرف كبير واحد',
-      reqLowerCase: 'حرف صغير واحد',
-      reqNumber: 'رقم واحد',
-      reqSpecialChar: 'رمز خاص واحد',
+      mustInclude: 'يجب أن تكون كلمة المرور:',
+      reqMinLength: '15 حرفًا على الأقل: تصلح عبارة مرور',
+      reqNoRepeat: 'ليست حرفًا واحدًا مكررًا',
+      reqNotCommon: 'ليست كلمة مرور شائعة',
       satisfied: ' (مستوفى)',
       required: ' (مطلوب)',
       submit: 'إرسال',
@@ -2970,10 +2955,10 @@ export const translations: Translations = {
         'Firefox Mobile - ⚠️ এড়িয়ে চলুন (পাসকী স্থায়িত্বের পরিচিত সমস্যা রয়েছে)',
 
       restoreBackupHeading: 'ব্যাকআপ থেকে পুনরুদ্ধার করুন',
+      restoreBackupSyncHint:
+        'আপনার পাসকি এই ডিভাইসে আগে থেকেই সিঙ্ক থাকলে রিস্টোর সেটিই ব্যবহার করবে। না থাকলে, রিস্টোর করা ওয়ালেটের জন্য নতুন পাসকি তৈরি করবেন। পাসওয়ার্ড ছাড়া ওয়ালেট সরাতে সিঙ্ক ফাইল ব্যবহার করুন।',
       restoreBackupDescription:
         'যদি আপনার কাছে একটি ব্যাকআপ ফাইল থাকে, তাহলে আগে লগইন না করেই আপনি আপনার ওয়ালেট পুনরুদ্ধার করতে পারেন।',
-      restoreBackupSyncHint:
-        'অন্য একটি ডিভাইসের সাথে সিঙ্ক করতে: আপনার অন্য ডিভাইসে লগইন করুন, একটি এনক্রিপ্ট করা ব্যাকআপ ফাইল ডাউনলোড করতে Settings → Create Backup-এ যান, তারপর এটি এখানে আপলোড করুন এবং একই পাসওয়ার্ড লিখুন।',
       restoringText: 'পুনরুদ্ধার করা হচ্ছে...',
       restoreBackupButton: 'ব্যাকআপ ফাইল থেকে পুনরুদ্ধার করুন',
 
@@ -2981,32 +2966,11 @@ export const translations: Translations = {
       debugStorageDescription: 'ব্রাউজার স্টোরেজ এবং কার্যকলাপ লগ পরিদর্শন করুন',
       inspectingText: 'পরিদর্শন করা হচ্ছে...',
       inspectLocalStorageButton: 'LocalStorage পরিদর্শন করুন',
-      inspectIndexedDBButton: 'IndexedDB পরিদর্শন করুন',
-
-      inspectSecurityDescriptionSmall:
-        'লেনদেন এবং স্বাক্ষর পদ্ধতির জন্য এই অ্যাপ্লিকেশনটি বিশ্লেষণ করুন।',
-      inspectSecurityButton: 'নিরাপত্তা পরিদর্শন করুন',
-      consoleCommandLabel: 'কনসোল কমান্ড:',
-      clearReportButton: 'রিপোর্ট মুছুন',
-      filesAnalyzedLabel: 'বিশ্লেষণ করা ফাইল:',
-      inspectionHeadingBig: 'নিরাপত্তা পরিদর্শন',
-      inspectSecurityDescriptionBig:
-        'এই অ্যাপের একটি বিস্তৃত নিরাপত্তা রিপোর্ট তৈরি করুন। রিপোর্টটি সমস্ত লেনদেন এবং স্বাক্ষর পদ্ধতি বিশ্লেষণ করবে।',
-      inspectNowButton: 'এখনই পরিদর্শন করুন',
-      consoleHintText: 'আপনি ব্রাউজার কনসোলে await w3pk.inspectNow() চালাতেও পারেন',
-      securityReportHeading: 'নিরাপত্তা রিপোর্ট',
-      appUrlLabel: 'অ্যাপ URL:',
 
       localStorageResultsHeading: 'LocalStorage ফলাফল',
       itemsCount: n => `${n}টি আইটেম`,
       encryptedBadge: 'এনক্রিপ্টেড',
       clearItemAria: 'আইটেম মুছুন',
-      indexedDBResultsHeading: 'IndexedDB ফলাফল',
-      databasesCount: n => `${n}টি ডাটাবেস`,
-      storesLabel: 'স্টোর:',
-      recordsLabel: 'রেকর্ড:',
-      clearRecordAria: 'রেকর্ড মুছুন',
-      storeKeyLabel: (store, key) => `স্টোর: ${store} | কী: ${key}`,
 
       currentAccountHeading: 'বর্তমান অ্যাকাউন্ট',
       currentAccountDescription: 'এটি আপনার বর্তমানে লগইন করা অ্যাকাউন্ট।',
@@ -3017,16 +2981,16 @@ export const translations: Translations = {
 
       sessionHeading: 'আমার সেশন সচল রাখুন',
       sessionDescription:
-        'পাসকী প্রম্পট ছাড়া আপনার সেশন কতক্ষণ সক্রিয় থাকবে তা নির্ধারণ করুন। মেয়াদ শেষ হলে, আপনার পরবর্তী ভিজিটে একবার আপনার বায়োমেট্রিক/পিন চাওয়া হবে এবং একটি নতুন সেশন শুরু হবে — অর্থাৎ এটি নির্ধারণ করে আপনি কতবার পুনরায় প্রমাণীকরণ করবেন। এই সেটিংটি শুধুমাত্র STANDARD এবং YOLO মোডে প্রযোজ্য। STRICT এবং PRIMARY মোডে সর্বদা নতুন প্রমাণীকরণ প্রয়োজন এবং সেগুলি স্থায়ী সেশন ব্যবহার করে না।',
+        'পাসকী প্রম্পট ছাড়া আপনার সেশন কতক্ষণ সক্রিয় থাকবে তা নির্ধারণ করুন। মেয়াদ শেষ হলে, আপনার পরবর্তী ভিজিটে একবার আপনার পাসকী চাওয়া হবে এবং একটি নতুন সেশন শুরু হবে — অর্থাৎ এটি নির্ধারণ করে আপনি কতবার পুনরায় প্রমাণীকরণ করবেন। এই সেটিংটি শুধুমাত্র STANDARD এবং YOLO মোডে প্রযোজ্য। STRICT এবং PRIMARY মোডে সর্বদা নতুন প্রমাণীকরণ প্রয়োজন এবং সেগুলি স্থায়ী সেশন ব্যবহার করে না।',
       noStoredSessionText:
-        'এই ডিভাইসে কোনো সংরক্ষিত সেশন নেই। আপনার প্রমাণীকারী WebAuthn PRF এক্সটেনশন সমর্থন করে বলে মনে হচ্ছে না, যা সেশন নিরাপদে সচল রাখার জন্য w3pk-এর প্রয়োজন। আপনার সেশন শুধুমাত্র মেমরিতে থাকবে: ট্যাব বন্ধ করলে এটি শেষ হয়ে যাবে, এবং প্রতিটি ভিজিটে আপনার বায়োমেট্রিক/পিন চাওয়া হবে। বাকি সবকিছু স্বাভাবিকভাবে কাজ করবে।',
+        'এই ডিভাইসে কোনো সংরক্ষিত সেশন নেই। আপনার প্রমাণীকারী WebAuthn PRF এক্সটেনশন সমর্থন করে বলে মনে হচ্ছে না, যা সেশন নিরাপদে সচল রাখার জন্য w3pk-এর প্রয়োজন। আপনার সেশন শুধুমাত্র মেমরিতে থাকবে: ট্যাব বন্ধ করলে এটি শেষ হয়ে যাবে, এবং প্রতিটি ভিজিটে আপনার পাসকী চাওয়া হবে। বাকি সবকিছু স্বাভাবিকভাবে কাজ করবে।',
       sessionDurationLabel: 'সেশনের মেয়াদ',
       dayLabel: n => `${n} দিন`,
       oneDayLabel: '১ দিন',
       thirtyDaysLabel: '৩০ দিন',
       sessionHowItWorksTitle: 'এটি যেভাবে কাজ করে:',
       sessionHowItWorksText:
-        'প্রতিবার আপনি আপনার বায়োমেট্রিক/পিন দিয়ে লগইন করলে, আপনার প্রমাণীকারী একটি হার্ডওয়্যার-সমর্থিত সিক্রেট (WebAuthn PRF এক্সটেনশন) প্রকাশ করে যা এই ডিভাইসে আপনার সেশন এনক্রিপ্ট করে — ডিস্কে সংরক্ষিত কোনো কিছু দিয়ে সেই কী পুনরায় তৈরি করা যায় না। প্রতিটি প্রকৃত লগইনে কাউন্টডাউন নতুন করে শুরু হয়: ৭ দিনের মেয়াদ সহ, আজ লগইন করলে আপনি আজ থেকে ৭ দিন পর্যন্ত সাইন-ইন অবস্থায় থাকবেন, তখন আপনাকে একবার প্রম্পট করা হবে এবং সেশনটি একটি নতুন কী দিয়ে পুনরায় এনক্রিপ্ট করা হবে।',
+        'প্রতিবার আপনি আপনার পাসকী দিয়ে লগইন করলে, আপনার প্রমাণীকারী একটি হার্ডওয়্যার-সমর্থিত সিক্রেট (WebAuthn PRF এক্সটেনশন) প্রকাশ করে যা এই ডিভাইসে আপনার সেশন এনক্রিপ্ট করে — ডিস্কে সংরক্ষিত কোনো কিছু দিয়ে সেই কী পুনরায় তৈরি করা যায় না। প্রতিটি প্রকৃত লগইনে কাউন্টডাউন নতুন করে শুরু হয়: ৭ দিনের মেয়াদ সহ, আজ লগইন করলে আপনি আজ থেকে ৭ দিন পর্যন্ত সাইন-ইন অবস্থায় থাকবেন, তখন আপনাকে একবার প্রম্পট করা হবে এবং সেশনটি একটি নতুন কী দিয়ে পুনরায় এনক্রিপ্ট করা হবে।',
 
       walletBackupHeading: 'ওয়ালেট ব্যাকআপ',
       walletBackupDescription:
@@ -3039,6 +3003,8 @@ export const translations: Translations = {
       loadingText: 'লোড হচ্ছে...',
       securityStatusHeading: 'নিরাপত্তা অবস্থা',
       checkingStatusText: 'ব্যাকআপ অবস্থা পরীক্ষা করা হচ্ছে...',
+      evictionRiskWarning:
+        '৭ দিন না এলে এই ব্রাউজার আপনার ওয়ালেট মুছে ফেলতে পারে। একটি ব্যাকআপ রাখুন, অথবা genji হোম স্ক্রিনে যোগ করুন।',
       refreshHeading: 'ব্যাকআপ অবস্থা রিফ্রেশ করুন',
       refreshDescription: 'আপনার বর্তমান নিরাপত্তা স্কোর এবং ব্যাকআপ সুপারিশগুলি পুনরায় লোড করুন',
       checkingText: 'পরীক্ষা করা হচ্ছে...',
@@ -3055,7 +3021,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'আপনার ওয়ালেটের মূল সিক্রেট (নিমোনিক ফ্রেজ) সম্পূর্ণভাবে আপনার ডিভাইসে তৈরি এবং এনক্রিপ্ট করা হয়। ব্যাকআপ প্রক্রিয়াটি আপনার পাসওয়ার্ড ব্যবহার করে আপনার ব্রাউজারের লোকাল স্টোরেজ থেকে এই এনক্রিপ্ট করা ডেটা পুনরুদ্ধার করে, তারপর এটি একটি নিরাপদ ফাইলে প্যাকেজ করে যা আপনি ডাউনলোড করতে পারেন।',
       aboutBackupPara2:
-        'আপনার ওয়ালেটের এনক্রিপশন কী একটি WebAuthn স্বাক্ষর ব্যবহার করে তৈরি করা হয়, যার জন্য আপনার বায়োমেট্রিক প্রমাণীকরণ (আঙুলের ছাপ, ফেস স্ক্যান) অথবা ডিভাইস পিন প্রয়োজন। এর অর্থ হলো, কেউ যদি আপনার ব্রাউজারে সংরক্ষিত এনক্রিপ্ট করা ডেটাতে অ্যাক্সেস পেয়েও যায়, আপনার শারীরিক ডিভাইস এবং প্রমাণীকরণ ছাড়া তারা এটি ডিক্রিপ্ট করতে পারবে না।',
+        'আপনার ওয়ালেটের এনক্রিপশন কী আপনার পাসকি থেকে তৈরি একটি WebAuthn স্বাক্ষর ব্যবহার করে তৈরি করা হয়, যা আপনার অথেন্টিকেটরে থাকে: এই ডিভাইস, আপনার ফোন অথবা একটি সিকিউরিটি কী। এর অর্থ হলো, কেউ যদি আপনার ব্রাউজারে সংরক্ষিত এনক্রিপ্ট করা ডেটাতে অ্যাক্সেস পেয়েও যায়, আপনার অথেন্টিকেটর ছাড়া তারা এটি ডিক্রিপ্ট করতে পারবে না।',
       aboutBackupPara3:
         'আপনার ব্যাকআপ ফাইলটি AES-256-GCM ব্যবহার করে এনক্রিপ্ট করা হয়, যার কী আপনার দেওয়া পাসওয়ার্ড থেকে তৈরি হয়। এই ফাইলটি নিরাপদে সংরক্ষণ করুন এবং আপনার পাসওয়ার্ড মনে রাখুন।',
       aboutBackupWarning:
@@ -3106,9 +3072,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `আপনার ওয়ালেট ${count}-এর মধ্যে-${threshold} অভিভাবক পুনরুদ্ধার দ্বারা সুরক্ষিত`,
       generateInviteButton: 'আমন্ত্রণ তৈরি করুন',
-      removeConfigQuestion:
-        'সব অভিভাবকের কাছে তাদের শেয়ার আছে? আপনি এখন লোকাল স্টোরেজ থেকে অভিভাবক কনফিগারেশন সরিয়ে ফেলতে পারেন। শেয়ারগুলি আপনার অভিভাবকদের কাছে নিরাপদে সংরক্ষিত আছে এবং যেকোনো সময় পুনরুদ্ধারের জন্য ব্যবহার করা যেতে পারে।',
-      removeConfigButton: 'লোকাল স্টোরেজ থেকে অভিভাবক কনফিগারেশন মুছুন',
+      sharesNotStoredNotice:
+        'এখনই প্রতিটি অভিভাবকের আমন্ত্রণ ডাউনলোড করুন: শেয়ারগুলি এই ডিভাইসে সংরক্ষিত হয় না, এবং এই পৃষ্ঠা ছেড়ে গেলে মুছে যায়। অভিভাবক পরিবর্তন করতে, সোশ্যাল রিকভারি আবার সেট আপ করুন।',
       invitationHeading: 'অভিভাবক আমন্ত্রণ',
       downloadInviteButton: 'আমন্ত্রণ ডাউনলোড করুন',
       sendInviteText: name => `একটি নিরাপদ চ্যানেলের মাধ্যমে ${name}-কে এই আমন্ত্রণ পাঠান`,
@@ -3116,38 +3081,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'ডিভাইস সিঙ্ক',
       deviceSyncDescription:
         'প্ল্যাটফর্ম পরিষেবা ব্যবহার করে আপনার পাসকী স্বয়ংক্রিয়ভাবে ডিভাইসগুলির মধ্যে সিঙ্ক হয়',
-      qrHeading: 'সিঙ্ক QR কোড',
-      qrDescription:
-        'অন্য একটি ডিভাইসে সহজে সিঙ্ক করতে বা আপনার অ্যাকাউন্টের তথ্য যাচাই করতে আপনার ওয়ালেট ঠিকানা সম্বলিত একটি QR কোড তৈরি করুন।',
-      generateQrButton: 'সিঙ্ক QR কোড তৈরি করুন',
-      qrNote:
-        'দ্রষ্টব্য: এই QR কোডে শুধুমাত্র আপনার পাবলিক ওয়ালেট ঠিকানা রয়েছে। এতে আপনার প্রাইভেট কী বা পুনরুদ্ধার ফ্রেজ নেই। অন্য একটি ডিভাইসে আপনার অ্যাকাউন্ট যাচাই করতে এটি ব্যবহার করুন।',
       hideQrButton: 'QR কোড লুকান',
-      verifyHeading: 'QR কোড ডেটা যাচাই করুন',
-      verifyDescription:
-        'ওয়ালেট ঠিকানা যাচাই করতে স্ক্যান করা QR কোড থেকে JSON স্ট্রিং পেস্ট করুন।',
-      verifyPlaceholder:
-        'এখানে JSON ডেটা পেস্ট করুন (উদাহরণ, {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'ত্রুটি:',
-      parsedDataLabel: 'পার্স করা ডেটা:',
-      usernameFieldLabel: 'ব্যবহারকারীর নাম:',
-      ethAddressLabel: 'ইথেরিয়াম ঠিকানা:',
-      index0FieldLabel: 'ইনডেক্স #0:',
-      mainTaggedLabel: 'MAIN-ট্যাগযুক্ত:',
-      openbarTaggedLabel: 'OPENBAR-ট্যাগযুক্ত:',
-      generatedLabel: 'তৈরি হয়েছে:',
-      linkWalletButton: 'এই ওয়ালেটটি আপনার পাসকী অ্যাকাউন্টের সাথে লিঙ্ক করুন',
-      linkExplanation:
-        'লিঙ্ক করলে যা ঘটবে: এটি localStorage এবং IndexedDB উভয় স্থানে ওয়ালেট ঠিকানা সংরক্ষণ করবে, আপনার পাসকী অ্যাকাউন্ট এবং এই HD ওয়ালেটের মধ্যে একটি স্থায়ী লিঙ্ক তৈরি করবে। ডিভাইসগুলির মধ্যে ওয়ালেট ডেটা যাচাই বা সিঙ্ক করতে আপনি এটি ব্যবহার করতে পারেন।',
-      howQrWorksHeading: 'QR কোড ওয়ালেট সিঙ্ক যেভাবে কাজ করে',
-      qrStep1:
-        'ধাপ ১: QR কোড তৈরি করুন - আপনার প্রধান ডিভাইসে, আপনার ওয়ালেটের পাবলিক ঠিকানা সম্বলিত একটি QR কোড তৈরি করুন। এই QR কোড শেয়ার করা নিরাপদ কারণ এতে শুধুমাত্র পাবলিক তথ্য রয়েছে।',
-      qrStep2:
-        'ধাপ ২: স্ক্যান ও যাচাই - আপনার দ্বিতীয় ডিভাইসে, যেকোনো QR স্ক্যানার অ্যাপ ব্যবহার করে QR কোড স্ক্যান করুন, অথবা QR কোডে প্রদর্শিত JSON ডেটা ম্যানুয়ালি কপি করুন।',
-      qrStep3:
-        'ধাপ ৩: ওয়ালেট লিঙ্ক করুন - উপরের যাচাইকরণ এলাকায় JSON ডেটা পেস্ট করুন এবং "Link This Wallet"-এ ক্লিক করুন। এটি আপনার পাসকী অ্যাকাউন্ট এবং HD ওয়ালেট ঠিকানার মধ্যে একটি স্থায়ী সংযোগ তৈরি করে।',
-      whatGetsStored:
-        'যা সংরক্ষিত হয়: শুধুমাত্র পাবলিক ওয়ালেট ঠিকানা localStorage এবং IndexedDB-তে সংরক্ষিত হয়। আপনার প্রাইভেট কী এবং পুনরুদ্ধার ফ্রেজ নিরাপদ থাকে এবং এই সিঙ্ক পদ্ধতির মাধ্যমে কখনও প্রেরণ বা সংরক্ষণ করা হয় না।',
+      syncExportHeading: 'সিঙ্কের জন্য এক্সপোর্ট করুন',
+      syncExportDescription:
+        'আপনার পাসকি দিয়ে লক করা একটি সিঙ্ক ফাইল ডাউনলোড করুন। যে ডিভাইসে আপনার পাসকি সিঙ্ক হয়েছে, সেখানে একটি পাসকি প্রম্পটেই, কোনো পাসওয়ার্ড ছাড়া, এটি ইমপোর্ট করুন।',
+      syncExportButton: 'সিঙ্ক ফাইল এক্সপোর্ট করুন',
+      syncExportNote:
+        'শুধু আপনার পাসকিই এই ফাইল খুলতে পারে। পাসকি একটি ইকোসিস্টেমের (Apple বা Google) মধ্যেই সিঙ্ক হয়: ইকোসিস্টেম বদলাতে পাসওয়ার্ড ব্যাকআপ ব্যবহার করুন।',
+      syncQrAlt: 'সিঙ্ক ফাইলের QR কোড',
+      syncLinkReady:
+        'এই লিংকে একটি সিঙ্ক ফাইল আছে। নিচে ট্যাপ করুন এবং আপনার পাসকি দিয়ে নিশ্চিত করুন, ওয়ালেট এই ডিভাইসে চলে আসবে।',
+      syncLinkButton: 'এই ওয়ালেট সিঙ্ক করুন',
+      syncQrHint:
+        'আপনার অন্য ডিভাইসের ক্যামেরা দিয়ে স্ক্যান করুন: genji খুলবে এবং একটি পাসকি প্রম্পটের পর আপনার ওয়ালেট সিঙ্ক করবে।',
+      syncImportHeading: 'সিঙ্ক ফাইল ইমপোর্ট করুন',
+      syncImportDescription:
+        'অন্য ডিভাইসের একটি সিঙ্ক ফাইল দিয়ে আপনার ওয়ালেট এই ডিভাইসে আনুন। আপনার পাসকি আগে থেকেই এখানে সিঙ্ক থাকতে হবে (iCloud Keychain বা Google Password Manager)।',
+      syncImportButton: 'সিঙ্ক ফাইল বেছে নিন',
+      syncImportPasswordTitle: 'সিঙ্ক পাসওয়ার্ড দিন',
+      syncImportPasswordDescription:
+        'এই ফাইলটি পাসওয়ার্ড দিয়ে সুরক্ষিত। এক্সপোর্ট করার সময় যে পাসওয়ার্ড বেছে নিয়েছিলেন সেটি দিন।',
+      syncImportedTitle: 'ওয়ালেট এই ডিভাইসে সিঙ্ক হয়েছে',
+      syncImportErrorTitle: 'সিঙ্ক ব্যর্থ হয়েছে',
+      syncErrorInvalidFile: 'এটি w3pk সিঙ্ক বা ব্যাকআপ ফাইল নয়।',
+      syncErrorCredentialMismatch:
+        'এই ফাইলটি অন্য একটি পাসকির। লগ আউট করুন, অথবা যে পাসকি দিয়ে এটি এক্সপোর্ট হয়েছে সেটি বেছে নিন।',
+      syncErrorPublicKeyMismatch:
+        'এই ফাইলটি আপনার পাসকির সঙ্গে মেলে না। এটি পরিবর্তিত হয়ে থাকতে পারে: নতুন একটি এক্সপোর্ট করুন।',
+      syncErrorUnsupportedBackup:
+        'এই ব্যাকআপ দিয়ে নতুন ডিভাইস সেট আপ করা যায় না। নিচে এটি রিস্টোর করুন, অথবা অন্য ডিভাইসে একটি সিঙ্ক ফাইল এক্সপোর্ট করুন।',
+      syncErrorPrfUnsupported:
+        'এই ব্রাউজার পাসওয়ার্ড ছাড়া সিঙ্ক ফাইল খুলতে পারে না। Chrome বা Safari চেষ্টা করুন, অথবা পাসওয়ার্ড ব্যাকআপ এক্সপোর্ট করুন।',
+      syncErrorNoPasskey:
+        'আপনার পাসকি এখনও এই ডিভাইসে নেই। iCloud Keychain বা Google Password Manager চালু করুন, সিঙ্ক হওয়া পর্যন্ত অপেক্ষা করুন, তারপর আবার চেষ্টা করুন।',
+      syncHowHeading: 'ডিভাইস সিঙ্ক কীভাবে কাজ করে',
+      syncStep1:
+        'ধাপ ১: এক্সপোর্ট - যে ডিভাইসে আপনার ওয়ালেট আছে, সেখানে একটি সিঙ্ক ফাইল এক্সপোর্ট করুন। আপনার পাসকি এটি লক করে: কোনো পাসওয়ার্ড নেই, আর পাসকি ছাড়া ফাইলটি অকেজো।',
+      syncStep2:
+        'ধাপ ২: ফাইল পাঠান - এটি আপনার অন্য ডিভাইসে পাঠান (AirDrop, ক্লাউড ড্রাইভ বা কেবল), অথবা এর QR কোড স্ক্যান করুন।',
+      syncStep3:
+        'ধাপ ৩: ইমপোর্ট - অন্য ডিভাইসে সেটিংস খুলুন, ফাইলটি বেছে নিন এবং আপনার পাসকি দিয়ে নিশ্চিত করুন। আপনি একই ওয়ালেটে লগ ইন হবেন।',
+      syncExportedTitle: 'সিঙ্ক ফাইল ডাউনলোড হয়েছে',
+      syncExportedPasswordDescription:
+        'আপনার পাসকি পাসওয়ার্ড ছাড়া সিঙ্ক সমর্থন করে না, তাই এই ফাইলের জন্য আপনার বেছে নেওয়া পাসওয়ার্ড লাগবে।',
+      syncPasswordModalTitle: 'সিঙ্ক পাসওয়ার্ড সেট করুন',
+      syncPasswordModalDescription:
+        'এই ব্রাউজার বা অথেনটিকেটর শুধু আপনার পাসকি দিয়ে ফাইলটি লক করতে পারে না। একটি পাসওয়ার্ড বেছে নিন: অন্য ডিভাইসে পাসকির সঙ্গে এটি দিতে হবে।',
       platformSyncHeading: 'পাসকী প্ল্যাটফর্ম সিঙ্ক',
       platformSyncIntro:
         'আপনার পাসকী পরিচয়পত্র একই ইকোসিস্টেমের মধ্যে ডিভাইসগুলিতে স্বয়ংক্রিয়ভাবে সিঙ্ক হয়:',
@@ -3193,9 +3172,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'LocalStorage পরিদর্শন',
       foundItemsText: n => `localStorage-এ ${n}টি আইটেম পাওয়া গেছে`,
       noDataFound: 'কোনো ডেটা পাওয়া যায়নি',
-      indexedDBModalTitle: 'IndexedDB পরিদর্শন',
-      foundDatabasesText: n => `${n}টি ডাটাবেস পাওয়া গেছে`,
-      noDatabasesFound: 'কোনো w3pk-সম্পর্কিত ডাটাবেস পাওয়া যায়নি',
 
       registrationSuccessTitle: 'নিবন্ধন সফল হয়েছে',
       registrationSuccessDescription: 'আপনার নতুন অ্যাকাউন্ট তৈরি করা হয়েছে।',
@@ -3207,16 +3183,9 @@ export const translations: Translations = {
         `${n}টি আইটেম পাওয়া গেছে। ফলাফল দেখতে নিচে স্ক্রল করুন।`,
       genericErrorTitle: 'ত্রুটি',
       failedInspectLocalStorage: 'localStorage পরিদর্শন করতে ব্যর্থ হয়েছে',
-      indexedDBInspectedTitle: 'IndexedDB পরিদর্শন করা হয়েছে',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `${recordCount} রেকর্ডস সহ ${dbCount}টি ডাটাবেস পাওয়া গেছে। ফলাফল দেখতে নিচে স্ক্রল করুন।`,
-      failedInspectIndexedDB: 'IndexedDB পরিদর্শন করতে ব্যর্থ হয়েছে',
       itemClearedTitle: 'আইটেম মুছে ফেলা হয়েছে',
       itemClearedDescription: key => `localStorage থেকে "${key}" সরানো হয়েছে`,
       failedClearItem: key => `"${key}" মুছতে ব্যর্থ হয়েছে`,
-      recordClearedTitle: 'রেকর্ড মুছে ফেলা হয়েছে',
-      recordClearedDescription: (db, store) => `${db}/${store} থেকে রেকর্ড সরানো হয়েছে`,
-      failedClearRecord: 'রেকর্ড মুছতে ব্যর্থ হয়েছে',
       errorLoadingAddressesTitle: 'ঠিকানা লোড করতে ত্রুটি',
       failedDeriveAddresses: 'ওয়ালেট ঠিকানা ডেরাইভ করতে ব্যর্থ হয়েছে',
       errorLoadingBackupStatusTitle: 'ব্যাকআপ অবস্থা লোড করতে ত্রুটি',
@@ -3241,11 +3210,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'ওয়ালেট পুনরুদ্ধার ও নিবন্ধিত হয়েছে!',
       walletRestoredRegisteredDescription: address =>
         `সফলভাবে পুনরুদ্ধার এবং নিবন্ধিত করা হয়েছে ওয়ালেট: ${address}`,
-      securityReportGeneratedTitle: 'নিরাপত্তা রিপোর্ট তৈরি হয়েছে',
-      securityReportGeneratedDescription: 'নিচে বিস্তারিত বিশ্লেষণ দেখুন',
-      inspectionFailedTitle: 'পরিদর্শন ব্যর্থ হয়েছে',
-      inspectionFailedDescription:
-        'হোস্ট অ্যাপ পরিদর্শন কাজ করেনি। এটি সম্ভবত Anthropic-এর রিকোয়েস্ট রেট সীমা অতিক্রম হওয়ার কারণে।',
       backupStatusRetrievedTitle: 'ব্যাকআপ অবস্থা পুনরুদ্ধার করা হয়েছে।',
       errorRetrievingStatusTitle: 'অবস্থা পুনরুদ্ধার করতে ত্রুটি।',
       unexpectedErrorDescription: 'একটি অপ্রত্যাশিত ত্রুটি ঘটেছে।',
@@ -3283,13 +3247,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'ফাইল থেকে অভিভাবক শেয়ার লোড হয়েছে। এটি যোগ করতে "Add Share"-এ ক্লিক করুন।',
       failedReadGuardianFile: 'অভিভাবক শেয়ার ফাইল পড়তে ব্যর্থ হয়েছে',
-      cannotSaveTitle: 'সংরক্ষণ করা যাচ্ছে না',
-      cannotSaveDescription: 'অবৈধ QR ডেটা অথবা ব্যবহারকারী প্রমাণীকৃত নয়',
-      walletLinkedTitle: 'ওয়ালেট সফলভাবে লিঙ্ক হয়েছে!',
-      walletLinkedDescription: address =>
-        `ওয়ালেট ${address} আপনার পাসকী অ্যাকাউন্টের সাথে লিঙ্ক করা হয়েছে`,
-      errorSavingLinkTitle: 'ওয়ালেট লিঙ্ক সংরক্ষণ করতে ত্রুটি',
-      failedSaveSyncData: 'ওয়ালেট সিঙ্ক ডেটা সংরক্ষণ করতে ব্যর্থ হয়েছে',
       recoveryPasswordPrompt:
         'সামাজিক পুনরুদ্ধার কনফিগার করার সময় আপনি যে পাসওয়ার্ড সেট করেছিলেন তা লিখুন।\n\nএই পাসওয়ার্ডটি অভিভাবকদের সাথে শেয়ার করা হয়নি - আপনি এটি সেটআপের সময় নির্ধারণ করেছিলেন।',
       recoveryUsernamePrompt: address =>
@@ -3299,6 +3256,8 @@ export const translations: Translations = {
       registerTitle: 'নতুন অ্যাকাউন্ট নিবন্ধন করুন',
       walletInfoText:
         'একটি ইথেরিয়াম ওয়ালেট তৈরি করা হবে এবং আপনার ডিভাইসে নিরাপদে সংরক্ষিত হবে, যা আপনার বায়োমেট্রিক বা পিন দ্বারা সুরক্ষিত, ধন্যবাদ',
+      noPlatformAuthenticatorHint:
+        'কোনো বিল্ট-ইন অথেন্টিকেটর পাওয়া যায়নি: আপনার ফোন বা একটি সিকিউরিটি কী ব্যবহার করুন।',
       usernameLabel: 'ব্যবহারকারীর নাম',
       usernamePlaceholder: 'আপনার ব্যবহারকারীর নাম লিখুন',
       usernameError:
@@ -3313,6 +3272,33 @@ export const translations: Translations = {
         'কোনো পাসকী পাওয়া যায়নি। নতুন অ্যাকাউন্ট তৈরি করতে অনুগ্রহ করে নিবন্ধন করুন।',
       alreadyRegisteredLink: 'আমি ইতিমধ্যে অন্য ডিভাইসে নিবন্ধিত হয়েছি',
     },
+    backup: {
+      title: 'আপনার ওয়ালেটের ব্যাকআপ নিন',
+      description:
+        'আপনার ওয়ালেট শুধুমাত্র এই ব্রাউজারে সংরক্ষিত। এর ডেটা মুছে গেলে, ব্যাকআপ ফাইলই ওয়ালেট ফিরে পাওয়ার একমাত্র উপায়।',
+      safariWarning:
+        'Safari ৭ দিন সাইটে না এলে এর ডেটা মুছে ফেলে। ব্যাকআপ ছাড়া আপনার ওয়ালেট হারিয়ে যাবে।',
+      iosWarning: 'iPhone এবং iPad-এ, প্রতিটি ব্রাউজার ৭ দিন না দেখলে এই সাইটের ডেটা মুছে ফেলে',
+      downloadButton: 'ব্যাকআপ ফাইল ডাউনলোড করুন',
+      passwordModalTitle: 'আপনার ব্যাকআপ সুরক্ষিত করুন',
+      passwordModalDescription:
+        'একটি শক্তিশালী পাসওয়ার্ড বেছে নিন। এই ফাইল থেকে ওয়ালেট পুনরুদ্ধার করতে এটি লাগবে।',
+      skipButton: 'আমি ঝুঁকি বুঝি',
+      backupCreatedTitle: 'ব্যাকআপ ডাউনলোড হয়েছে',
+      backupFailedTitle: 'ব্যাকআপ ব্যর্থ হয়েছে',
+    },
+    homeScreen: {
+      title: 'আপনার ওয়ালেট এই ডিভাইসে রাখুন',
+      description:
+        'হোম স্ক্রিনে যোগ করা অ্যাপ তার ডেটা রেখে দেয়। ব্রাউজারে, ব্যাকআপ ফাইলই আপনার ওয়ালেট ফিরে পাওয়ার একমাত্র উপায়।',
+      addButton: 'হোম স্ক্রিনে যোগ করুন',
+      backupButton: 'ব্যাকআপ নিন',
+      stepsTitle: 'হোম স্ক্রিনে যোগ করুন',
+      step1: 'শেয়ার বোতামে ট্যাপ করুন।',
+      step2: '"হোম স্ক্রিনে যোগ করুন"-এ ট্যাপ করুন।',
+      step3: 'নতুন আইকন থেকে অ্যাপটি খুলুন এবং সেখানে আপনার ওয়ালেট তৈরি করুন।',
+      backButton: 'ফিরে যান',
+    },
     passwordModal: {
       passwordLabel: 'পাসওয়ার্ড',
       passwordPlaceholder: 'আপনার পাসওয়ার্ড লিখুন',
@@ -3325,12 +3311,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'একটি অপ্রত্যাশিত ত্রুটি ঘটেছে।',
       requirementsNotMet: 'পাসওয়ার্ড সমস্ত প্রয়োজনীয়তা পূরণ করে না',
       strongPassword: 'শক্তিশালী পাসওয়ার্ড!',
-      mustInclude: 'পাসওয়ার্ডে অবশ্যই থাকতে হবে:',
-      reqMinLength: 'কমপক্ষে ১২টি অক্ষর',
-      reqUpperCase: 'একটি বড় হাতের অক্ষর',
-      reqLowerCase: 'একটি ছোট হাতের অক্ষর',
-      reqNumber: 'একটি সংখ্যা',
-      reqSpecialChar: 'একটি বিশেষ অক্ষর',
+      mustInclude: 'পাসওয়ার্ড হতে হবে:',
+      reqMinLength: 'কমপক্ষে ১৫টি অক্ষর: একটি পাসফ্রেজও চলবে',
+      reqNoRepeat: 'একই অক্ষরের পুনরাবৃত্তি নয়',
+      reqNotCommon: 'সাধারণ কোনো পাসওয়ার্ড নয়',
       satisfied: ' (পূরণ হয়েছে)',
       required: ' (প্রয়োজন)',
       submit: 'জমা দিন',
@@ -3404,10 +3388,10 @@ export const translations: Translations = {
         'Firefox Mobile — ⚠️ Не рекомендуется (известны проблемы с сохранением ключей доступа)',
 
       restoreBackupHeading: 'Восстановление из резервной копии',
+      restoreBackupSyncHint:
+        'Если ваш ключ доступа уже синхронизирован на это устройство, восстановление использует его. Иначе вы создадите новый ключ для восстановленного кошелька. Чтобы перенести кошелёк без пароля, используйте файл синхронизации.',
       restoreBackupDescription:
         'Если у вас есть файл резервной копии, вы можете восстановить кошелёк без предварительного входа.',
-      restoreBackupSyncHint:
-        'Чтобы синхронизировать с другим устройством: войдите на другом устройстве, перейдите в Настройки → Создать резервную копию, чтобы скачать зашифрованный файл резервной копии, затем загрузите его здесь и введите тот же пароль.',
       restoringText: 'Восстановление...',
       restoreBackupButton: 'Восстановить из файла резервной копии',
 
@@ -3415,32 +3399,11 @@ export const translations: Translations = {
       debugStorageDescription: 'Проверка хранилища браузера и журналов активности',
       inspectingText: 'Проверка...',
       inspectLocalStorageButton: 'Проверить LocalStorage',
-      inspectIndexedDBButton: 'Проверить IndexedDB',
-
-      inspectSecurityDescriptionSmall:
-        'Анализ этого приложения на предмет методов транзакций и подписи.',
-      inspectSecurityButton: 'Проверить безопасность',
-      consoleCommandLabel: 'Команда консоли:',
-      clearReportButton: 'Очистить отчёт',
-      filesAnalyzedLabel: 'Проанализировано файлов:',
-      inspectionHeadingBig: 'Проверка безопасности',
-      inspectSecurityDescriptionBig:
-        'Сформируйте подробный отчёт о безопасности этого приложения. Отчёт проанализирует все методы транзакций и подписи.',
-      inspectNowButton: 'Проверить сейчас',
-      consoleHintText: 'Вы также можете выполнить await w3pk.inspectNow() в консоли браузера',
-      securityReportHeading: 'Отчёт о безопасности',
-      appUrlLabel: 'URL приложения:',
 
       localStorageResultsHeading: 'Результаты LocalStorage',
       itemsCount: n => `${n} ${ruPlural(n, 'элемент', 'элемента', 'элементов')}`,
       encryptedBadge: 'Зашифровано',
       clearItemAria: 'Очистить элемент',
-      indexedDBResultsHeading: 'Результаты IndexedDB',
-      databasesCount: n => `${n} ${ruPlural(n, 'база данных', 'базы данных', 'баз данных')}`,
-      storesLabel: 'Хранилища:',
-      recordsLabel: 'Записи:',
-      clearRecordAria: 'Очистить запись',
-      storeKeyLabel: (store, key) => `Хранилище: ${store} | Ключ: ${key}`,
 
       currentAccountHeading: 'Текущий аккаунт',
       currentAccountDescription: 'Это ваш текущий активный аккаунт.',
@@ -3451,16 +3414,16 @@ export const translations: Translations = {
 
       sessionHeading: 'Поддерживать сессию активной',
       sessionDescription:
-        'Укажите, как долго ваша сессия должна оставаться активной без запроса ключа доступа. По истечении этого срока при следующем посещении один раз запрашивается биометрия/PIN-код и начинается новая сессия — то есть это значение также определяет, как часто вы будете проходить повторную аутентификацию. Эта настройка применяется только к режимам STANDARD и YOLO. Режимы STRICT и PRIMARY всегда требуют новой аутентификации и не используют постоянные сессии.',
+        'Укажите, как долго ваша сессия должна оставаться активной без запроса ключа доступа. По истечении этого срока при следующем посещении один раз запрашивается ключ доступа и начинается новая сессия — то есть это значение также определяет, как часто вы будете проходить повторную аутентификацию. Эта настройка применяется только к режимам STANDARD и YOLO. Режимы STRICT и PRIMARY всегда требуют новой аутентификации и не используют постоянные сессии.',
       noStoredSessionText:
-        'На этом устройстве нет сохранённой сессии. Похоже, ваш аутентификатор не поддерживает расширение WebAuthn PRF, которое требуется w3pk для безопасного поддержания сессий. Ваша сессия будет храниться только в памяти: она завершается при закрытии вкладки, и при каждом посещении будет запрашиваться биометрия/PIN-код. Всё остальное работает в обычном режиме.',
+        'На этом устройстве нет сохранённой сессии. Похоже, ваш аутентификатор не поддерживает расширение WebAuthn PRF, которое требуется w3pk для безопасного поддержания сессий. Ваша сессия будет храниться только в памяти: она завершается при закрытии вкладки, и при каждом посещении будет запрашиваться ключ доступа. Всё остальное работает в обычном режиме.',
       sessionDurationLabel: 'Длительность сессии',
       dayLabel: n => `${n} ${ruPlural(n, 'день', 'дня', 'дней')}`,
       oneDayLabel: '1 день',
       thirtyDaysLabel: '30 дней',
       sessionHowItWorksTitle: 'Как это работает:',
       sessionHowItWorksText:
-        'Каждый раз, когда вы входите с помощью биометрии/PIN-кода, ваш аутентификатор выдаёт аппаратно защищённый секрет (расширение WebAuthn PRF), который шифрует вашу сессию на этом устройстве — ничто из сохранённого на диске не позволяет воссоздать этот ключ. Отсчёт начинается заново при каждом реальном входе: при длительности сессии 7 дней вход сегодня сохранит вас в системе на 7 дней, после чего система один раз запросит подтверждение, и сессия будет заново зашифрована новым ключом.',
+        'Каждый раз, когда вы входите с помощью ключа доступа, ваш аутентификатор выдаёт аппаратно защищённый секрет (расширение WebAuthn PRF), который шифрует вашу сессию на этом устройстве — ничто из сохранённого на диске не позволяет воссоздать этот ключ. Отсчёт начинается заново при каждом реальном входе: при длительности сессии 7 дней вход сегодня сохранит вас в системе на 7 дней, после чего система один раз запросит подтверждение, и сессия будет заново зашифрована новым ключом.',
 
       walletBackupHeading: 'Резервное копирование кошелька',
       walletBackupDescription:
@@ -3474,6 +3437,8 @@ export const translations: Translations = {
       loadingText: 'Загрузка...',
       securityStatusHeading: 'Статус безопасности',
       checkingStatusText: 'Проверка статуса резервной копии...',
+      evictionRiskWarning:
+        'Этот браузер может стереть ваш кошелёк, если вы не заходите 7 дней. Сохраните резервную копию или добавьте genji на главный экран.',
       refreshHeading: 'Обновить статус резервной копии',
       refreshDescription:
         'Обновите текущую оценку безопасности и рекомендации по резервному копированию',
@@ -3490,7 +3455,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'Основной секрет вашего кошелька (мнемоническая фраза) полностью генерируется и шифруется на вашем устройстве. Процесс резервного копирования извлекает эти зашифрованные данные из локального хранилища браузера с помощью вашего пароля, а затем упаковывает их в защищённый файл для скачивания.',
       aboutBackupPara2:
-        'Ключ шифрования вашего кошелька формируется на основе подписи WebAuthn, для создания которой требуется биометрическая аутентификация (отпечаток пальца, сканирование лица) или PIN-код устройства. Это означает, что даже если кто-то получит доступ к зашифрованным данным, хранящимся в вашем браузере, расшифровать их без вашего физического устройства и аутентификации будет невозможно.',
+        'Ключ шифрования вашего кошелька формируется на основе подписи WebAuthn вашего ключа доступа, который хранится в вашем аутентификаторе: на этом устройстве, вашем телефоне или ключе безопасности. Это означает, что даже если кто-то получит доступ к зашифрованным данным, хранящимся в вашем браузере, расшифровать их без вашего аутентификатора будет невозможно.',
       aboutBackupPara3:
         'Ваш файл резервной копии зашифрован с использованием AES-256-GCM с ключом, полученным из указанного вами пароля. Храните этот файл в надёжном месте и не забывайте пароль.',
       aboutBackupWarning:
@@ -3541,9 +3506,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `Ваш кошелёк защищён восстановлением по схеме ${threshold} из ${count} хранителей`,
       generateInviteButton: 'Сгенерировать приглашение',
-      removeConfigQuestion:
-        'Все хранители получили свои доли? Теперь вы можете удалить конфигурацию хранителей из локального хранилища. Доли надёжно хранятся у ваших хранителей и могут быть использованы для восстановления в любое время.',
-      removeConfigButton: 'Очистить конфигурацию хранителей из локального хранилища',
+      sharesNotStoredNotice:
+        'Скачайте приглашение для каждого хранителя сейчас: доли не хранятся на этом устройстве и будут удалены, когда вы покинете страницу. Чтобы сменить хранителей, настройте социальное восстановление заново.',
       invitationHeading: 'Приглашение хранителя',
       downloadInviteButton: 'Скачать приглашение',
       sendInviteText: name =>
@@ -3552,38 +3516,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'Синхронизация устройств',
       deviceSyncDescription:
         'Ваш ключ доступа автоматически синхронизируется между устройствами через сервисы платформы',
-      qrHeading: 'QR-код синхронизации',
-      qrDescription:
-        'Сгенерируйте QR-код с адресами вашего кошелька, чтобы легко синхронизировать или проверить информацию об аккаунте на другом устройстве.',
-      generateQrButton: 'Сгенерировать QR-код синхронизации',
-      qrNote:
-        'Примечание: этот QR-код содержит только публичные адреса вашего кошелька. Он НЕ содержит ваши приватные ключи или фразу восстановления. Используйте его для проверки аккаунта на другом устройстве.',
       hideQrButton: 'Скрыть QR-код',
-      verifyHeading: 'Проверка данных QR-кода',
-      verifyDescription:
-        'Вставьте строку JSON из отсканированного QR-кода, чтобы проверить адреса кошелька.',
-      verifyPlaceholder:
-        'Вставьте сюда данные JSON (например, {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'Ошибка:',
-      parsedDataLabel: 'Разобранные данные:',
-      usernameFieldLabel: 'Имя пользователя:',
-      ethAddressLabel: 'Адрес Ethereum:',
-      index0FieldLabel: 'Индекс №0:',
-      mainTaggedLabel: 'С меткой MAIN:',
-      openbarTaggedLabel: 'С меткой OPENBAR:',
-      generatedLabel: 'Сгенерировано:',
-      linkWalletButton: 'Привязать этот кошелёк к аккаунту с ключом доступа',
-      linkExplanation:
-        'Что произойдёт при привязке: адреса кошелька будут сохранены как в localStorage, так и в IndexedDB, что создаст постоянную связь между вашим аккаунтом с ключом доступа и этим HD-кошельком. Это можно использовать для проверки или синхронизации данных кошелька между устройствами.',
-      howQrWorksHeading: 'Как работает синхронизация кошелька через QR-код',
-      qrStep1:
-        'Шаг 1: Сгенерируйте QR-код — на основном устройстве сгенерируйте QR-код, содержащий публичные адреса вашего кошелька. Этим QR-кодом безопасно делиться, так как он содержит только публичную информацию.',
-      qrStep2:
-        'Шаг 2: Отсканируйте и проверьте — на дополнительном устройстве отсканируйте QR-код с помощью любого приложения для сканирования QR-кодов или вручную скопируйте данные JSON, отображаемые в QR-коде.',
-      qrStep3:
-        'Шаг 3: Свяжите кошельки — вставьте данные JSON в поле проверки выше и нажмите «Привязать этот кошелёк». Это создаст постоянную связь между вашим аккаунтом с ключом доступа и адресами HD-кошелька.',
-      whatGetsStored:
-        'Что сохраняется: в localStorage и IndexedDB сохраняются только публичные адреса кошелька. Ваши приватные ключи и фраза восстановления остаются в безопасности и никогда не передаются и не сохраняются через этот механизм синхронизации.',
+      syncExportHeading: 'Экспорт для синхронизации',
+      syncExportDescription:
+        'Скачайте файл синхронизации, привязанный к вашему ключу доступа. На любом устройстве, куда синхронизировался ключ, импортируйте его одним подтверждением ключа, без пароля.',
+      syncExportButton: 'Экспортировать файл синхронизации',
+      syncExportNote:
+        'Открыть этот файл может только ваш ключ доступа. Ключи синхронизируются в пределах одной экосистемы (Apple или Google): для перехода между экосистемами используйте резервную копию с паролем.',
+      syncQrAlt: 'QR-код файла синхронизации',
+      syncLinkReady:
+        'Эта ссылка содержит файл синхронизации. Нажмите ниже и подтвердите ключом доступа, чтобы перенести кошелёк на это устройство.',
+      syncLinkButton: 'Синхронизировать кошелёк',
+      syncQrHint:
+        'Отсканируйте камерой другого устройства: genji откроется и синхронизирует кошелёк после одного подтверждения ключа доступа.',
+      syncImportHeading: 'Импорт файла синхронизации',
+      syncImportDescription:
+        'Перенесите кошелёк на это устройство с помощью файла синхронизации с другого устройства. Ваш ключ доступа уже должен быть синхронизирован сюда (Связка ключей iCloud или Google Password Manager).',
+      syncImportButton: 'Выбрать файл синхронизации',
+      syncImportPasswordTitle: 'Введите пароль синхронизации',
+      syncImportPasswordDescription:
+        'Этот файл защищён паролем. Введите пароль, выбранный при экспорте.',
+      syncImportedTitle: 'Кошелёк синхронизирован на это устройство',
+      syncImportErrorTitle: 'Синхронизация не удалась',
+      syncErrorInvalidFile: 'Это не файл синхронизации или резервной копии w3pk.',
+      syncErrorCredentialMismatch:
+        'Этот файл принадлежит другому ключу доступа. Выйдите из аккаунта или выберите ключ, с которого он был экспортирован.',
+      syncErrorPublicKeyMismatch:
+        'Этот файл не соответствует вашему ключу доступа. Возможно, он был изменён: экспортируйте новый.',
+      syncErrorUnsupportedBackup:
+        'Эта резервная копия не может настроить новое устройство. Восстановите её ниже или экспортируйте файл синхронизации на другом устройстве.',
+      syncErrorPrfUnsupported:
+        'Этот браузер не может открыть файл синхронизации без пароля. Попробуйте Chrome или Safari или экспортируйте резервную копию с паролем.',
+      syncErrorNoPasskey:
+        'Вашего ключа доступа ещё нет на этом устройстве. Включите Связку ключей iCloud или Google Password Manager, дождитесь синхронизации и попробуйте снова.',
+      syncHowHeading: 'Как работает синхронизация устройств',
+      syncStep1:
+        'Шаг 1: Экспорт - На устройстве с кошельком экспортируйте файл синхронизации. Его запирает ваш ключ доступа: без пароля, и без ключа файл бесполезен.',
+      syncStep2:
+        'Шаг 2: Перенос файла - Отправьте его на другое устройство (AirDrop, облачный диск или кабель) или отсканируйте его QR-код.',
+      syncStep3:
+        'Шаг 3: Импорт - На другом устройстве откройте Настройки, выберите файл и подтвердите ключом доступа. Вы войдёте с тем же кошельком.',
+      syncExportedTitle: 'Файл синхронизации скачан',
+      syncExportedPasswordDescription:
+        'Ваш ключ доступа не поддерживает синхронизацию без пароля, поэтому для этого файла понадобится выбранный вами пароль.',
+      syncPasswordModalTitle: 'Задайте пароль синхронизации',
+      syncPasswordModalDescription:
+        'Этот браузер или аутентификатор не может привязать файл только к ключу доступа. Выберите пароль: на другом устройстве вы введёте его вместе с ключом.',
       platformSyncHeading: 'Синхронизация ключа доступа на платформе',
       platformSyncIntro:
         'Учётные данные вашего ключа доступа автоматически синхронизируются между устройствами в рамках одной экосистемы:',
@@ -3629,10 +3607,6 @@ export const translations: Translations = {
       foundItemsText: n =>
         `Найдено ${n} ${ruPlural(n, 'элемент', 'элемента', 'элементов')} в localStorage`,
       noDataFound: 'Данные не найдены',
-      indexedDBModalTitle: 'Проверка IndexedDB',
-      foundDatabasesText: n =>
-        `Найдено ${n} ${ruPlural(n, 'база данных', 'базы данных', 'баз данных')}`,
-      noDatabasesFound: 'Базы данных, связанные с w3pk, не найдены',
 
       registrationSuccessTitle: 'Регистрация успешна',
       registrationSuccessDescription: 'Ваш новый аккаунт создан.',
@@ -3644,16 +3618,9 @@ export const translations: Translations = {
         `Найдено ${n} ${ruPlural(n, 'элемент', 'элемента', 'элементов')}. Прокрутите вниз, чтобы увидеть результаты.`,
       genericErrorTitle: 'Ошибка',
       failedInspectLocalStorage: 'Не удалось проверить localStorage',
-      indexedDBInspectedTitle: 'IndexedDB проверен',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `Найдено ${dbCount} ${ruPlural(dbCount, 'база данных', 'базы данных', 'баз данных')} и ${recordCount} ${ruPlural(recordCount, 'запись', 'записи', 'записей')}. Прокрутите вниз, чтобы увидеть результаты.`,
-      failedInspectIndexedDB: 'Не удалось проверить IndexedDB',
       itemClearedTitle: 'Элемент очищен',
       itemClearedDescription: key => `Удалён элемент «${key}» из localStorage`,
       failedClearItem: key => `Не удалось очистить «${key}»`,
-      recordClearedTitle: 'Запись очищена',
-      recordClearedDescription: (db, store) => `Запись удалена из ${db}/${store}`,
-      failedClearRecord: 'Не удалось очистить запись',
       errorLoadingAddressesTitle: 'Ошибка загрузки адресов',
       failedDeriveAddresses: 'Не удалось получить адреса кошелька',
       errorLoadingBackupStatusTitle: 'Ошибка загрузки статуса резервной копии',
@@ -3677,11 +3644,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'Кошелёк восстановлен и зарегистрирован!',
       walletRestoredRegisteredDescription: address =>
         `Кошелёк успешно восстановлен и зарегистрирован: ${address}`,
-      securityReportGeneratedTitle: 'Отчёт о безопасности сформирован',
-      securityReportGeneratedDescription: 'Просмотрите подробный анализ ниже',
-      inspectionFailedTitle: 'Ошибка проверки',
-      inspectionFailedDescription:
-        'Проверка хост-приложения не удалась. Вероятно, это связано с превышением лимита запросов Anthropic.',
       backupStatusRetrievedTitle: 'Статус резервной копии получен.',
       errorRetrievingStatusTitle: 'Ошибка получения статуса.',
       unexpectedErrorDescription: 'Произошла непредвиденная ошибка.',
@@ -3719,13 +3681,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'Доля хранителя загружена из файла. Нажмите «Добавить долю», чтобы добавить её.',
       failedReadGuardianFile: 'Не удалось прочитать файл доли хранителя',
-      cannotSaveTitle: 'Невозможно сохранить',
-      cannotSaveDescription: 'Некорректные данные QR-кода или пользователь не аутентифицирован',
-      walletLinkedTitle: 'Кошелёк успешно привязан!',
-      walletLinkedDescription: address =>
-        `Кошелёк ${address} привязан к вашему аккаунту с ключом доступа`,
-      errorSavingLinkTitle: 'Ошибка сохранения привязки кошелька',
-      failedSaveSyncData: 'Не удалось сохранить данные синхронизации кошелька',
       recoveryPasswordPrompt:
         'Введите пароль, который вы задали при настройке социального восстановления.\n\nЭтот пароль НЕ передавался хранителям — вы задали его при настройке.',
       recoveryUsernamePrompt: address =>
@@ -3735,6 +3690,8 @@ export const translations: Translations = {
       registerTitle: 'Регистрация нового аккаунта',
       walletInfoText:
         'Будет создан Ethereum-кошелёк, надёжно хранящийся на вашем устройстве и защищённый биометрией или PIN-кодом благодаря',
+      noPlatformAuthenticatorHint:
+        'Встроенный аутентификатор не найден: используйте телефон или ключ безопасности.',
       usernameLabel: 'Имя пользователя',
       usernamePlaceholder: 'Введите имя пользователя',
       usernameError:
@@ -3749,6 +3706,34 @@ export const translations: Translations = {
         'Ключ доступа не найден. Пожалуйста, зарегистрируйтесь, чтобы создать новый аккаунт.',
       alreadyRegisteredLink: 'Я уже зарегистрирован на другом устройстве',
     },
+    backup: {
+      title: 'Создайте резервную копию кошелька',
+      description:
+        'Ваш кошелёк хранится только в этом браузере. Если его данные будут удалены, резервный файл — единственный способ вернуть кошелёк.',
+      safariWarning:
+        'Safari удаляет данные этого сайта, если его не открывали 7 дней. Без резервной копии кошелёк будет потерян.',
+      iosWarning:
+        'На iPhone и iPad все браузеры удаляют данные этого сайта, если его не посещать 7 дней',
+      downloadButton: 'Скачать резервный файл',
+      passwordModalTitle: 'Защитите резервную копию',
+      passwordModalDescription:
+        'Выберите надёжный пароль. Он понадобится, чтобы восстановить кошелёк из этого файла.',
+      skipButton: 'Я понимаю риск',
+      backupCreatedTitle: 'Резервная копия скачана',
+      backupFailedTitle: 'Не удалось создать резервную копию',
+    },
+    homeScreen: {
+      title: 'Сохраните кошелёк на этом устройстве',
+      description:
+        'Приложение на экране «Домой» сохраняет свои данные. В браузере вернуть кошелёк можно только из файла резервной копии.',
+      addButton: 'На экран «Домой»',
+      backupButton: 'Резервная копия',
+      stepsTitle: 'Добавить на экран «Домой»',
+      step1: 'Нажмите кнопку «Поделиться».',
+      step2: 'Нажмите «На экран „Домой“».',
+      step3: 'Откройте приложение с нового значка и создайте кошелёк там.',
+      backButton: 'Назад',
+    },
     passwordModal: {
       passwordLabel: 'Пароль',
       passwordPlaceholder: 'Введите пароль',
@@ -3761,12 +3746,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'Произошла непредвиденная ошибка.',
       requirementsNotMet: 'Пароль не соответствует всем требованиям',
       strongPassword: 'Надёжный пароль!',
-      mustInclude: 'Пароль должен содержать:',
-      reqMinLength: 'Не менее 12 символов',
-      reqUpperCase: 'Одну заглавную букву',
-      reqLowerCase: 'Одну строчную букву',
-      reqNumber: 'Одну цифру',
-      reqSpecialChar: 'Один специальный символ',
+      mustInclude: 'Пароль должен быть:',
+      reqMinLength: 'Не короче 15 символов: подойдёт фраза',
+      reqNoRepeat: 'Не одним повторяющимся символом',
+      reqNotCommon: 'Не распространённым паролем',
       satisfied: ' (выполнено)',
       required: ' (требуется)',
       submit: 'Отправить',
@@ -3840,10 +3823,10 @@ export const translations: Translations = {
         'Firefox Mobile - ⚠️ Evitar (problemas conhecidos de persistência de chaves de acesso)',
 
       restoreBackupHeading: 'Restaurar a partir de cópia de segurança',
+      restoreBackupSyncHint:
+        'Se a sua passkey já foi sincronizada neste dispositivo, a restauração a usa. Caso contrário, você criará uma nova passkey para a carteira restaurada. Para mover uma carteira sem senha, use um arquivo de sincronização.',
       restoreBackupDescription:
         'Se tiver um ficheiro de cópia de segurança, pode restaurar a sua carteira sem iniciar sessão primeiro.',
-      restoreBackupSyncHint:
-        'Para sincronizar com outro dispositivo: inicie sessão no seu outro dispositivo, vá a Configurações → Criar cópia de segurança para transferir um ficheiro de cópia de segurança encriptado, depois carregue-o aqui e introduza a mesma senha.',
       restoringText: 'A restaurar...',
       restoreBackupButton: 'Restaurar a partir de ficheiro de cópia de segurança',
 
@@ -3851,32 +3834,11 @@ export const translations: Translations = {
       debugStorageDescription: 'Inspecione o armazenamento do navegador e os registos de atividade',
       inspectingText: 'A inspecionar...',
       inspectLocalStorageButton: 'Inspecionar LocalStorage',
-      inspectIndexedDBButton: 'Inspecionar IndexedDB',
-
-      inspectSecurityDescriptionSmall:
-        'Analise esta aplicação quanto a métodos de transação e assinatura.',
-      inspectSecurityButton: 'Inspecionar segurança',
-      consoleCommandLabel: 'Comando da consola:',
-      clearReportButton: 'Limpar relatório',
-      filesAnalyzedLabel: 'Ficheiros analisados:',
-      inspectionHeadingBig: 'Inspeção de segurança',
-      inspectSecurityDescriptionBig:
-        'Gere um relatório de segurança abrangente desta aplicação. O relatório irá analisar todos os métodos de transação e assinatura.',
-      inspectNowButton: 'Inspecionar agora',
-      consoleHintText: 'Também pode executar await w3pk.inspectNow() na consola do navegador',
-      securityReportHeading: 'Relatório de segurança',
-      appUrlLabel: 'URL da aplicação:',
 
       localStorageResultsHeading: 'Resultados do LocalStorage',
       itemsCount: n => `${n} itens`,
       encryptedBadge: 'Encriptado',
       clearItemAria: 'Limpar item',
-      indexedDBResultsHeading: 'Resultados do IndexedDB',
-      databasesCount: n => `${n} base(s) de dados`,
-      storesLabel: 'Armazenamentos:',
-      recordsLabel: 'Registos:',
-      clearRecordAria: 'Limpar registo',
-      storeKeyLabel: (store, key) => `Armazenamento: ${store} | Chave: ${key}`,
 
       currentAccountHeading: 'Conta atual',
       currentAccountDescription: 'Esta é a conta com sessão iniciada atualmente.',
@@ -3887,16 +3849,16 @@ export const translations: Translations = {
 
       sessionHeading: 'Manter a minha sessão ativa',
       sessionDescription:
-        'Defina durante quanto tempo a sua sessão deve permanecer ativa sem pedir a chave de acesso. Quando expirar, a sua próxima visita pedirá a sua biometria/PIN uma vez e iniciará uma nova sessão — por isso, isto também determina a frequência com que volta a autenticar-se. Esta configuração aplica-se apenas aos modos STANDARD e YOLO. Os modos STRICT e PRIMARY exigem sempre uma nova autenticação e não utilizam sessões persistentes.',
+        'Defina durante quanto tempo a sua sessão deve permanecer ativa sem pedir a chave de acesso. Quando expirar, a sua próxima visita pedirá a sua chave de acesso uma vez e iniciará uma nova sessão — por isso, isto também determina a frequência com que volta a autenticar-se. Esta configuração aplica-se apenas aos modos STANDARD e YOLO. Os modos STRICT e PRIMARY exigem sempre uma nova autenticação e não utilizam sessões persistentes.',
       noStoredSessionText:
-        'Nenhuma sessão armazenada neste dispositivo. O seu autenticador não parece suportar a extensão WebAuthn PRF, que o w3pk requer para manter as sessões ativas com segurança. A sua sessão permanecerá apenas em memória: termina quando fechar o separador, e cada visita pedirá a sua biometria/PIN. Tudo o resto funciona normalmente.',
+        'Nenhuma sessão armazenada neste dispositivo. O seu autenticador não parece suportar a extensão WebAuthn PRF, que o w3pk requer para manter as sessões ativas com segurança. A sua sessão permanecerá apenas em memória: termina quando fechar o separador, e cada visita pedirá a sua chave de acesso. Tudo o resto funciona normalmente.',
       sessionDurationLabel: 'Duração da sessão',
       dayLabel: n => `${n} dia${n > 1 ? 's' : ''}`,
       oneDayLabel: '1 dia',
       thirtyDaysLabel: '30 dias',
       sessionHowItWorksTitle: 'Como funciona:',
       sessionHowItWorksText:
-        'Sempre que inicia sessão com a sua biometria/PIN, o seu autenticador liberta um segredo protegido por hardware (extensão WebAuthn PRF) que encripta a sua sessão neste dispositivo — nada armazenado em disco consegue recriar essa chave. A contagem decrescente recomeça a cada início de sessão real: com uma duração de 7 dias, iniciar sessão hoje mantém-no autenticado até 7 dias a partir de hoje, altura em que lhe será pedido uma vez e a sessão será reencriptada com uma nova chave.',
+        'Sempre que inicia sessão com a sua chave de acesso, o seu autenticador liberta um segredo protegido por hardware (extensão WebAuthn PRF) que encripta a sua sessão neste dispositivo — nada armazenado em disco consegue recriar essa chave. A contagem decrescente recomeça a cada início de sessão real: com uma duração de 7 dias, iniciar sessão hoje mantém-no autenticado até 7 dias a partir de hoje, altura em que lhe será pedido uma vez e a sessão será reencriptada com uma nova chave.',
 
       walletBackupHeading: 'Cópia de segurança da carteira',
       walletBackupDescription:
@@ -3910,6 +3872,8 @@ export const translations: Translations = {
       loadingText: 'A carregar...',
       securityStatusHeading: 'Estado de segurança',
       checkingStatusText: 'A verificar o estado da cópia de segurança...',
+      evictionRiskWarning:
+        'Este navegador pode apagar a sua carteira após 7 dias sem visitas. Mantenha um backup ou adicione o genji à tela inicial.',
       refreshHeading: 'Atualizar estado da cópia de segurança',
       refreshDescription:
         'Recarregue a sua pontuação de segurança atual e as recomendações de cópia de segurança',
@@ -3928,7 +3892,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'O segredo principal da sua carteira (a frase mnemónica) é gerado e encriptado inteiramente no seu dispositivo. O processo de cópia de segurança recupera estes dados encriptados do armazenamento local do seu navegador utilizando a sua senha, e depois empacota-os num ficheiro seguro para transferir.',
       aboutBackupPara2:
-        'A chave de encriptação da sua carteira é derivada a partir de uma assinatura WebAuthn, que requer a sua autenticação biométrica (impressão digital, leitura facial) ou o PIN do dispositivo. Isto significa que, mesmo que alguém obtenha acesso aos dados encriptados armazenados no seu navegador, não os conseguirá desencriptar sem o seu dispositivo físico e autenticação.',
+        'A chave de encriptação da sua carteira é derivada a partir de uma assinatura WebAuthn da sua chave de acesso, que reside no seu autenticador: este dispositivo, o seu telemóvel ou uma chave de segurança. Isto significa que, mesmo que alguém obtenha acesso aos dados encriptados armazenados no seu navegador, não os conseguirá desencriptar sem o seu autenticador.',
       aboutBackupPara3:
         'O seu ficheiro de cópia de segurança é encriptado utilizando AES-256-GCM com uma chave derivada da senha que fornecer. Guarde este ficheiro em segurança e memorize a sua senha.',
       aboutBackupWarning:
@@ -3979,9 +3943,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `A sua carteira está protegida com recuperação de ${threshold}-de-${count} guardiões`,
       generateInviteButton: 'Gerar convite',
-      removeConfigQuestion:
-        'Todos os guardiões têm as suas partilhas? Agora pode remover a configuração dos guardiões do armazenamento local. As partilhas estão guardadas em segurança com os seus guardiões e podem ser utilizadas para recuperação a qualquer momento.',
-      removeConfigButton: 'Limpar configuração dos guardiões do armazenamento local',
+      sharesNotStoredNotice:
+        'Transfira agora o convite de cada guardião: as partilhas não são guardadas neste dispositivo e são descartadas ao sair desta página. Para mudar de guardiões, configure novamente a recuperação social.',
       invitationHeading: 'Convite do guardião',
       downloadInviteButton: 'Transferir convite',
       sendInviteText: name => `Envie este convite para ${name} através de um canal seguro`,
@@ -3989,38 +3952,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'Sincronização de dispositivos',
       deviceSyncDescription:
         'A sua chave de acesso sincroniza automaticamente entre dispositivos utilizando serviços da plataforma',
-      qrHeading: 'Código QR de sincronização',
-      qrDescription:
-        'Gere um código QR contendo os endereços da sua carteira para sincronizar ou verificar facilmente as informações da sua conta noutro dispositivo.',
-      generateQrButton: 'Gerar código QR de sincronização',
-      qrNote:
-        'Nota: este código QR contém apenas os endereços públicos da sua carteira. NÃO contém as suas chaves privadas nem a frase de recuperação. Utilize-o para verificar a sua conta noutro dispositivo.',
       hideQrButton: 'Ocultar código QR',
-      verifyHeading: 'Verificar dados do código QR',
-      verifyDescription:
-        'Cole a cadeia JSON de um código QR digitalizado para verificar os endereços da carteira.',
-      verifyPlaceholder:
-        'Cole aqui os dados JSON (por exemplo, {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'Erro:',
-      parsedDataLabel: 'Dados analisados:',
-      usernameFieldLabel: 'Nome de usuário:',
-      ethAddressLabel: 'Endereço Ethereum:',
-      index0FieldLabel: 'Índice #0:',
-      mainTaggedLabel: 'Etiqueta MAIN:',
-      openbarTaggedLabel: 'Etiqueta OPENBAR:',
-      generatedLabel: 'Gerado:',
-      linkWalletButton: 'Associar esta carteira à sua conta de chave de acesso',
-      linkExplanation:
-        'O que acontece quando associa: isto guardará os endereços da carteira tanto no localStorage como no IndexedDB, criando uma ligação persistente entre a sua conta de chave de acesso e esta carteira HD. Pode utilizar isto para verificar ou sincronizar dados da carteira entre dispositivos.',
-      howQrWorksHeading: 'Como funciona a sincronização da carteira por código QR',
-      qrStep1:
-        'Passo 1: Gerar código QR - No seu dispositivo principal, gere um código QR contendo os endereços públicos da sua carteira. Este código QR é seguro de partilhar, pois contém apenas informação pública.',
-      qrStep2:
-        'Passo 2: Digitalizar e verificar - No seu dispositivo secundário, digitalize o código QR utilizando qualquer aplicação leitora de códigos QR, ou copie manualmente os dados JSON apresentados no código QR.',
-      qrStep3:
-        'Passo 3: Associar carteiras - Cole os dados JSON na área de verificação acima e clique em "Associar esta carteira". Isto cria uma ligação persistente entre a sua conta de chave de acesso e os endereços da carteira HD.',
-      whatGetsStored:
-        'O que é armazenado: apenas os endereços públicos da carteira são armazenados no localStorage e no IndexedDB. As suas chaves privadas e a frase de recuperação permanecem seguras e nunca são transmitidas ou armazenadas através deste mecanismo de sincronização.',
+      syncExportHeading: 'Exportar para sincronizar',
+      syncExportDescription:
+        'Baixe um arquivo de sincronização vinculado à sua passkey. Em qualquer dispositivo onde sua passkey foi sincronizada, importe-o com uma única solicitação de passkey e sem senha.',
+      syncExportButton: 'Exportar arquivo de sincronização',
+      syncExportNote:
+        'Só a sua passkey pode abrir este arquivo. Passkeys sincronizam dentro de um ecossistema (Apple ou Google): para mudar de ecossistema, use um backup com senha.',
+      syncQrAlt: 'QR code do arquivo de sincronização',
+      syncLinkReady:
+        'Este link traz um arquivo de sincronização. Toque abaixo e confirme com a sua passkey para trazer a carteira para este dispositivo.',
+      syncLinkButton: 'Sincronizar esta carteira',
+      syncQrHint:
+        'Escaneie com a câmera do seu outro dispositivo: o genji abre e sincroniza a sua carteira após uma solicitação de passkey.',
+      syncImportHeading: 'Importar arquivo de sincronização',
+      syncImportDescription:
+        'Traga a sua carteira para este dispositivo com um arquivo de sincronização de outro dispositivo. A sua passkey já precisa estar sincronizada aqui (Chaves do iCloud ou Gerenciador de Senhas do Google).',
+      syncImportButton: 'Escolher arquivo de sincronização',
+      syncImportPasswordTitle: 'Digite a senha de sincronização',
+      syncImportPasswordDescription:
+        'Este arquivo é protegido por senha. Digite a senha que você escolheu ao exportá-lo.',
+      syncImportedTitle: 'Carteira sincronizada neste dispositivo',
+      syncImportErrorTitle: 'Falha na sincronização',
+      syncErrorInvalidFile: 'Este não é um arquivo de sincronização ou backup do w3pk.',
+      syncErrorCredentialMismatch:
+        'Este arquivo pertence a outra passkey. Saia da conta ou escolha a passkey que o exportou.',
+      syncErrorPublicKeyMismatch:
+        'Este arquivo não corresponde à sua passkey. Ele pode ter sido alterado: exporte um novo.',
+      syncErrorUnsupportedBackup:
+        'Este backup não consegue configurar um novo dispositivo. Restaure-o abaixo ou exporte um arquivo de sincronização no seu outro dispositivo.',
+      syncErrorPrfUnsupported:
+        'Este navegador não consegue abrir um arquivo de sincronização sem senha. Tente o Chrome ou o Safari, ou exporte um backup com senha.',
+      syncErrorNoPasskey:
+        'A sua passkey ainda não está neste dispositivo. Ative as Chaves do iCloud ou o Gerenciador de Senhas do Google, aguarde a sincronização e tente novamente.',
+      syncHowHeading: 'Como funciona a sincronização de dispositivos',
+      syncStep1:
+        'Passo 1: Exportar - No dispositivo que tem a sua carteira, exporte um arquivo de sincronização. A sua passkey o bloqueia: sem senha, e o arquivo é inútil sem a passkey.',
+      syncStep2:
+        'Passo 2: Mover o arquivo - Envie-o para o seu outro dispositivo (AirDrop, um drive na nuvem ou um cabo), ou escaneie o QR code.',
+      syncStep3:
+        'Passo 3: Importar - No outro dispositivo, abra as Configurações, escolha o arquivo e confirme com a sua passkey. Você estará conectado com a mesma carteira.',
+      syncExportedTitle: 'Arquivo de sincronização baixado',
+      syncExportedPasswordDescription:
+        'A sua passkey não suporta sincronização sem senha, então este arquivo precisa da senha que você escolheu.',
+      syncPasswordModalTitle: 'Defina uma senha de sincronização',
+      syncPasswordModalDescription:
+        'Este navegador ou autenticador não consegue vincular o arquivo apenas à sua passkey. Escolha uma senha: você vai digitá-la com a sua passkey no outro dispositivo.',
       platformSyncHeading: 'Sincronização de plataforma da chave de acesso',
       platformSyncIntro:
         'As suas credenciais de chave de acesso sincronizam automaticamente entre dispositivos dentro do mesmo ecossistema:',
@@ -4067,9 +4044,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'Inspeção do LocalStorage',
       foundItemsText: n => `Encontrados ${n} itens no localStorage`,
       noDataFound: 'Nenhum dado encontrado',
-      indexedDBModalTitle: 'Inspeção do IndexedDB',
-      foundDatabasesText: n => `Encontrada(s) ${n} base(s) de dados`,
-      noDatabasesFound: 'Nenhuma base de dados relacionada com w3pk encontrada',
 
       registrationSuccessTitle: 'Registo concluído com sucesso',
       registrationSuccessDescription: 'A sua nova conta foi criada.',
@@ -4081,16 +4055,9 @@ export const translations: Translations = {
         `Encontrados ${n} itens. Desça para ver os resultados.`,
       genericErrorTitle: 'Erro',
       failedInspectLocalStorage: 'Falha ao inspecionar o localStorage',
-      indexedDBInspectedTitle: 'IndexedDB inspecionado',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `Encontrada(s) ${dbCount} base(s) de dados com ${recordCount} registo(s). Desça para ver os resultados.`,
-      failedInspectIndexedDB: 'Falha ao inspecionar o IndexedDB',
       itemClearedTitle: 'Item removido',
       itemClearedDescription: key => `"${key}" removido do localStorage`,
       failedClearItem: key => `Falha ao limpar "${key}"`,
-      recordClearedTitle: 'Registo removido',
-      recordClearedDescription: (db, store) => `Registo removido de ${db}/${store}`,
-      failedClearRecord: 'Falha ao limpar o registo',
       errorLoadingAddressesTitle: 'Erro ao carregar endereços',
       failedDeriveAddresses: 'Falha ao derivar os endereços da carteira',
       errorLoadingBackupStatusTitle: 'Erro ao carregar o estado da cópia de segurança',
@@ -4114,11 +4081,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'Carteira restaurada e registada!',
       walletRestoredRegisteredDescription: address =>
         `Carteira restaurada e registada com sucesso: ${address}`,
-      securityReportGeneratedTitle: 'Relatório de segurança gerado',
-      securityReportGeneratedDescription: 'Veja a análise detalhada abaixo',
-      inspectionFailedTitle: 'Falha na inspeção',
-      inspectionFailedDescription:
-        'A inspeção da aplicação anfitriã não funcionou. Provavelmente devido ao limite de pedidos da Anthropic ter sido atingido.',
       backupStatusRetrievedTitle: 'Estado da cópia de segurança obtido.',
       errorRetrievingStatusTitle: 'Erro ao obter o estado.',
       unexpectedErrorDescription: 'Ocorreu um erro inesperado.',
@@ -4156,13 +4118,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'Partilha do guardião carregada a partir do ficheiro. Clique em "Adicionar partilha" para a adicionar.',
       failedReadGuardianFile: 'Falha ao ler o ficheiro de partilha do guardião',
-      cannotSaveTitle: 'Não é possível guardar',
-      cannotSaveDescription: 'Dados de QR inválidos ou utilizador não autenticado',
-      walletLinkedTitle: 'Carteira associada com sucesso!',
-      walletLinkedDescription: address =>
-        `Carteira ${address} associada à sua conta de chave de acesso`,
-      errorSavingLinkTitle: 'Erro ao guardar a associação da carteira',
-      failedSaveSyncData: 'Falha ao guardar os dados de sincronização da carteira',
       recoveryPasswordPrompt:
         'Introduza a senha que definiu ao configurar a recuperação social.\n\nEsta senha NÃO foi partilhada com os guardiões - foi definida por si durante a configuração.',
       recoveryUsernamePrompt: address =>
@@ -4172,6 +4127,8 @@ export const translations: Translations = {
       registerTitle: 'Registrar nova conta',
       walletInfoText:
         'Uma carteira Ethereum será criada e armazenada com segurança no seu dispositivo, protegida por sua biometria ou PIN graças ao',
+      noPlatformAuthenticatorHint:
+        'Nenhum autenticador integrado encontrado: use o seu telemóvel ou uma chave de segurança.',
       usernameLabel: 'Nome de usuário',
       usernamePlaceholder: 'Digite seu nome de usuário',
       usernameError:
@@ -4186,6 +4143,34 @@ export const translations: Translations = {
         'Nenhuma chave de acesso encontrada. Por favor, registre-se para criar uma nova conta.',
       alreadyRegisteredLink: 'Já me registrei em outro dispositivo',
     },
+    backup: {
+      title: 'Faça uma cópia de segurança da sua carteira',
+      description:
+        'A sua carteira está guardada apenas neste navegador. Se os dados forem apagados, um ficheiro de cópia de segurança é a única forma de a recuperar.',
+      safariWarning:
+        'O Safari apaga os dados deste site após 7 dias sem visita. Sem uma cópia de segurança, perderia a sua carteira.',
+      iosWarning:
+        'No iPhone e iPad, todos os navegadores apagam os dados deste site após 7 dias sem visita',
+      downloadButton: 'Transferir um ficheiro de cópia de segurança',
+      passwordModalTitle: 'Proteja a sua cópia de segurança',
+      passwordModalDescription:
+        'Escolha uma palavra-passe forte. Vai precisar dela para restaurar a carteira a partir deste ficheiro.',
+      skipButton: 'Compreendo o risco',
+      backupCreatedTitle: 'Cópia de segurança transferida',
+      backupFailedTitle: 'Falha na cópia de segurança',
+    },
+    homeScreen: {
+      title: 'Mantenha a sua carteira neste dispositivo',
+      description:
+        'Uma app adicionada ao ecrã principal mantém os seus dados. No navegador, um ficheiro de cópia de segurança é a única forma de recuperar a sua carteira.',
+      addButton: 'Adicionar ao ecrã principal',
+      backupButton: 'Fazer cópia de segurança',
+      stepsTitle: 'Adicionar ao ecrã principal',
+      step1: 'Toque no botão Partilhar.',
+      step2: 'Toque em "Adicionar ao ecrã principal".',
+      step3: 'Abra a app a partir do novo ícone e crie lá a sua carteira.',
+      backButton: 'Voltar',
+    },
     passwordModal: {
       passwordLabel: 'Senha',
       passwordPlaceholder: 'Digite sua senha',
@@ -4198,12 +4183,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'Ocorreu um erro inesperado.',
       requirementsNotMet: 'A senha não atende a todos os requisitos',
       strongPassword: 'Senha forte!',
-      mustInclude: 'A senha deve incluir:',
-      reqMinLength: 'Pelo menos 12 caracteres',
-      reqUpperCase: 'Uma letra maiúscula',
-      reqLowerCase: 'Uma letra minúscula',
-      reqNumber: 'Um número',
-      reqSpecialChar: 'Um caractere especial',
+      mustInclude: 'A palavra-passe deve ser:',
+      reqMinLength: 'Pelo menos 15 caracteres: uma frase serve',
+      reqNoRepeat: 'Não um único carácter repetido',
+      reqNotCommon: 'Não uma palavra-passe comum',
       satisfied: ' (satisfeito)',
       required: ' (obrigatório)',
       submit: 'Enviar',
@@ -4276,10 +4259,10 @@ export const translations: Translations = {
       firefoxMobileNote: 'Firefox Mobile - ⚠️ گریز کریں (پاس کی برقراری کے معلوم مسائل)',
 
       restoreBackupHeading: 'بیک اپ سے بحال کریں',
+      restoreBackupSyncHint:
+        'اگر آپ کی پاس کی اس ڈیوائس پر پہلے سے سنک ہے تو ریسٹور اسی کو استعمال کرے گا۔ ورنہ آپ ریسٹور کیے گئے والیٹ کے لیے نئی پاس کی بنائیں گے۔ بغیر پاس ورڈ والیٹ منتقل کرنے کے لیے سنک فائل استعمال کریں۔',
       restoreBackupDescription:
         'اگر آپ کے پاس بیک اپ فائل ہے، تو آپ پہلے لاگ ان کیے بغیر اپنا والیٹ بحال کر سکتے ہیں۔',
-      restoreBackupSyncHint:
-        'کسی دوسرے ڈیوائس کے ساتھ مطابقت پذیر کرنے کے لیے: اپنے دوسرے ڈیوائس پر لاگ ان کریں، ترتیبات → بیک اپ بنائیں پر جا کر ایک خفیہ کردہ بیک اپ فائل ڈاؤن لوڈ کریں، پھر اسے یہاں اپ لوڈ کریں اور وہی پاس ورڈ درج کریں۔',
       restoringText: 'بحال ہو رہا ہے...',
       restoreBackupButton: 'بیک اپ فائل سے بحال کریں',
 
@@ -4287,32 +4270,11 @@ export const translations: Translations = {
       debugStorageDescription: 'براؤزر اسٹوریج اور سرگرمی لاگز کا معائنہ کریں',
       inspectingText: 'معائنہ ہو رہا ہے...',
       inspectLocalStorageButton: 'LocalStorage کا معائنہ کریں',
-      inspectIndexedDBButton: 'IndexedDB کا معائنہ کریں',
-
-      inspectSecurityDescriptionSmall:
-        'ٹرانزیکشن اور دستخطی طریقوں کے لیے اس ایپلیکیشن کا تجزیہ کریں۔',
-      inspectSecurityButton: 'سیکیورٹی کا معائنہ کریں',
-      consoleCommandLabel: 'کنسول کمانڈ:',
-      clearReportButton: 'رپورٹ صاف کریں',
-      filesAnalyzedLabel: 'تجزیہ شدہ فائلیں:',
-      inspectionHeadingBig: 'سیکیورٹی معائنہ',
-      inspectSecurityDescriptionBig:
-        'اس ایپ کی ایک جامع سیکیورٹی رپورٹ تیار کریں۔ رپورٹ تمام ٹرانزیکشن اور دستخطی طریقوں کا تجزیہ کرے گی۔',
-      inspectNowButton: 'ابھی معائنہ کریں',
-      consoleHintText: 'آپ براؤزر کنسول میں await w3pk.inspectNow() بھی چلا سکتے ہیں',
-      securityReportHeading: 'سیکیورٹی رپورٹ',
-      appUrlLabel: 'ایپ URL:',
 
       localStorageResultsHeading: 'LocalStorage نتائج',
       itemsCount: n => `${n} اشیاء`,
       encryptedBadge: 'خفیہ کردہ',
       clearItemAria: 'آئٹم صاف کریں',
-      indexedDBResultsHeading: 'IndexedDB نتائج',
-      databasesCount: n => `${n} ڈیٹا بیس`,
-      storesLabel: 'اسٹورز:',
-      recordsLabel: 'ریکارڈز:',
-      clearRecordAria: 'ریکارڈ صاف کریں',
-      storeKeyLabel: (store, key) => `اسٹور: ${store} | کلید: ${key}`,
 
       currentAccountHeading: 'موجودہ اکاؤنٹ',
       currentAccountDescription: 'یہ آپ کا فی الحال لاگ ان اکاؤنٹ ہے۔',
@@ -4323,16 +4285,16 @@ export const translations: Translations = {
 
       sessionHeading: 'میرا سیشن فعال رکھیں',
       sessionDescription:
-        'مقرر کریں کہ آپ کا سیشن بغیر پاس کی پرامپٹ کے کتنی دیر فعال رہے۔ جب یہ ختم ہو جائے، تو آپ کا اگلا وزٹ ایک بار آپ کا بائیومیٹرک/پن مانگے گا اور ایک نیا سیشن شروع کرے گا — یعنی یہ بھی طے کرتا ہے کہ آپ کتنی بار دوبارہ توثیق کرتے ہیں۔ یہ ترتیب صرف STANDARD اور YOLO موڈز پر لاگو ہوتی ہے۔ STRICT اور PRIMARY موڈز ہمیشہ نئی توثیق کا تقاضا کرتے ہیں اور مستقل سیشنز استعمال نہیں کرتے۔',
+        'مقرر کریں کہ آپ کا سیشن بغیر پاس کی پرامپٹ کے کتنی دیر فعال رہے۔ جب یہ ختم ہو جائے، تو آپ کا اگلا وزٹ ایک بار آپ کی پاس کی مانگے گا اور ایک نیا سیشن شروع کرے گا — یعنی یہ بھی طے کرتا ہے کہ آپ کتنی بار دوبارہ توثیق کرتے ہیں۔ یہ ترتیب صرف STANDARD اور YOLO موڈز پر لاگو ہوتی ہے۔ STRICT اور PRIMARY موڈز ہمیشہ نئی توثیق کا تقاضا کرتے ہیں اور مستقل سیشنز استعمال نہیں کرتے۔',
       noStoredSessionText:
-        'اس ڈیوائس پر کوئی محفوظ شدہ سیشن نہیں ہے۔ ایسا لگتا ہے کہ آپ کا آتھینٹیکیٹر WebAuthn PRF ایکسٹینشن کو سپورٹ نہیں کرتا، جو w3pk کو سیشنز کو محفوظ طریقے سے فعال رکھنے کے لیے درکار ہے۔ آپ کا سیشن صرف میموری میں رہے گا: یہ ٹیب بند کرنے پر ختم ہو جاتا ہے، اور ہر وزٹ پر آپ کا بائیومیٹرک/پن مانگا جائے گا۔ باقی سب کچھ معمول کے مطابق کام کرتا ہے۔',
+        'اس ڈیوائس پر کوئی محفوظ شدہ سیشن نہیں ہے۔ ایسا لگتا ہے کہ آپ کا آتھینٹیکیٹر WebAuthn PRF ایکسٹینشن کو سپورٹ نہیں کرتا، جو w3pk کو سیشنز کو محفوظ طریقے سے فعال رکھنے کے لیے درکار ہے۔ آپ کا سیشن صرف میموری میں رہے گا: یہ ٹیب بند کرنے پر ختم ہو جاتا ہے، اور ہر وزٹ پر آپ کی پاس کی مانگی جائے گی۔ باقی سب کچھ معمول کے مطابق کام کرتا ہے۔',
       sessionDurationLabel: 'سیشن کا دورانیہ',
       dayLabel: n => `${n} دن`,
       oneDayLabel: '1 دن',
       thirtyDaysLabel: '30 دن',
       sessionHowItWorksTitle: 'یہ کیسے کام کرتا ہے:',
       sessionHowItWorksText:
-        'ہر بار جب آپ اپنے بائیومیٹرک/پن سے لاگ ان کرتے ہیں، آپ کا آتھینٹیکیٹر ایک ہارڈویئر بیسڈ سیکرٹ (WebAuthn PRF ایکسٹینشن) جاری کرتا ہے جو اس ڈیوائس پر آپ کے سیشن کو خفیہ کرتا ہے — ڈسک پر محفوظ کوئی بھی چیز اس کلید کو دوبارہ نہیں بنا سکتی۔ ہر حقیقی لاگ ان پر کاؤنٹ ڈاؤن نئے سرے سے شروع ہوتا ہے: 7 دن کے دورانیے کے ساتھ، آج لاگ ان کرنے سے آپ آج سے 7 دن تک سائن ان رہیں گے، جس کے بعد آپ سے ایک بار پرامپٹ کیا جائے گا اور سیشن کو ایک نئی کلید کے تحت دوبارہ خفیہ کیا جائے گا۔',
+        'ہر بار جب آپ اپنی پاس کی سے لاگ ان کرتے ہیں، آپ کا آتھینٹیکیٹر ایک ہارڈویئر بیسڈ سیکرٹ (WebAuthn PRF ایکسٹینشن) جاری کرتا ہے جو اس ڈیوائس پر آپ کے سیشن کو خفیہ کرتا ہے — ڈسک پر محفوظ کوئی بھی چیز اس کلید کو دوبارہ نہیں بنا سکتی۔ ہر حقیقی لاگ ان پر کاؤنٹ ڈاؤن نئے سرے سے شروع ہوتا ہے: 7 دن کے دورانیے کے ساتھ، آج لاگ ان کرنے سے آپ آج سے 7 دن تک سائن ان رہیں گے، جس کے بعد آپ سے ایک بار پرامپٹ کیا جائے گا اور سیشن کو ایک نئی کلید کے تحت دوبارہ خفیہ کیا جائے گا۔',
 
       walletBackupHeading: 'والیٹ بیک اپ',
       walletBackupDescription:
@@ -4345,6 +4307,8 @@ export const translations: Translations = {
       loadingText: 'لوڈ ہو رہا ہے...',
       securityStatusHeading: 'سیکیورٹی کی صورتحال',
       checkingStatusText: 'بیک اپ کی صورتحال چیک ہو رہی ہے...',
+      evictionRiskWarning:
+        '7 دن تک نہ آنے پر یہ براؤزر آپ کا والیٹ مٹا سکتا ہے۔ بیک اپ رکھیں، یا genji کو ہوم اسکرین پر شامل کریں۔',
       refreshHeading: 'بیک اپ کی صورتحال تازہ کریں',
       refreshDescription: 'اپنا موجودہ سیکیورٹی سکور اور بیک اپ تجاویز دوبارہ لوڈ کریں',
       checkingText: 'چیک ہو رہا ہے...',
@@ -4360,7 +4324,7 @@ export const translations: Translations = {
       aboutBackupPara1:
         'آپ کے والیٹ کا بنیادی سیکرٹ (mnemonic فقرہ) مکمل طور پر آپ کے ڈیوائس پر تیار اور خفیہ کیا جاتا ہے۔ بیک اپ کا عمل آپ کے پاس ورڈ کے استعمال سے یہ خفیہ کردہ ڈیٹا آپ کے براؤزر کے لوکل اسٹوریج سے حاصل کرتا ہے، پھر اسے ڈاؤن لوڈ کے لیے ایک محفوظ فائل میں پیک کرتا ہے۔',
       aboutBackupPara2:
-        'آپ کے والیٹ کی خفیہ کاری کی کلید ایک WebAuthn دستخط کے ذریعے حاصل کی جاتی ہے، جس کے لیے آپ کی بائیومیٹرک توثیق (فنگر پرنٹ، فیس اسکین) یا ڈیوائس پن درکار ہوتا ہے۔ اس کا مطلب یہ ہے کہ اگر کوئی آپ کے براؤزر میں محفوظ خفیہ کردہ ڈیٹا تک رسائی حاصل کر بھی لے، تو وہ آپ کے حقیقی ڈیوائس اور توثیق کے بغیر اسے ڈی کرپٹ نہیں کر سکتا۔',
+        'آپ کے والیٹ کی خفیہ کاری کی کلید آپ کی پاس کی سے بنے ایک WebAuthn دستخط کے ذریعے حاصل کی جاتی ہے، جو آپ کے تصدیق کنندہ پر موجود ہوتی ہے: یہ ڈیوائس، آپ کا فون یا ایک سیکیورٹی کی۔ اس کا مطلب یہ ہے کہ اگر کوئی آپ کے براؤزر میں محفوظ خفیہ کردہ ڈیٹا تک رسائی حاصل کر بھی لے، تو وہ آپ کے تصدیق کنندہ کے بغیر اسے ڈی کرپٹ نہیں کر سکتا۔',
       aboutBackupPara3:
         'آپ کی بیک اپ فائل AES-256-GCM کا استعمال کرتے ہوئے اس کلید سے خفیہ کی جاتی ہے جو آپ کے فراہم کردہ پاس ورڈ سے حاصل کی جاتی ہے۔ اس فائل کو محفوظ طریقے سے رکھیں اور اپنا پاس ورڈ یاد رکھیں۔',
       aboutBackupWarning:
@@ -4411,9 +4375,8 @@ export const translations: Translations = {
       activeDescription: (threshold, count) =>
         `آپ کا والیٹ ${threshold}-از-${count} گارڈین بحالی سے محفوظ ہے`,
       generateInviteButton: 'دعوت نامہ تیار کریں',
-      removeConfigQuestion:
-        'کیا تمام گارڈینز کے پاس اپنے شیئرز موجود ہیں؟ اب آپ گارڈین کنفیگریشن کو لوکل اسٹوریج سے ہٹا سکتے ہیں۔ شیئرز آپ کے گارڈینز کے پاس محفوظ طریقے سے رکھے گئے ہیں اور کسی بھی وقت بحالی کے لیے استعمال کیے جا سکتے ہیں۔',
-      removeConfigButton: 'گارڈین کنفیگریشن کو لوکل اسٹوریج سے صاف کریں',
+      sharesNotStoredNotice:
+        'ہر سرپرست کا دعوت نامہ ابھی ڈاؤن لوڈ کریں: شیئرز اس ڈیوائس پر محفوظ نہیں ہوتے، اور یہ صفحہ چھوڑنے پر ختم ہو جاتے ہیں۔ سرپرست بدلنے کے لیے، سوشل ریکوری دوبارہ سیٹ اپ کریں۔',
       invitationHeading: 'گارڈین دعوت نامہ',
       downloadInviteButton: 'دعوت نامہ ڈاؤن لوڈ کریں',
       sendInviteText: name => `یہ دعوت نامہ ${name} کو ایک محفوظ ذریعے سے بھیجیں`,
@@ -4421,37 +4384,52 @@ export const translations: Translations = {
       deviceSyncHeading: 'ڈیوائس مطابقت پذیری',
       deviceSyncDescription:
         'آپ کی پاس کی پلیٹ فارم سروسز کا استعمال کرتے ہوئے خودکار طور پر ڈیوائسز کے درمیان مطابقت پذیر ہوتی ہے',
-      qrHeading: 'مطابقت پذیری QR کوڈ',
-      qrDescription:
-        'اپنے والیٹ کے پتے پر مشتمل ایک QR کوڈ تیار کریں تاکہ دوسرے ڈیوائس پر اپنے اکاؤنٹ کی معلومات کو آسانی سے مطابقت پذیر یا تصدیق کیا جا سکے۔',
-      generateQrButton: 'مطابقت پذیری QR کوڈ تیار کریں',
-      qrNote:
-        'نوٹ: اس QR کوڈ میں صرف آپ کے پبلک والیٹ پتے شامل ہیں۔ اس میں آپ کی پرائیویٹ کیز یا بحالی کا فقرہ شامل نہیں ہے۔ اسے دوسرے ڈیوائس پر اپنے اکاؤنٹ کی تصدیق کے لیے استعمال کریں۔',
       hideQrButton: 'QR کوڈ چھپائیں',
-      verifyHeading: 'QR کوڈ ڈیٹا کی تصدیق کریں',
-      verifyDescription: 'والیٹ کے پتوں کی تصدیق کے لیے اسکین شدہ QR کوڈ سے JSON سٹرنگ پیسٹ کریں۔',
-      verifyPlaceholder:
-        'JSON ڈیٹا یہاں پیسٹ کریں (مثلاً، {"username":"...","ethereumAddress":"..."})',
-      errorLabel: 'خرابی:',
-      parsedDataLabel: 'پارس شدہ ڈیٹا:',
-      usernameFieldLabel: 'صارف نام:',
-      ethAddressLabel: 'ایتھیریم پتہ:',
-      index0FieldLabel: 'انڈیکس #0:',
-      mainTaggedLabel: 'MAIN-ٹیگ شدہ:',
-      openbarTaggedLabel: 'OPENBAR-ٹیگ شدہ:',
-      generatedLabel: 'تیار شدہ:',
-      linkWalletButton: 'اس والیٹ کو اپنے پاس کی اکاؤنٹ سے منسلک کریں',
-      linkExplanation:
-        'منسلک کرنے پر کیا ہوتا ہے: یہ والیٹ کے پتے localStorage اور IndexedDB دونوں میں محفوظ کر دے گا، جس سے آپ کے پاس کی اکاؤنٹ اور اس HD والیٹ کے درمیان ایک مستقل ربط بن جائے گا۔ آپ اسے ڈیوائسز کے درمیان والیٹ ڈیٹا کی تصدیق یا مطابقت پذیری کے لیے استعمال کر سکتے ہیں۔',
-      howQrWorksHeading: 'QR کوڈ والیٹ مطابقت پذیری کیسے کام کرتی ہے',
-      qrStep1:
-        'مرحلہ 1: QR کوڈ تیار کریں - اپنے بنیادی ڈیوائس پر، اپنے والیٹ کے پبلک پتوں پر مشتمل ایک QR کوڈ تیار کریں۔ اس QR کوڈ کو شیئر کرنا محفوظ ہے کیونکہ اس میں صرف عوامی معلومات شامل ہیں۔',
-      qrStep2:
-        'مرحلہ 2: اسکین اور تصدیق - اپنے ثانوی ڈیوائس پر، کسی بھی QR اسکینر ایپ کا استعمال کرتے ہوئے QR کوڈ اسکین کریں، یا QR کوڈ میں دکھائے گئے JSON ڈیٹا کو دستی طور پر کاپی کریں۔',
-      qrStep3:
-        'مرحلہ 3: والیٹس کو منسلک کریں - JSON ڈیٹا کو اوپر دی گئی تصدیقی جگہ میں پیسٹ کریں اور "اس والیٹ کو منسلک کریں" پر کلک کریں۔ اس سے آپ کے پاس کی اکاؤنٹ اور HD والیٹ کے پتوں کے درمیان ایک مستقل کنکشن بنتا ہے۔',
-      whatGetsStored:
-        'کیا محفوظ کیا جاتا ہے: صرف عوامی والیٹ پتے localStorage اور IndexedDB میں محفوظ کیے جاتے ہیں۔ آپ کی پرائیویٹ کیز اور بحالی کا فقرہ محفوظ رہتے ہیں اور اس مطابقت پذیری کے طریقہ کار کے ذریعے کبھی منتقل یا محفوظ نہیں کیے جاتے۔',
+      syncExportHeading: 'ہم آہنگی کے لیے ایکسپورٹ کریں',
+      syncExportDescription:
+        'اپنی پاس کی سے لاک ایک سنک فائل ڈاؤن لوڈ کریں۔ جس بھی ڈیوائس پر آپ کی پاس کی سنک ہوئی ہے، وہاں ایک پاس کی پرامپٹ سے، بغیر پاس ورڈ کے، اسے امپورٹ کریں۔',
+      syncExportButton: 'سنک فائل ایکسپورٹ کریں',
+      syncExportNote:
+        'یہ فائل صرف آپ کی پاس کی کھول سکتی ہے۔ پاس کیز ایک ہی ایکو سسٹم (Apple یا Google) میں سنک ہوتی ہیں: ایکو سسٹم بدلنے کے لیے پاس ورڈ بیک اپ استعمال کریں۔',
+      syncQrAlt: 'سنک فائل کا QR کوڈ',
+      syncLinkReady:
+        'اس لنک میں ایک سنک فائل ہے۔ نیچے ٹیپ کریں اور اپنی پاس کی سے تصدیق کریں تاکہ والیٹ اس ڈیوائس پر آ جائے۔',
+      syncLinkButton: 'یہ والیٹ سنک کریں',
+      syncQrHint:
+        'اپنی دوسری ڈیوائس کے کیمرے سے اسکین کریں: genji کھلے گا اور ایک پاس کی پرامپٹ کے بعد آپ کا والیٹ سنک کر دے گا۔',
+      syncImportHeading: 'سنک فائل امپورٹ کریں',
+      syncImportDescription:
+        'کسی دوسری ڈیوائس کی سنک فائل سے اپنا والیٹ اس ڈیوائس پر لائیں۔ آپ کی پاس کی پہلے سے یہاں سنک ہونی چاہیے (iCloud Keychain یا Google Password Manager)۔',
+      syncImportButton: 'سنک فائل منتخب کریں',
+      syncImportPasswordTitle: 'سنک پاس ورڈ درج کریں',
+      syncImportPasswordDescription:
+        'یہ فائل پاس ورڈ سے محفوظ ہے۔ ایکسپورٹ کرتے وقت منتخب کیا گیا پاس ورڈ درج کریں۔',
+      syncImportedTitle: 'والیٹ اس ڈیوائس پر سنک ہو گیا',
+      syncImportErrorTitle: 'سنک ناکام ہو گیا',
+      syncErrorInvalidFile: 'یہ w3pk سنک یا بیک اپ فائل نہیں ہے۔',
+      syncErrorCredentialMismatch:
+        'یہ فائل کسی دوسری پاس کی کی ہے۔ لاگ آؤٹ کریں، یا وہ پاس کی منتخب کریں جس سے اسے ایکسپورٹ کیا گیا تھا۔',
+      syncErrorPublicKeyMismatch:
+        'یہ فائل آپ کی پاس کی سے میل نہیں کھاتی۔ ممکن ہے اس میں تبدیلی کی گئی ہو: نئی فائل ایکسپورٹ کریں۔',
+      syncErrorUnsupportedBackup:
+        'یہ بیک اپ نئی ڈیوائس سیٹ اپ نہیں کر سکتا۔ اسے نیچے ریسٹور کریں، یا اپنی دوسری ڈیوائس پر سنک فائل ایکسپورٹ کریں۔',
+      syncErrorPrfUnsupported:
+        'یہ براؤزر بغیر پاس ورڈ کی سنک فائل نہیں کھول سکتا۔ Chrome یا Safari آزمائیں، یا پاس ورڈ بیک اپ ایکسپورٹ کریں۔',
+      syncErrorNoPasskey:
+        'آپ کی پاس کی ابھی اس ڈیوائس پر نہیں ہے۔ iCloud Keychain یا Google Password Manager آن کریں، سنک ہونے دیں، پھر دوبارہ کوشش کریں۔',
+      syncHowHeading: 'ڈیوائس سنک کیسے کام کرتا ہے',
+      syncStep1:
+        'مرحلہ 1: ایکسپورٹ - جس ڈیوائس پر آپ کا والیٹ ہے، وہاں سنک فائل ایکسپورٹ کریں۔ آپ کی پاس کی اسے لاک کرتی ہے: کوئی پاس ورڈ نہیں، اور پاس کی کے بغیر فائل بے کار ہے۔',
+      syncStep2:
+        'مرحلہ 2: فائل منتقل کریں - اسے اپنی دوسری ڈیوائس پر بھیجیں (AirDrop، کلاؤڈ ڈرائیو یا کیبل)، یا اس کا QR کوڈ اسکین کریں۔',
+      syncStep3:
+        'مرحلہ 3: امپورٹ - دوسری ڈیوائس پر سیٹنگز کھولیں، فائل منتخب کریں اور اپنی پاس کی سے تصدیق کریں۔ آپ اسی والیٹ کے ساتھ لاگ ان ہوں گے۔',
+      syncExportedTitle: 'سنک فائل ڈاؤن لوڈ ہو گئی',
+      syncExportedPasswordDescription:
+        'آپ کی پاس کی بغیر پاس ورڈ سنک کو سپورٹ نہیں کرتی، اس لیے اس فائل کے لیے آپ کا منتخب کردہ پاس ورڈ درکار ہوگا۔',
+      syncPasswordModalTitle: 'سنک پاس ورڈ سیٹ کریں',
+      syncPasswordModalDescription:
+        'یہ براؤزر یا آتھنٹیکیٹر فائل کو صرف آپ کی پاس کی سے لاک نہیں کر سکتا۔ ایک پاس ورڈ منتخب کریں: دوسری ڈیوائس پر آپ اسے اپنی پاس کی کے ساتھ درج کریں گے۔',
       platformSyncHeading: 'پاس کی پلیٹ فارم مطابقت پذیری',
       platformSyncIntro:
         'آپ کی پاس کی کی تفصیلات ایک ہی ایکو سسٹم کے اندر ڈیوائسز کے درمیان خودکار طور پر مطابقت پذیر ہوتی ہیں:',
@@ -4495,9 +4473,6 @@ export const translations: Translations = {
       localStorageModalTitle: 'LocalStorage معائنہ',
       foundItemsText: n => `localStorage میں ${n} اشیاء ملیں`,
       noDataFound: 'کوئی ڈیٹا نہیں ملا',
-      indexedDBModalTitle: 'IndexedDB معائنہ',
-      foundDatabasesText: n => `${n} ڈیٹا بیس ملے`,
-      noDatabasesFound: 'کوئی w3pk سے متعلق ڈیٹا بیس نہیں ملا',
 
       registrationSuccessTitle: 'رجسٹریشن کامیاب',
       registrationSuccessDescription: 'آپ کا نیا اکاؤنٹ بن گیا ہے۔',
@@ -4508,16 +4483,9 @@ export const translations: Translations = {
         `${n} اشیاء ملیں۔ نتائج دیکھنے کے لیے نیچے سکرول کریں۔`,
       genericErrorTitle: 'خرابی',
       failedInspectLocalStorage: 'localStorage کا معائنہ ناکام ہوا',
-      indexedDBInspectedTitle: 'IndexedDB کا معائنہ مکمل',
-      indexedDBInspectedDescription: (dbCount, recordCount) =>
-        `${recordCount} ریکارڈز کے ساتھ ${dbCount} ڈیٹا بیس ملے۔ نتائج دیکھنے کے لیے نیچے سکرول کریں۔`,
-      failedInspectIndexedDB: 'IndexedDB کا معائنہ ناکام ہوا',
       itemClearedTitle: 'آئٹم صاف ہو گیا',
       itemClearedDescription: key => `"${key}" کو localStorage سے ہٹا دیا گیا`,
       failedClearItem: key => `"${key}" کو صاف کرنا ناکام ہوا`,
-      recordClearedTitle: 'ریکارڈ صاف ہو گیا',
-      recordClearedDescription: (db, store) => `${db}/${store} سے ریکارڈ ہٹا دیا گیا`,
-      failedClearRecord: 'ریکارڈ صاف کرنا ناکام ہوا',
       errorLoadingAddressesTitle: 'پتے لوڈ کرنے میں خرابی',
       failedDeriveAddresses: 'والیٹ کے پتے اخذ کرنا ناکام ہوا',
       errorLoadingBackupStatusTitle: 'بیک اپ کی صورتحال لوڈ کرنے میں خرابی',
@@ -4541,11 +4509,6 @@ export const translations: Translations = {
       walletRestoredRegisteredTitle: 'والیٹ بحال اور رجسٹر ہو گیا!',
       walletRestoredRegisteredDescription: address =>
         `والیٹ کامیابی سے بحال اور رجسٹر ہو گیا: ${address}`,
-      securityReportGeneratedTitle: 'سیکیورٹی رپورٹ تیار ہو گئی',
-      securityReportGeneratedDescription: 'ذیل میں تفصیلی تجزیہ دیکھیں',
-      inspectionFailedTitle: 'معائنہ ناکام ہوا',
-      inspectionFailedDescription:
-        'ہوسٹ ایپ کا معائنہ کام نہیں کیا۔ اس کی وجہ غالباً Anthropic کی درخواست کی شرح کی حد تک پہنچنا ہے۔',
       backupStatusRetrievedTitle: 'بیک اپ کی صورتحال حاصل ہو گئی۔',
       errorRetrievingStatusTitle: 'صورتحال حاصل کرنے میں خرابی۔',
       unexpectedErrorDescription: 'ایک غیر متوقع خرابی پیش آگئی۔',
@@ -4582,13 +4545,6 @@ export const translations: Translations = {
       fileLoadedDescription:
         'گارڈین شیئر فائل سے لوڈ ہو گیا۔ اسے شامل کرنے کے لیے "شیئر شامل کریں" پر کلک کریں۔',
       failedReadGuardianFile: 'گارڈین شیئر فائل پڑھنا ناکام ہوا',
-      cannotSaveTitle: 'محفوظ نہیں کیا جا سکتا',
-      cannotSaveDescription: 'غلط QR ڈیٹا یا صارف کی توثیق نہیں ہوئی',
-      walletLinkedTitle: 'والیٹ کامیابی سے منسلک ہو گیا!',
-      walletLinkedDescription: address =>
-        `والیٹ ${address} کو آپ کے پاس کی اکاؤنٹ سے منسلک کر دیا گیا`,
-      errorSavingLinkTitle: 'والیٹ لنک محفوظ کرنے میں خرابی',
-      failedSaveSyncData: 'والیٹ مطابقت پذیری ڈیٹا محفوظ کرنا ناکام ہوا',
       recoveryPasswordPrompt:
         'وہ پاس ورڈ درج کریں جو آپ نے سماجی بحالی کنفیگر کرتے وقت سیٹ کیا تھا۔\n\nیہ پاس ورڈ گارڈینز کے ساتھ شیئر نہیں کیا گیا تھا - آپ نے اسے سیٹ اپ کے دوران سیٹ کیا تھا۔',
       recoveryUsernamePrompt: address =>
@@ -4598,6 +4554,8 @@ export const translations: Translations = {
       registerTitle: 'نیا اکاؤنٹ رجسٹر کریں',
       walletInfoText:
         'ایک ایتھیریم والیٹ بنایا جائے گا اور آپ کے ڈیوائس پر محفوظ طریقے سے محفوظ کیا جائے گا، جو آپ کے بائیومیٹرک یا پن کے ذریعے محفوظ ہوگا، شکریہ',
+      noPlatformAuthenticatorHint:
+        'کوئی بلٹ اِن تصدیق کنندہ نہیں ملا: اپنا فون یا سیکیورٹی کی استعمال کریں۔',
       usernameLabel: 'صارف نام',
       usernamePlaceholder: 'اپنا صارف نام درج کریں',
       usernameError:
@@ -4612,6 +4570,33 @@ export const translations: Translations = {
         'کوئی پاس کی نہیں ملی۔ نیا اکاؤنٹ بنانے کے لیے براہ کرم رجسٹر کریں۔',
       alreadyRegisteredLink: 'میں پہلے ہی دوسرے ڈیوائس پر رجسٹر ہو چکا ہوں',
     },
+    backup: {
+      title: 'اپنے والیٹ کا بیک اپ لیں',
+      description:
+        'آپ کا والیٹ صرف اسی براؤزر میں محفوظ ہے۔ اگر اس کا ڈیٹا مٹ جائے تو بیک اپ فائل ہی والیٹ واپس پانے کا واحد طریقہ ہے۔',
+      safariWarning:
+        'Safari سات دن تک سائٹ پر نہ آنے پر اس کا ڈیٹا حذف کر دیتا ہے۔ بیک اپ کے بغیر آپ کا والیٹ ضائع ہو جائے گا۔',
+      iosWarning: 'iPhone اور iPad پر، ہر براؤزر 7 دن تک نہ آنے پر اس سائٹ کا ڈیٹا حذف کر دیتا ہے',
+      downloadButton: 'بیک اپ فائل ڈاؤن لوڈ کریں',
+      passwordModalTitle: 'اپنے بیک اپ کو محفوظ کریں',
+      passwordModalDescription:
+        'ایک مضبوط پاس ورڈ منتخب کریں۔ اس فائل سے والیٹ بحال کرنے کے لیے اس کی ضرورت ہوگی۔',
+      skipButton: 'میں خطرہ سمجھتا/سمجھتی ہوں',
+      backupCreatedTitle: 'بیک اپ ڈاؤن لوڈ ہو گیا',
+      backupFailedTitle: 'بیک اپ ناکام ہو گیا',
+    },
+    homeScreen: {
+      title: 'اپنا والیٹ اس ڈیوائس پر رکھیں',
+      description:
+        'ہوم اسکرین پر شامل کی گئی ایپ اپنا ڈیٹا رکھتی ہے۔ براؤزر میں، بیک اپ فائل ہی آپ کا والیٹ واپس پانے کا واحد طریقہ ہے۔',
+      addButton: 'ہوم اسکرین پر شامل کریں',
+      backupButton: 'بیک اپ لیں',
+      stepsTitle: 'ہوم اسکرین پر شامل کریں',
+      step1: 'شیئر بٹن پر ٹیپ کریں۔',
+      step2: '"ہوم اسکرین پر شامل کریں" پر ٹیپ کریں۔',
+      step3: 'نئے آئیکن سے ایپ کھولیں اور وہیں اپنا والیٹ بنائیں۔',
+      backButton: 'واپس',
+    },
     passwordModal: {
       passwordLabel: 'پاس ورڈ',
       passwordPlaceholder: 'اپنا پاس ورڈ درج کریں',
@@ -4624,12 +4609,10 @@ export const translations: Translations = {
       submissionErrorDefaultDescription: 'ایک غیر متوقع خرابی پیش آگئی۔',
       requirementsNotMet: 'پاس ورڈ تمام تقاضے پورے نہیں کرتا',
       strongPassword: 'مضبوط پاس ورڈ!',
-      mustInclude: 'پاس ورڈ میں شامل ہونا چاہیے:',
-      reqMinLength: 'کم از کم 12 حروف',
-      reqUpperCase: 'ایک بڑا حرف',
-      reqLowerCase: 'ایک چھوٹا حرف',
-      reqNumber: 'ایک عدد',
-      reqSpecialChar: 'ایک خاص کریکٹر',
+      mustInclude: 'پاس ورڈ ایسا ہونا چاہیے:',
+      reqMinLength: 'کم از کم 15 حروف: ایک پاس فریز بھی چلے گا',
+      reqNoRepeat: 'ایک ہی حرف کی تکرار نہیں',
+      reqNotCommon: 'کوئی عام پاس ورڈ نہیں',
       satisfied: ' (پورا ہوگیا)',
       required: ' (درکار ہے)',
       submit: 'جمع کروائیں',
