@@ -23,6 +23,10 @@
 - `react-markdown`, `remark-gfm` and `rehype-highlight`, which nothing imports
 - w3pk's optional `circomlibjs` dependency, through a pnpm override: `/zk` only shows code samples
 
+### Fixed
+
+- Build verification no longer fails with `Failed to fetch`: `connect-src` in `next.config.ts` allows `https://registry.npmjs.org` instead of `https://unpkg.com`, since w3pk 0.12.4's `getCurrentBuildHash()` downloads the published tarball from the npm registry
+
 ### Security
 
 - `next` 16.4.3 fixes two critical and one high advisory
